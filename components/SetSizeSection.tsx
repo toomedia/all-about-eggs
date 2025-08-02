@@ -22,15 +22,14 @@ const categories = [
 export default function SetSizeAndCategorySection() {
   return (
     <section className="py-20 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 text-center">
-        
-        {/* Set Size Selector */}
+      <div className="max-w-6xl mx-auto px-4 text-center">
+
         <h3 className="text-2xl font-semibold text-gray-800 mb-6">Choose Set Size</h3>
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-6 mb-12">
           {setSizes.map((set) => (
             <Card
               key={set.label}
-              className={`p-6 border-2 rounded-lg text-center w-48 transition-all transform hover:scale-105 ${
+              className={`p-6 border-2 rounded-lg text-center transition-all transform hover:scale-105 ${
                 set.active
                   ? 'border-orange-300 bg-orange-50 shadow-md'
                   : 'border-gray-200 bg-white hover:bg-orange-50 hover:border-orange-300'
@@ -43,8 +42,7 @@ export default function SetSizeAndCategorySection() {
           ))}
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((cat) =>
             cat.isButton ? (
               <Button
@@ -68,11 +66,10 @@ export default function SetSizeAndCategorySection() {
           )}
         </div>
 
-        {/* Instruction Bar */}
-        <div className="mt-8 bg-white shadow-lg rounded-xl px-6 py-4 flex items-center justify-between max-w-3xl mx-auto">
-          <p className="text-gray-800 font-medium">Choose 24 out of 24 designs</p>
+        <div className="mt-8 bg-white shadow-lg rounded-xl px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-3xl mx-auto">
+          <p className="text-gray-800 font-medium text-center sm:text-left">Choose 24 out of 24 designs</p>
           <Button className="bg-orange-100 hover:bg-orange-200 text-orange-800 font-semibold transform hover:scale-105">
-            🛒 Finished – Add to Cart (€49.99)
+             Finished – Add to Cart (€49.99)
           </Button>
         </div>
       </div>
