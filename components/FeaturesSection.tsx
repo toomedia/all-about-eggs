@@ -23,7 +23,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-   <section className="relative bg-gradient-to-br from-[#fefefc] to-[#f3fde9] py-16 sm:py-24 overflow-hidden">
+   <section className="relative bg-gradient-to-br from-[#f7fcee] to-[#f6e79e] py-16 sm:py-24 overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -37,10 +37,10 @@ export default function FeaturesSection() {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="p-8 text-center bg-white/80 backdrop-blur-md border border-orange-100 rounded-2xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2"
+              className="p-8 text-center bg-white/80 backdrop-blur-md border border-[#f6e79e] rounded-2xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2"
             >
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <feature.icon className="w-8 h-8 text-gray-700" />
               </div>
               <h4 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h4>
               <p className="text-gray-600">{feature.description}</p>

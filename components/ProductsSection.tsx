@@ -41,7 +41,7 @@ const eggProducts = [
 
 export default function ProductsSection() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-[#f7fcee] py-16">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-gray-800 text-center mb-10">
           Choose Your Designs
@@ -66,7 +66,7 @@ export default function ProductsSection() {
               <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                 <Button
                   size="sm"
-                  className="bg-orange-500 text-white hover:bg-orange-600 w-full"
+                  className="bg-[#f6e79e] text-gray-900 hover:bg-[#f4e285] w-full"
                 >
                   Select Design
                 </Button>
@@ -77,7 +77,7 @@ export default function ProductsSection() {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="text-gray-600 hover:text-red-500"
+                  className="text-gray-600 hover:text-[#f6e79e]"
                 >
                   <Heart className="w-5 h-5" />
                 </Button>

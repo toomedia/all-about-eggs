@@ -17,7 +17,7 @@ export default function Home() {
   const [cartTotal, setCartTotal] = useState(0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50">
+    <div className="min-h-screen">
       <Header cartItems={cartItems} cartTotal={cartTotal} />
       <HeroSection />
       <FeaturesSection />

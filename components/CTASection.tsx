@@ -5,7 +5,7 @@ import { Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function CTASection() {
   return (
-    <section className="py-20 bg-gradient-to-r from-[#f7f7f7] to-[#eaeaea]">
+    <section className="py-20 bg-gradient-to-r from-[#f7fcee] to-[#f6e79e]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h3 className="text-4xl lg:text-5xl font-bold text-[#333] mb-6">
           Ready to Create Your Perfect Easter Memory?
@@ -15,12 +15,12 @@ export default function CTASection() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="bg-orange-600 text-white hover:bg-orange-700 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+          <Button size="lg" className="bg-[#f6e79e] text-gray-900 hover:bg-[#f4e285] px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             <Sparkles className="w-5 h-5 mr-2" />
             Start Designing Now
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
-          <Button size="lg" className="bg-orange-600 text-white hover:bg-orange-700 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+          <Button size="lg" className="bg-[#f6e79e] text-gray-900 hover:bg-[#f4e285] px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             Contact Us
           </Button>
         </div>

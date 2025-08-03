@@ -106,7 +106,7 @@ export default function CatalogPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header cartItems={0} cartTotal={0} />
       
       {/* Size Selection */}
       <section className="py-12 bg-gray-50">
@@ -119,15 +119,15 @@ export default function CatalogPage() {
                 key={size.name}
                 className={`bg-white p-6 rounded-lg border-2 cursor-pointer transition-all ${
                   selectedSize === size.name 
-                    ? 'border-orange-500 ring-2 ring-orange-200' 
-                    : 'border-gray-200 hover:border-orange-300'
+                                  ? 'border-[#f6e79e] ring-2 ring-[#f6e79e]/20'
+              : 'border-gray-200 hover:border-[#f6e79e]'
                 }`}
                 onClick={() => setSelectedSize(size.name)}
               >
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{size.name}</h3>
                   <p className="text-gray-600 mb-4">{size.cards} Cards</p>
-                  <p className="text-2xl font-bold text-orange-500">€{size.price}</p>
+                  <p className="text-2xl font-bold text-[#f6e79e]">€{size.price}</p>
                 </div>
               </div>
             ))}
@@ -145,14 +145,14 @@ export default function CatalogPage() {
                 onClick={() => setSelectedCategory(category.name)}
                 className={`px-6 py-2 rounded-full font-medium transition-colors ${
                   selectedCategory === category.name
-                    ? 'bg-orange-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-orange-100'
+                                  ? 'bg-[#f6e79e] text-gray-900'
+              : 'bg-gray-100 text-gray-700 hover:bg-[#f6e79e]/20'
                 }`}
               >
                 {category.name} ({category.count})
               </button>
             ))}
-            <button className="px-6 py-2 bg-yellow-400 text-gray-900 rounded-full font-medium hover:bg-yellow-500 transition-colors">
+            <button className="px-6 py-2 bg-[#f6e79e] text-gray-900 rounded-full font-medium hover:bg-[#f4e285] transition-colors">
               Surprise Me
             </button>
           </div>
@@ -171,8 +171,8 @@ export default function CatalogPage() {
             {filteredDesigns.map((design) => (
               <div key={design.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow group">
                 <div className="relative">
-                  <div className="w-full h-48 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <div className="w-20 h-20 bg-orange-400 rounded-full"></div>
+                                <div className="w-full h-48 bg-[#f6e79e]/20 rounded-lg flex items-center justify-center">
+                <div className="w-20 h-20 bg-[#f6e79e] rounded-full"></div>
                   </div>
                   <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
                     <Heart className="w-4 h-4 text-gray-500 hover:text-red-500" />
@@ -183,7 +183,7 @@ export default function CatalogPage() {
                   <p className="text-sm text-gray-600 mb-4">{design.category}</p>
                   <Link 
                     href={`/product/${design.id}`}
-                    className="w-full bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors text-center block"
+                    className="w-full bg-[#f6e79e] text-gray-900 py-2 px-4 rounded-md hover:bg-[#f4e285] transition-colors text-center block"
                   >
                     Select Design
                   </Link>
@@ -194,7 +194,7 @@ export default function CatalogPage() {
 
           {/* Add to Cart Section */}
           <div className="mt-12 text-center">
-            <button className="bg-orange-500 text-white px-12 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors">
+            <button className="bg-[#f6e79e] text-gray-900 px-12 py-4 rounded-lg font-semibold text-lg hover:bg-[#f4e285] transition-colors">
               Finished – Add to Cart (€{sizes.find(s => s.name === selectedSize)?.price})
             </button>
           </div>
