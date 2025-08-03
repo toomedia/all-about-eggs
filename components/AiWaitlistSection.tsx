@@ -6,9 +6,10 @@ export default function AiWaitlistSection() {
   return (
     <section className="bg-[#fef6ff] py-20 px-4 text-center">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-          Coming Soon: Design your own egg with AI!
-        </h2>
+ <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center font-manrope">
+  Coming Soon: Design your own egg with AI!
+</h2>
+
         <p className="text-gray-600 mb-8 text-lg md:text-xl">
           Soon you’ll be able to create your own personalized egg designs using our AI. Join the waitlist and be one of the first!
         </p>

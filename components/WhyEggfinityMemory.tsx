@@ -27,9 +27,11 @@ const features = [
 export default function WhyEggfinityMemory() {
   return (
     <section className="bg-[#f7fcee] py-16 px-4 sm:px-8 text-center">
-      <h2 className="text-3xl font-bold text-gray-900 mb-10">
-        Why Eggfinity Memory?
-      </h2>
+ <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center font-manrope">
+  Why Eggfinity Memory?
+</h2>
+
+
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto">
         {features.map((feature, index) => (
           <Card key={index} className="rounded-xl shadow-md">
