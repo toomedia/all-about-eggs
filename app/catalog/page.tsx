@@ -16,6 +16,7 @@ export default function CatalogPage() {
   const [cartItems, setCartItems] = useState<number[]>([]);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [orderType, setOrderType] = useState<'custom' | 'preset'>('custom');
+  const [isSurpriseSelection, setIsSurpriseSelection] = useState(false);
   
   // Surprise Me Modal States
   const [showSurpriseModal, setShowSurpriseModal] = useState(false);
@@ -35,6 +36,7 @@ export default function CatalogPage() {
   useEffect(() => {
     const savedDesigns = localStorage.getItem('selectedDesigns');
     const savedSize = localStorage.getItem('selectedSize');
+    const savedIsSurprise = localStorage.getItem('isSurpriseSelection');
     
     if (savedDesigns) {
       setSelectedDesigns(JSON.parse(savedDesigns));
@@ -42,13 +44,17 @@ export default function CatalogPage() {
     if (savedSize) {
       setSelectedSize(savedSize);
     }
+    if (savedIsSurprise) {
+      setIsSurpriseSelection(JSON.parse(savedIsSurprise));
+    }
   }, []);
 
   // Save selections to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('selectedDesigns', JSON.stringify(selectedDesigns));
     localStorage.setItem('selectedSize', selectedSize);
-  }, [selectedDesigns, selectedSize]);
+    localStorage.setItem('isSurpriseSelection', JSON.stringify(isSurpriseSelection));
+  }, [selectedDesigns, selectedSize, isSurpriseSelection]);
 
   const categories = [
     { name: 'All', count: 30, icon: '🌟' },
@@ -619,6 +625,8 @@ export default function CatalogPage() {
         return prev;
       }
     });
+    // Mark as regular selection, not surprise
+    setIsSurpriseSelection(false);
   };
 
   const selectedDesignObjects = selectedDesigns;
@@ -707,6 +715,7 @@ export default function CatalogPage() {
 
   const handleViewSurprise = () => {
     setSelectedDesigns(surpriseResult);
+    setIsSurpriseSelection(true);
     setShowSurpriseModal(false);
     setSurpriseStep(1);
     // Scroll to top to show the surprise section
@@ -770,7 +779,7 @@ export default function CatalogPage() {
       </section>
 
       {/* Surprise Results Section */}
-      {selectedDesigns.length > 0 && (
+      {selectedDesigns.length > 0 && isSurpriseSelection && (
         <section className="py-12 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-b-4 border-purple-200/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
@@ -830,12 +839,89 @@ export default function CatalogPage() {
               <button
                 onClick={() => {
                   setSelectedDesigns([]);
+                  setIsSurpriseSelection(false);
                   localStorage.removeItem('selectedDesigns');
+                  localStorage.removeItem('isSurpriseSelection');
                 }}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-purple-700 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2"
               >
                 <X className="w-5 h-5" />
                 Clear Surprise
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Selected Designs Section */}
+      {selectedDesigns.length > 0 && !isSurpriseSelection && (
+        <section className="py-12 bg-gradient-to-br from-[#f6e79e]/10 to-[#f7fcee]/20 border-b-4 border-[#f6e79e]/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-6 py-3 rounded-full mb-4">
+                <ShoppingCart className="w-6 h-6" />
+                <span className="font-bold text-lg">Your Selected Designs</span>
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
+                {selectedDesigns.length} Designs in Your Cart
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Ready to create your custom egg memory game? Review your selections below.
+              </p>
+            </div>
+
+            {/* Selected Designs Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 mb-8">
+              {selectedDesigns.map((design, index) => (
+                <div key={design.id} className="relative group">
+                  <div className="relative aspect-square rounded-2xl overflow-hidden border-4 border-[#f6e79e] shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <Image
+                      src={design.image}
+                      alt={design.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, (max-width: 1280px) 16vw, 12vw"
+                      loading="lazy"
+                      quality={50}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#f6e79e]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-2 left-2 right-2">
+                        <p className="text-white text-xs font-bold truncate">{design.name}</p>
+                        <p className="text-gray-200 text-xs">{design.category}</p>
+                      </div>
+                    </div>
+                    {/* Selection Badge */}
+                    <div className="absolute top-2 right-2 w-6 h-6 bg-[#f6e79e] rounded-full flex items-center justify-center">
+                      <span className="text-gray-900 text-xs font-bold">{index + 1}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={handleAddToCart}
+                className="px-8 py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Add to Cart - €{calculateOrderTotal().toFixed(2)}
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedDesigns([]);
+                  setIsSurpriseSelection(false);
+                  localStorage.removeItem('selectedDesigns');
+                  localStorage.removeItem('isSurpriseSelection');
+                }}
+                className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-[#f6e79e] text-gray-700 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2"
+              >
+                <X className="w-5 h-5" />
+                Clear Selection
               </button>
             </div>
           </div>
