@@ -1,0 +1,147 @@
+// "use client";
+
+// import { useState } from "react";
+
+// const faqs = [
+//   {
+//     question: "How many designs are included?",
+//     answer:
+//       "You can choose from over 100 different egg designs. Depending on the set size, you select 12, 24, or 36 different designs.",
+//   },
+//   {
+//     question: "Can I change my designs later?",
+//     answer:
+//       "As long as your order hasn't gone into production yet, you can change your selection of designs at any time. Just contact our customer service.",
+//   },
+//   {
+//     question: "How long does delivery take?",
+//     answer:
+//       "Since we produce on demand, the delivery time is 3–5 business days after the order is received.",
+//   },
+//   {
+//     question: "Is this product suitable for children?",
+//     answer:
+      
+//       "Yes! Our memory game is suitable for children aged 3 and above. The cards are made from high-quality, child-safe materials.",
+//   },
+// ];
+
+// export default function FAQSection() {
+//   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+//   const toggle = (index: number) => {
+//     setOpenIndex(openIndex === index ? null : index);
+//   };
+
+//   return (
+//     <section className="bg-[#f7fcee] py-16 px-4">
+//       <div className="max-w-3xl mx-auto">
+//         <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+//           Frequently Asked Questions
+//         </h2>
+
+//         <div className="space-y-4">
+//           {faqs.map((faq, index) => (
+//             <div
+//               key={index}
+//               className="bg-white rounded-xl shadow p-5 cursor-pointer transition-all duration-200"
+//               onClick={() => toggle(index)}
+//             >
+//               <div className="flex justify-between items-center">
+//                 <h3 className="text-base font-medium text-gray-900">
+//                   {faq.question}
+//                 </h3>
+//                 <span className="text-xl text-gray-400">
+//                   {openIndex === index ? "▲" : "▼"}
+//                 </span>
+//               </div>
+
+//               {openIndex === index && (
+//                 <p className="mt-3 text-gray-600 text-sm">{faq.answer}</p>
+//               )}
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+
+
+
+
+"use client";
+
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
+const faqs = [
+  {
+    question: "How many designs are included?",
+    answer:
+      "You can choose from over 100 different egg designs. Depending on the set size, you select 12, 24, or 36 different designs.",
+  },
+  {
+    question: "Can I change my designs later?",
+    answer:
+      "As long as your order hasn't gone into production yet, you can change your selection of designs at any time. Just contact our customer service.",
+  },
+  {
+    question: "How long does delivery take?",
+    answer:
+      "Since we produce on demand, the delivery time is 3–5 business days after the order is received.",
+  },
+  {
+    question: "Is this product suitable for children?",
+    answer:
+      "Yes! Our memory game is suitable for children aged 3 and above. The cards are made from high-quality, child-safe materials.",
+  },
+];
+
+export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section className=" py-16 px-4">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+          Frequently Asked Questions
+        </h2>
+
+        <div className="space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-sm p-5 cursor-pointer transition-all duration-200"
+                onClick={() => toggle(index)}
+              >
+                <div className="flex justify-between items-center">
+                  <h3 className="text-base font-medium text-gray-900">
+                    {faq.question}
+                  </h3>
+                  {isOpen ? (
+                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  )}
+                </div>
+
+                {isOpen && (
+                  <p className="mt-3 text-gray-600 text-sm">{faq.answer}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
