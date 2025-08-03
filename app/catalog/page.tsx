@@ -740,10 +740,10 @@ export default function CatalogPage() {
       <Header cartItems={cartItems.length} cartTotal={calculateCartTotal()} />
       
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 "
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 sm:opacity-30"
           style={{
             backgroundImage: `url('https://heritagehotelsofeurope.com/wp-content/uploads/2021/01/24th-March.png')`
           }}
@@ -751,27 +751,27 @@ export default function CatalogPage() {
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#f6e79e]/20 to-[#f7fcee]/40"></div>
         <div className="relative z-10 max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-manrope">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 font-manrope leading-tight">
             Beautiful Egg Templates
           </h1>
-          <p className="text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-8 sm:mb-10 md:mb-12 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-4">
             Choose from our curated collection of stunning Easter egg designs. Each template is crafted with love and ready to become your memory game.
           </p>
           
           {/* Search and Filter */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <div className="relative max-w-md w-full">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10 md:mb-12 px-4">
+            <div className="relative w-full max-w-sm sm:max-w-md">
+              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="text"
                 placeholder="Search templates..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#f6e79e] focus:border-transparent outline-none transition-all"
+                className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#f6e79e] focus:border-transparent outline-none transition-all text-sm sm:text-base"
               />
             </div>
-            <button className="px-6 py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl hover:bg-white transition-all flex items-center gap-2">
-              <Filter className="w-5 h-5 text-gray-600" />
+            <button className="w-full sm:w-auto px-4 sm:px-6 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl sm:rounded-2xl hover:bg-white transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+              <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
               <span className="font-medium text-gray-700">Filter</span>
             </button>
           </div>
@@ -1446,8 +1446,8 @@ export default function CatalogPage() {
 
       {/* Surprise Me Modal */}
       {showSurpriseModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-sm sm:max-w-md w-full my-8 max-h-[calc(100vh-4rem)] flex flex-col">
             
             {/* Step 1: Surprise Type Selection */}
             {surpriseStep === 1 && (
