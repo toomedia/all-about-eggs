@@ -179,6 +179,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Egg, Sparkles } from 'lucide-react';
 import Button from './Button';
+import Link from 'next/link';
 
 export default function Hero() {
   const eggImages = [
@@ -246,13 +247,17 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button className='flex'>
-                <Sparkles className="w-5 h-5 mr-2" />
-                Create Set Now
-              </Button>
-              <Button className="!bg-transparent border-2 border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900">
-                Learn More
-              </Button>
+              <Link href="/catalog">
+                <Button className='flex'>
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Create Set Now
+                </Button>
+              </Link>
+              <Link href="#how-it-works">
+                <Button className="!bg-transparent border-2 border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
 

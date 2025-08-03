@@ -18,7 +18,7 @@ export default function AiWaitlistSection() {
           <input
             type="email"
             placeholder="Your email address"
-            className="px-5 py-3 rounded-xl border border-gray-300 text-gray-800 w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-purple-300"
+            className="px-5 py-3 rounded-xl border border-gray-300 text-gray-800 w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-purple-300 bg-white"
           />
           <Button className="w-full sm:w-auto">
             Join Waitlist

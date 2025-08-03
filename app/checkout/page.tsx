@@ -2,44 +2,132 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { useState } from 'react';
-import { CreditCard, Truck, Shield, ArrowLeft } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { CreditCard, Truck, Shield, ArrowLeft, X, Check } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CheckoutPage() {
-  const [paymentMethod, setPaymentMethod] = useState('stripe');
+  const [paymentMethod, setPaymentMethod] = useState('card');
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [orderType, setOrderType] = useState<'custom' | 'preset'>('custom');
+  const [selectedDesigns, setSelectedDesigns] = useState<any[]>([]);
+  const [selectedSize, setSelectedSize] = useState('L');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    postalCode: '',
+    country: ''
+  });
 
-  const orderItems = [
-    {
-      id: 1,
-      name: 'Nordic Pattern Egg - Memory Game XL',
-      size: 'XL (48 Cards)',
-      price: 49.99,
-      quantity: 1,
-      image: '/api/placeholder/100/100'
-    },
-    {
-      id: 2,
-      name: 'Floral Delight - T-shirt',
-      size: 'Medium',
-      price: 24.99,
-      quantity: 1,
-      image: '/api/placeholder/100/100'
-    }
+  // Mock egg designs data (same as catalog)
+  const eggDesigns = [
+    { id: 1, name: "Easter Bunny Delight", category: "Easter", image: "/egg1.png" },
+    { id: 2, name: "Spring Flower Garden", category: "Nature", image: "/egg2.png" },
+    { id: 3, name: "Abstract Geometric", category: "Abstract", image: "/egg3.png" },
+    { id: 4, name: "Classic Stripes", category: "Classics", image: "/egg4.png" },
+    { id: 5, name: "Pop Culture Icons", category: "Pop Culture", image: "/egg5.png" },
+    { id: 6, name: "Pastel Dream", category: "Easter", image: "/egg6.png" },
+    { id: 7, name: "Forest Friends", category: "Nature", image: "/egg7.png" },
+    { id: 8, name: "Modern Minimalist", category: "Abstract", image: "/egg9.png" },
   ];
 
-  const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const shipping = subtotal > 50 ? 0 : 7.99;
-  const total = subtotal + shipping;
+  const sizes = [
+    { name: 'L', cards: 24, price: 29.99 },
+    { name: 'XL', cards: 48, price: 49.99 },
+    { name: 'XXL', cards: 96, price: 89.99 }
+  ];
+
+  useEffect(() => {
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const designsParam = urlParams.get('designs');
+    const presetParam = urlParams.get('preset');
+    const sizeParam = urlParams.get('size');
+    const countParam = urlParams.get('count');
+
+    if (presetParam) {
+      setOrderType('preset');
+      // For preset, use first 10 designs
+      setSelectedDesigns(eggDesigns.slice(0, 10));
+    } else if (designsParam) {
+      setOrderType('custom');
+      const designIds = designsParam.split(',').map(Number);
+      const designs = eggDesigns.filter(design => designIds.includes(design.id));
+      setSelectedDesigns(designs);
+    }
+
+    if (sizeParam) {
+      setSelectedSize(sizeParam);
+    }
+
+    // Load saved form data from localStorage
+    const savedFormData = localStorage.getItem('checkoutFormData');
+    const savedSize = localStorage.getItem('checkoutSelectedSize');
+    
+    if (savedFormData) {
+      setFormData(JSON.parse(savedFormData));
+    }
+    if (savedSize) {
+      setSelectedSize(savedSize);
+    }
+  }, []);
+
+  const calculateOrderTotal = () => {
+    const selectedSizeData = sizes.find(s => s.name === selectedSize);
+    const basePrice = selectedSizeData?.price || 0;
+    const totalCards = selectedSizeData?.cards || 24;
+    const selectedCount = selectedDesigns.length;
+    
+    const pricePerCard = basePrice / totalCards;
+    return selectedCount * pricePerCard;
+  };
+
+  const handleOrderNow = () => {
+    // Validate form
+    const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'postalCode'];
+    const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
+    
+    if (missingFields.length > 0) {
+      alert(`Please fill in all required fields: ${missingFields.join(', ')}`);
+      return;
+    }
+    
+    setShowOrderModal(true);
+  };
+
+  const clearLocalStorage = () => {
+    localStorage.removeItem('selectedDesigns');
+    localStorage.removeItem('selectedSize');
+    localStorage.removeItem('checkoutFormData');
+    localStorage.removeItem('checkoutSelectedSize');
+  };
+
+  const handleCompletePreset = () => {
+    // Save current form data to localStorage before redirecting
+    localStorage.setItem('checkoutFormData', JSON.stringify(formData));
+    localStorage.setItem('checkoutSelectedSize', selectedSize);
+    window.location.href = '/catalog';
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen">
+      <Header cartItems={selectedDesigns.length} cartTotal={calculateOrderTotal()} />
       
-      <div className="container py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <Link href="/catalog" className="inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors">
+          <Link href="/catalog" className="inline-flex items-center  transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Catalog
           </Link>
@@ -48,8 +136,56 @@ export default function CheckoutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Checkout Form */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Customer Information</h2>
+            {/* Order Options */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">Order Options</h2>
+              
+              <div className="space-y-6">
+                <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Selection</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    {selectedDesigns.map((design) => (
+                      <div key={design.id} className="bg-white rounded-lg p-3 shadow-sm">
+                        <div className="relative w-full h-20 bg-gray-50 rounded-lg overflow-hidden mb-2">
+                          <Image
+                            src={design.image}
+                            alt={design.name}
+                            fill
+                            className="object-contain p-2"
+                            quality={50}
+                          />
+                        </div>
+                        <p className="text-xs font-medium text-gray-900 truncate">{design.name}</p>
+                        <p className="text-xs text-gray-600">{design.category}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Selected: {selectedDesigns.length} designs</span>
+                    <span className="text-lg font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button
+                    onClick={handleOrderNow}
+                    className="bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-4 px-6 rounded-xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg"
+                  >
+                    Order {selectedDesigns.length} Cards Now
+                  </button>
+                  <button
+                    onClick={handleCompletePreset}
+                    className="bg-white border-2 border-gray-200 text-gray-700 py-4 px-6 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
+                  >
+                    Complete Preset ({sizes.find(s => s.name === selectedSize)?.cards} cards)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Customer Information Form */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">Customer Information</h2>
               
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -59,7 +195,9 @@ export default function CheckoutPage() {
                     </label>
                     <input 
                       type="text" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
                       placeholder="John"
                     />
                   </div>
@@ -69,7 +207,9 @@ export default function CheckoutPage() {
                     </label>
                     <input 
                       type="text" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
                       placeholder="Doe"
                     />
                   </div>
@@ -81,8 +221,23 @@ export default function CheckoutPage() {
                   </label>
                   <input 
                     type="email" 
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
                     placeholder="john.doe@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input 
+                    type="tel" 
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+                    placeholder="+1 (555) 123-4567"
                   />
                 </div>
 
@@ -92,7 +247,9 @@ export default function CheckoutPage() {
                   </label>
                   <input 
                     type="text" 
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    value={formData.address}
+                    onChange={(e) => handleInputChange('address', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
                     placeholder="123 Main Street"
                   />
                 </div>
@@ -100,142 +257,86 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Postal Code *
-                    </label>
-                    <input 
-                      type="text" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                      placeholder="12345"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       City *
                     </label>
                     <input 
                       type="text" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
                       placeholder="New York"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Country *
+                      Postal Code *
                     </label>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-                      <option>United States</option>
-                      <option>Germany</option>
-                      <option>United Kingdom</option>
-                      <option>Canada</option>
-                    </select>
+                    <input 
+                      type="text" 
+                      value={formData.postalCode}
+                      onChange={(e) => handleInputChange('postalCode', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+                      placeholder="10001"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Country
+                    </label>
+                    <input 
+                      type="text" 
+                      value={formData.country}
+                      onChange={(e) => handleInputChange('country', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+                      placeholder="United States"
+                    />
                   </div>
                 </div>
               </form>
-            </div>
-
-            {/* Payment Options */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Payment Method</h2>
-              
-              <div className="space-y-4">
-                <div 
-                  className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                    paymentMethod === 'stripe' 
-                      ? 'border-orange-500 bg-orange-50' 
-                      : 'border-gray-200 hover:border-orange-300'
-                  }`}
-                  onClick={() => setPaymentMethod('stripe')}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <CreditCard className="w-6 h-6 text-blue-600" />
-                      <span className="font-medium">Credit Card (Stripe)</span>
-                    </div>
-                    <div className="flex space-x-2">
-                      <div className="w-8 h-5 bg-blue-600 rounded text-white text-xs flex items-center justify-center">VISA</div>
-                      <div className="w-8 h-5 bg-red-600 rounded text-white text-xs flex items-center justify-center">MC</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div 
-                  className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                    paymentMethod === 'paypal' 
-                      ? 'border-orange-500 bg-orange-50' 
-                      : 'border-gray-200 hover:border-orange-300'
-                  }`}
-                  onClick={() => setPaymentMethod('paypal')}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-white text-xs font-bold">
-                        PP
-                      </div>
-                      <span className="font-medium">PayPal</span>
-                    </div>
-                    <span className="text-sm text-gray-600">Secure & Fast</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
           {/* Order Summary */}
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h3>
+            <div className="bg-white p-6 rounded-2xl shadow-lg">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 font-manrope">Order Summary</h3>
               
               <div className="space-y-4">
-                {orderItems.map((item) => (
-                  <div key={item.id} className="flex items-center space-x-4 pb-4 border-b border-gray-200 last:border-0">
-                    <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <div className="w-8 h-8 bg-orange-400 rounded-full"></div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Set Size:</span>
+                  <span className="font-medium">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} cards)</span>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium text-gray-900 text-sm">{item.name}</h4>
-                      <p className="text-sm text-gray-600">{item.size}</p>
-                      <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
-                    </div>
-                    <span className="font-semibold text-gray-900">€{item.price.toFixed(2)}</span>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Selected Cards:</span>
+                  <span className="font-medium">{selectedDesigns.length} designs</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Price per Card:</span>
+                  <span className="font-medium">€{((sizes.find(s => s.name === selectedSize)?.price || 0) / (sizes.find(s => s.name === selectedSize)?.cards || 24)).toFixed(2)}</span>
+                </div>
+                <div className="border-t border-gray-300 pt-4">
+                  <div className="flex justify-between">
+                    <span className="text-lg font-semibold text-gray-900">Total:</span>
+                    <span className="text-2xl font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-gray-200 space-y-2">
-                <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
-                  <span>€{subtotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>Shipping</span>
-                  <span>{shipping === 0 ? 'Free' : `€${shipping.toFixed(2)}`}</span>
-                </div>
-                <div className="flex justify-between text-lg font-bold text-gray-900 pt-2 border-t">
-                  <span>Total</span>
-                  <span>€{total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
 
-            {/* Order Button */}
-            <button className="w-full bg-orange-500 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors">
-              Confirm Order
-            </button>
-
             {/* Trust Badges */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="text-center space-y-4">
-                <div className="flex items-center justify-center space-x-2 text-green-600">
-                  <Shield className="w-5 h-5" />
-                  <span className="text-sm font-medium">SSL Secure Checkout</span>
+            <div className="bg-white p-6 rounded-2xl shadow-lg">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Shield className="w-5 h-5 text-[#f6e79e]" />
+                  <span className="text-sm text-gray-600">SSL Secure Checkout</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-blue-600">
-                  <Truck className="w-5 h-5" />
-                  <span className="text-sm font-medium">Free Shipping Over €50</span>
+                <div className="flex items-center gap-3">
+                  <Truck className="w-5 h-5 text-[#f6e79e]" />
+                  <span className="text-sm text-gray-600">Free Shipping Over €50</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-gray-600">
-                  <CreditCard className="w-5 h-5" />
-                  <span className="text-sm font-medium">30-Day Money Back Guarantee</span>
+                <div className="flex items-center gap-3">
+                  <CreditCard className="w-5 h-5 text-[#f6e79e]" />
+                  <span className="text-sm text-gray-600">30-Day Money Back Guarantee</span>
                 </div>
               </div>
             </div>
@@ -243,9 +344,136 @@ export default function CheckoutPage() {
         </div>
       </div>
 
+      {/* Order Confirmation Modal */}
+      {showOrderModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-900 font-manrope">Confirm Your Order</h2>
+              <button
+                onClick={() => setShowOrderModal(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Order Summary */}
+                <div className="space-y-6">
+                  <h3 className="text-xl font-bold text-gray-900 font-manrope">Order Summary</h3>
+                  
+                  {/* Selected Designs */}
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-gray-800">Selected Designs ({selectedDesigns.length})</h4>
+                    <div className="grid grid-cols-2 gap-3 max-h-60 overflow-y-auto">
+                      {selectedDesigns.map((design) => (
+                        <div key={design.id} className="bg-gray-50 rounded-lg p-3">
+                          <div className="relative w-full h-20 bg-white rounded-lg overflow-hidden mb-2">
+                            <Image
+                              src={design.image}
+                              alt={design.name}
+                              fill
+                              className="object-contain p-1"
+                              quality={50}
+                            />
+                          </div>
+                          <p className="text-xs font-medium text-gray-900 truncate">{design.name}</p>
+                          <p className="text-xs text-gray-600">{design.category}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Order Details */}
+                  <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl p-4">
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Set Size:</span>
+                        <span className="font-medium">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} cards)</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Selected Cards:</span>
+                        <span className="font-medium">{selectedDesigns.length} designs</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Price per Card:</span>
+                        <span className="font-medium">€{((sizes.find(s => s.name === selectedSize)?.price || 0) / (sizes.find(s => s.name === selectedSize)?.cards || 24)).toFixed(2)}</span>
+                      </div>
+                      <div className="border-t border-gray-300 pt-3">
+                        <div className="flex justify-between">
+                          <span className="text-lg font-semibold text-gray-900">Total:</span>
+                          <span className="text-2xl font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payment Section */}
+                <div className="space-y-6">
+                  <h3 className="text-xl font-bold text-gray-900 font-manrope">Payment Information</h3>
+                  
+                  {/* Payment Methods */}
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-gray-800">Payment Method</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-center p-4 border-2 border-[#f6e79e] rounded-xl bg-[#f6e79e]/10">
+                        <CreditCard className="w-6 h-6 text-[#f6e79e] mr-3" />
+                        <div>
+                          <p className="font-medium text-gray-900">Credit Card (Stripe)</p>
+                          <p className="text-sm text-gray-600">Secure payment processing</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Trust Badges */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Shield className="w-4 h-4 text-[#f6e79e]" />
+                      <span>SSL Secure Checkout</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Truck className="w-4 h-4 text-[#f6e79e]" />
+                      <span>Free Shipping Over €50</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <CreditCard className="w-4 h-4 text-[#f6e79e]" />
+                      <span>30-Day Money Back Guarantee</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="space-y-3 pt-4">
+                    <button 
+                      onClick={() => {
+                        clearLocalStorage();
+                        alert('Order completed! Thank you for your purchase.');
+                        window.location.href = '/';
+                      }}
+                      className="w-full bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-4 px-6 rounded-xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg"
+                    >
+                      Pay €{calculateOrderTotal().toFixed(2)} - Secure Checkout
+                    </button>
+                    <button 
+                      onClick={() => setShowOrderModal(false)}
+                      className="w-full bg-white border-2 border-gray-200 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-50 transition-all"
+                    >
+                      Continue Shopping
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
-}
-  )
 }
