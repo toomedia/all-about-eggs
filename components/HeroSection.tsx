@@ -246,7 +246,7 @@ export default function Hero() {
               the perfect personalized Easter gift!
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center lg:justify-start">
               <Link href="/catalog">
                 <Button className='flex'>
                   <Sparkles className="w-5 h-5 mr-2" />
