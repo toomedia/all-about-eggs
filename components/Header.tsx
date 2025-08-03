@@ -127,11 +127,11 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
     setMenuOpen(!menuOpen);
   };
 
-  const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Create Your Egg', href: '/catalog' },
-    { label: 'Catalog', href: '/catalog' },
-  ];
+                const navLinks = [
+                { label: 'Home', href: '/' },
+                { label: 'Design Egg', href: '/design' },
+                { label: 'Catalog', href: '/catalog' },
+              ];
 
   return (
     <header className={`backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50 transition-all duration-300 ${
@@ -156,7 +156,7 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
               <Link
                 key={label}
                 href={href}
-                className="text-sm font-medium text-gray-600 hover:text-[#f6e79e] transition-colors relative group"
+                className="text-base font-medium hover:text-[#f6e79e] transition-colors relative group"
               >
                 {label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#f6e79e] transition-all duration-300 group-hover:w-full"></span>
@@ -169,7 +169,7 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
             {/* User Account - Hidden on mobile, visible on tablet+ */}
             <Link href="/account" className="hidden sm:flex items-center gap-2 px-2 sm:px-3 py-2 rounded-xl hover:bg-white/20 transition-all group">
               <User className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 group-hover:text-[#f6e79e] transition-colors" />
-              <span className="hidden md:block text-sm font-medium text-gray-700 group-hover:text-[#f6e79e] transition-colors">
+              <span className="hidden md:block text-sm md:text-base font-medium text-gray-700 group-hover:text-[#f6e79e] transition-colors">
                 Account
               </span>
             </Link>
@@ -179,7 +179,7 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
               <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 group-hover:text-[#f6e79e] transition-colors" />
               <div className="hidden sm:flex flex-col items-start">
                 <span className="text-xs text-gray-600 font-medium">Cart</span>
-                <span className="text-sm font-semibold text-gray-800">
+                <span className="text-base font-semibold text-gray-800">
                   {cartItems > 0 ? `${cartItems} items` : 'Empty'}
                 </span>
               </div>
@@ -197,7 +197,7 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
 
             {/* Cart Total - Hidden on mobile, visible on tablet+ */}
             {cartTotal > 0 && (
-              <div className="hidden sm:block text-sm font-semibold text-gray-800 bg-white/30 backdrop-blur-sm px-2 sm:px-3 py-2 rounded-lg border border-gray-200/50">
+              <div className="hidden sm:block text-base font-semibold text-gray-800 bg-white/30 backdrop-blur-sm px-2 sm:px-3 py-2 rounded-lg border border-gray-200/50">
                 €{cartTotal.toFixed(2)}
               </div>
             )}
@@ -219,7 +219,7 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
               <Link
                 key={label}
                 href={href}
-                className="block text-sm font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors"
+                className="block text-sm md:text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {label}
@@ -228,19 +228,19 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
             <div className="border-t border-gray-200/50 mt-2 pt-2">
               <Link
                 href="/account"
-                className="block text-sm font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors"
+                className="block text-sm md:text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 My Account
               </Link>
               {/* Mobile Cart Info */}
               <div className="px-3 py-2.5">
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-sm md:text-base">
                   <span className="text-gray-600">Cart Items:</span>
                   <span className="font-semibold text-gray-800">{cartItems}</span>
                 </div>
                 {cartTotal > 0 && (
-                  <div className="flex items-center justify-between text-sm mt-1">
+                  <div className="flex items-center justify-between text-sm md:text-base mt-1">
                     <span className="text-gray-600">Total:</span>
                     <span className="font-semibold text-[#f6e79e]">€{cartTotal.toFixed(2)}</span>
                   </div>
