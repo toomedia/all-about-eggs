@@ -216,11 +216,11 @@ export default function Hero() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
-          backgroundImage: `url('https://hips.hearstapps.com/hmg-prod/images/colorful-easter-eggs-royalty-free-image-534890729-1551194622.jpg')`
+          backgroundImage: `url('mood image/IMG_1218.jpg')`
         }}
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#f7fcee]/80 to-[#f6e79e]/60" />
+      <div className="absolute inset-0 bg-gradient-to-l from-[#f7fcee]/30 to-[#f6e79e]/20" />
       {/* Content */}
       <div className="relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -236,9 +236,9 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-manrope ">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-manrope leading-tight">
                Create Your Unique
-              <span className="text-[#f6e79e] block">Egg Memory!</span>
+              <span className="text-[#f6e79e] block text-shadow-2xs shadow-black">Egg Memory!</span>
             </h1>
 
             <p className="text-lg text-gray-700 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">

@@ -1,11 +1,11 @@
 "use client";
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { ArrowLeft, Sparkles, Upload, Palette, Wand2, Image, Star, Heart, Download, Eye, Loader2, X, Egg } from 'lucide-react';
 import Link from 'next/link';
 import axios from 'axios';
 
-export default function DesignStudio() {
+function DesignStudioContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const mode = searchParams.get('mode');
@@ -332,7 +332,7 @@ export default function DesignStudio() {
             )}
 
             {/* Upload Mode */}
-            {mode === 'upload' && (
+      {mode === 'upload' && (
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-200/50 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
@@ -585,5 +585,13 @@ export default function DesignStudio() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function DesignStudio() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DesignStudioContent />
+    </Suspense>
   );
 }
