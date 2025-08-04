@@ -1,7 +1,5 @@
 'use client';
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 import { CreditCard, Truck, Shield, ArrowLeft, X, Check } from 'lucide-react';
 import Link from 'next/link';
@@ -123,8 +121,6 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen">
-      <Header cartItems={selectedDesigns.length} cartTotal={calculateOrderTotal()} />
-      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <Link href="/catalog" className="inline-flex items-center  transition-colors">
@@ -472,8 +468,6 @@ export default function CheckoutPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   );
 }

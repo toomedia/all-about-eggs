@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { ArrowLeft, ShoppingCart, Sparkles, Star, Heart, Download, Eye } from 'lucide-react';
+import { ArrowLeft, Sparkles, Star, Heart, Download, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -162,7 +160,6 @@ export default function PresetPage() {
   if (!preset) {
     return (
       <div className="min-h-screen bg-white">
-        <Header cartItems={0} cartTotal={0} />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Preset Not Found</h1>
           <p className="text-gray-600 mb-8">The preset collection you're looking for doesn't exist.</p>
@@ -170,7 +167,6 @@ export default function PresetPage() {
             Back to Catalog
           </Link>
         </div>
-              <Footer />
     </div>
   );
 }
@@ -257,8 +253,6 @@ export default function PresetPage() {
 
   return (
     <div className="min-h-screen ">
-      <Header cartItems={selectedDesigns.length} cartTotal={calculateOrderTotal()} />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back Button */}
         <div className="mb-8">
@@ -552,8 +546,6 @@ export default function PresetPage() {
           </div>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 } 

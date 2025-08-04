@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { Egg, Sparkles, Palette, Image, Wand2, Loader2, ArrowLeft } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 interface DesignOption {
@@ -91,8 +89,6 @@ export default function DesignPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
-      <Header cartItems={0} cartTotal={0} />
-      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
         {/* Back Button */}
         <div className="mb-6 sm:mb-8">
@@ -113,7 +109,7 @@ export default function DesignPage() {
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl sm:max-w-3xl mx-auto px-4">
             This is an example of how users can design their egg.
-          </p>
+            </p>
         </div>
 
         {!selectedOption ? (
@@ -240,8 +236,6 @@ export default function DesignPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   );
 } 

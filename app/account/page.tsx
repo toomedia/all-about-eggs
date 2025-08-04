@@ -2,15 +2,11 @@
 
 import React from 'react';
 import { Egg, Sparkles, User, Settings, Heart, ShoppingBag, Clock } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export default function AccountPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
-      <Header cartItems={0} cartTotal={0} />
-      
+    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">      
       {/* Hero Section */}
       <section className="pt-16 sm:pt-18 md:pt-20 pb-12 sm:pb-14 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -111,8 +107,6 @@ export default function AccountPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 } 

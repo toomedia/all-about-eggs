@@ -195,10 +195,10 @@ const Footer = () => {
                 families everywhere.
               </div>
               <div className="flex gap-6 text-sm text-gray-600">
-                <a href="/privacy" onClick={(e) => e.preventDefault()}>
+                <a href="/privacy" >
                   Privacy Policy
                 </a>
-                <a href="/terms" onClick={(e) => e.preventDefault()}>
+                <a href="/terms" >
                   Terms of Service
                 </a>
               </div>

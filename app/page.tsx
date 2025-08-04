@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 // import FeaturesSection from "@/components/FeaturesSection";
 // import ProductsSection from "@/components/ProductsSection";
@@ -286,12 +285,8 @@ const CatalogSection = () => {
 };
 
 export default function Home() {
-  const [cartItems, setCartItems] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
-
   return (
     <div className="min-h-screen">
-      <Header cartItems={cartItems} cartTotal={cartTotal} />
       <HeroSection />
       <CatalogSection />
       {/* <FeaturesSection /> */}
@@ -302,7 +297,6 @@ export default function Home() {
       {/* <CTASection /> */}
       <AiWaitlistSection />
       <FAQSection/>
-      <Footer />
     </div>
   );
 }
