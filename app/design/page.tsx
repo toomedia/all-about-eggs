@@ -108,9 +108,11 @@ export default function DesignPage() {
             <Egg className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="font-semibold text-xs sm:text-sm">AI Design Studio</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 font-manrope leading-tight">
-            Design Your Egg
-          </h1>
+     
+  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-manrope">
+                Design Your Egg
+            </h2>
+
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl sm:max-w-3xl mx-auto px-4">
             This is an example of how users can design their egg.
           </p>
