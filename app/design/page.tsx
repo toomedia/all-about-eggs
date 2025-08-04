@@ -1,94 +1,14 @@
 "use client";
 
-import { useState } from 'react';
-import { Egg, Sparkles, Palette, Image, Wand2, Loader2, ArrowLeft } from 'lucide-react';
+import { Egg, ArrowLeft, Sparkles, Star, Heart, Download, Users, Clock, Zap, Palette, Camera, Wand2 } from 'lucide-react';
 import Link from 'next/link';
-
-interface DesignOption {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  color: string;
-}
+import CreateCustomEggCard from '@/components/CreateCustomEggCard';
+import CustomizeEggCard from '@/components/CustomizeEggCard';
+import UploadImageEggCard from '@/components/UploadImageEggCard';
 
 export default function DesignPage() {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [prompt, setPrompt] = useState('');
-  const [showLoadingModal, setShowLoadingModal] = useState(false);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-
-  const designOptions: DesignOption[] = [
-    {
-      id: 'custom',
-      title: 'Create Custom Egg',
-      description: 'Design your egg from scratch with AI assistance',
-      icon: <Palette className="w-6 h-6" />,
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      id: 'customize',
-      title: 'Customize Existing Egg',
-      description: 'Modify and enhance existing egg designs',
-      icon: <Wand2 className="w-6 h-6" />,
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      id: 'image',
-      title: 'Make Egg with My Image',
-      description: 'Upload your image to create a custom egg design',
-      icon: <Image className="w-6 h-6" />,
-      color: 'from-green-500 to-emerald-500'
-    }
-  ];
-
-  const autoSuggestedPrompts = [
-    "A magical Easter egg with galaxy patterns, featuring swirling nebulas in purple and gold, with tiny stars sparkling across the surface",
-    "A vintage floral egg with delicate roses and pastel colors, perfect for spring",
-    "A geometric modern egg with bold geometric shapes and vibrant colors",
-    "A nature-inspired egg with cherry blossoms and soft pink background",
-    "A cosmic egg with swirling galaxies and twinkling stars"
-  ];
-
-  const handleOptionSelect = (optionId: string) => {
-    setSelectedOption(optionId);
-    setPrompt('');
-  };
-
-  const handleAutoSuggest = () => {
-    const randomPrompt = autoSuggestedPrompts[Math.floor(Math.random() * autoSuggestedPrompts.length)];
-    setPrompt(randomPrompt);
-  };
-
-  const handleGenerate = () => {
-    if (!prompt.trim()) return;
-    
-    setShowLoadingModal(true);
-    setLoadingProgress(0);
-    
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setLoadingProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setShowLoadingModal(false);
-            alert('Coming soon! 🎨\n\nWe\'re working hard to bring you amazing AI-powered egg design features!');
-          }, 1000);
-          return 100;
-        }
-        return prev + 16.67; // 100% over 6 seconds
-      });
-    }, 1000);
-  };
-
-  const handleBack = () => {
-    setSelectedOption(null);
-    setPrompt('');
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
+    <div className="min-h-screen ">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
         {/* Back Button */}
         <div className="mb-6 sm:mb-8">
@@ -108,134 +28,129 @@ export default function DesignPage() {
             Design Your Egg
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl sm:max-w-3xl mx-auto px-4">
-            This is an example of how users can design their egg.
-            </p>
+            Create unique, personalized egg designs with our AI-powered tools. From custom prompts to image uploads, 
+            bring your creative vision to life with our advanced design studio.
+          </p>
         </div>
 
-        {!selectedOption ? (
-          /* Main Options */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto items-stretch">
-            {designOptions.map((option) => (
-              <div
-                key={option.id}
-                onClick={() => handleOptionSelect(option.id)}
-                className="group cursor-pointer"
-              >
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border-2 border-gray-200/50 hover:border-[#f6e79e] transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105">
-                  <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${option.color} rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 text-white group-hover:scale-110 transition-transform duration-300`}>
-                    {option.icon}
+        {/* Main Design Options */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16 sm:mb-20">
+          <CreateCustomEggCard />
+          <CustomizeEggCard />
+          <UploadImageEggCard />
+        </div>
+
+        {/* Features Showcase */}
+
+        {/* Design Examples */}
+        <section className="mb-16 sm:mb-20">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-manrope">
+              Design Examples
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              See what's possible with our AI design tools
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { 
+                name: "Galactic Easter Egg", 
+                type: "AI Generated", 
+                image: "/egg1.png", 
+                likes: 156,
+                description: "Cosmic space design with stars and nebula"
+              },
+              { 
+                name: "Floral Spring Egg", 
+                type: "Image Upload", 
+                image: "/egg2.png", 
+                likes: 234,
+                description: "Beautiful spring flowers and pastel colors"
+              },
+              { 
+                name: "Geometric Pattern Egg", 
+                type: "AI Enhanced", 
+                image: "/egg3.png", 
+                likes: 189,
+                description: "Modern geometric patterns and shapes"
+              },
+              { 
+                name: "Watercolor Art Egg", 
+                type: "AI Generated", 
+                image: "/egg4.png", 
+                likes: 267,
+                description: "Soft watercolor painting style"
+              },
+              { 
+                name: "Tropical Paradise Egg", 
+                type: "Custom Prompt", 
+                image: "/egg5.png", 
+                likes: 198,
+                description: "Vibrant tropical colors and patterns"
+              },
+              { 
+                name: "Minimalist Elegance", 
+                type: "AI Enhanced", 
+                image: "/egg6.png", 
+                likes: 145,
+                description: "A minimalist, elegant food-inspired design resembling vegetable soup and natural textures."
+              }              
+            ].map((example, index) => (
+              <div key={index} className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200/50 hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
+                <div className="relative aspect-square overflow-hidden">
+                  <img 
+                    src={example.image} 
+                    alt={example.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                    <span className="text-xs font-medium text-gray-700">{example.type}</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 text-center font-manrope">
-                    {option.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 text-center leading-relaxed">
-                    {option.description}
-                  </p>
+                  <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-white text-xs font-medium bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
+                      {example.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-gray-900 mb-1">{example.name}</h3>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">{example.type}</span>
+                    <div className="flex items-center gap-1">
+                      <Heart className="w-4 h-4 text-red-500" />
+                      <span className="text-sm text-gray-600">{example.likes}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        ) : (
-          /* Design Interface */
-          <div className="max-w-4xl mx-auto">
-            {/* Option Header */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border-2 border-gray-200/50">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <button
-                    onClick={handleBack}
-                    className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
-                  >
-                    <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-                  </button>
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 font-manrope">
-                      {designOptions.find(opt => opt.id === selectedOption)?.title}
-                    </h2>
-                    <p className="text-sm sm:text-base text-gray-600">
-                      {designOptions.find(opt => opt.id === selectedOption)?.description}
-                    </p>
-                  </div>
-                </div>
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${designOptions.find(opt => opt.id === selectedOption)?.color} rounded-lg sm:rounded-xl flex items-center justify-center text-white`}>
-                  {designOptions.find(opt => opt.id === selectedOption)?.icon}
-                </div>
-              </div>
-            </div>
+        </section>
 
-            {/* Design Form */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border-2 border-gray-200/50">
-              <div className="mb-4 sm:mb-6">
-                <label className="block text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 font-manrope">
-                  Describe Your Egg Design
-                </label>
-                <textarea
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  placeholder="A magical Easter egg with galaxy patterns, featuring swirling nebulas in purple and gold, with tiny stars sparkling across the surface..."
-                  className="w-full h-24 sm:h-32 p-3 sm:p-4 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-[#f6e79e] focus:outline-none resize-none text-sm sm:text-base text-gray-700 placeholder-gray-400"
-                />
-                <p className="text-xs sm:text-sm text-gray-500 mt-2">
-                  Tip: Be specific about colors, patterns, and themes for best results!
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <button
-                  onClick={handleAutoSuggest}
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 hover:bg-gray-50 flex items-center justify-center gap-2"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  Auto Suggested Prompt
-                </button>
-                <button
-                  onClick={handleGenerate}
-                  disabled={!prompt.trim()}
-                  className={`px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 ${
-                    !prompt.trim()
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 hover:from-[#f4e285] hover:to-[#f6e79e]'
-                  }`}
-                >
-                  <Sparkles className="w-4 h-4" />
-                  Generate
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Loading Modal */}
-      {showLoadingModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-sm sm:max-w-md w-full p-6 sm:p-8 text-center">
-            <div className="mb-4 sm:mb-6">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-gray-700 animate-spin" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 font-manrope">
-                Generating your egg...
-              </h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Our AI is creating something magical for you!
-              </p>
-            </div>
-            
-            {/* Progress Bar */}
-            <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3 mb-3 sm:mb-4">
-              <div 
-                className="bg-gradient-to-r from-[#f6e79e] to-[#f4e285] h-2 sm:h-3 rounded-full transition-all duration-1000 ease-out"
-                style={{ width: `${loadingProgress}%` }}
-              ></div>
-            </div>
-            
-            <p className="text-xs sm:text-sm text-gray-500">
-              {Math.round(loadingProgress)}% complete
+        {/* Call to Action */}
+        <section className="text-center">
+          <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-2xl sm:rounded-3xl p-8 sm:p-12 border-2 border-[#f6e79e]/30">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-manrope">
+              Ready to Start Creating?
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Choose your preferred method and begin designing your perfect egg today. 
+              No design experience required - our AI does the heavy lifting!
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/catalog">
+                <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                  Browse Catalog
+                </button>
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
+        </section>
+      </div>
     </div>
   );
 } 

@@ -734,15 +734,14 @@ export default function CatalogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
-   
+    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee]/50  to-rose-100/80">
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 sm:opacity-30"
           style={{
-            backgroundImage: `url('https://heritagehotelsofeurope.com/wp-content/uploads/2021/01/24th-March.png')`
+            backgroundImage: `url('/mood image/IMG_1152.jpg')`
           }}
         />
         {/* Overlay */}

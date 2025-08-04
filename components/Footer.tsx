@@ -20,11 +20,11 @@ const Footer = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
         style={{
-          backgroundImage: `url('https://cdn.mos.cms.futurecdn.net/TjtZ88nogxegChtJxdis3m-1200-80.jpg')`,
+          backgroundImage: `url('/mood image/IMG_1218.jpg')`,
         }}
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t to-[#f6e79e]/90 from-[#f6e79e]/40" />
+      <div className="absolute inset-0 bg-gradient-to-t to-[#f6e79e]/90 from-custom-green/80" />
       {/* Content */}
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-12">

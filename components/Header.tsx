@@ -55,7 +55,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map(({ label, href }) => (
-              <Link key={label} href={href} className="text-base font-medium hover:text-[#f6e79e] transition-colors relative group">
+              <Link key={label} href={href} className="text-base font-medium hover:text-[#edd040] transition-colors relative group">
                 {label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#f6e79e] transition-all duration-300 group-hover:w-full"></span>
               </Link>
