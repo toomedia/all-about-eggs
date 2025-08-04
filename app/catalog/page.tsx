@@ -734,7 +734,7 @@ export default function CatalogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee]/50  to-rose-100/80">
+    <div className="min-h-screen ">
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Image */}
