@@ -5,6 +5,13 @@ import { ArrowLeft, Sparkles, Upload, Palette, Wand2, Image, Star, Heart, Downlo
 import Link from 'next/link';
 import axios from 'axios';
 
+// Type definition for API response
+interface GenerateResponse {
+  image: string;
+  success: boolean;
+  message?: string;
+}
+
 function DesignStudioContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -149,12 +156,16 @@ function DesignStudioContent() {
     setIsGenerating(true);
     
     try {
-      const response = await axios.post('https://all-about-eggs.vercel.app/api/generate-custom', {
+      const response = await axios.post<GenerateResponse>('https://all-about-eggs.vercel.app/api/generate-custom', {
         prompt: prompt, 
       });
   
-      setGeneratedImage(response.data.image);
-      incrementUsageCount();
+      if (response.data.success && response.data.image) {
+        setGeneratedImage(response.data.image);
+        incrementUsageCount();
+      } else {
+        throw new Error(response.data.message || 'Failed to generate image');
+      }
       
     } catch (error) {
       console.error("Generation failed:", error);
