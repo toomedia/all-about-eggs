@@ -1,7 +1,4 @@
 'use client';
-
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 import { Heart, ShoppingCart, Sparkles, Star, Search, Filter, Download, Eye, X, CreditCard, Shield, Truck, Gift, Zap, Crown, Rainbow, Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -737,8 +734,6 @@ export default function CatalogPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
-      <Header cartItems={cartItems.length} cartTotal={calculateCartTotal()} />
-      
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Image */}
@@ -1587,8 +1582,6 @@ export default function CatalogPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   );
 }
