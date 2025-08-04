@@ -10,21 +10,77 @@ import Image from 'next/image';
 
 // Preset collections data
 const presetCollections = {
+  'easter-eggs': {
+    title: 'Easter Eggs Collection',
+    description: 'Beautiful Easter-themed designs perfect for spring celebrations',
+    icon: '🥚',
+    designs: [
+      { id: 1, name: "Easter Bunny Delight", category: "Easter", image: "/egg1.png", premium: true, featured: true, likes: 245 },
+      { id: 2, name: "Pastel Dream", category: "Easter", image: "/egg2.png", premium: false, featured: false, likes: 167 },
+      { id: 3, name: "Spring Flower Garden", category: "Easter", image: "/egg3.png", premium: false, featured: true, likes: 189 },
+      { id: 4, name: "Easter Basket Magic", category: "Easter", image: "/egg4.png", premium: true, featured: false, likes: 156 },
+      { id: 5, name: "Chocolate Egg Fantasy", category: "Easter", image: "/egg5.png", premium: false, featured: true, likes: 223 },
+      { id: 6, name: "Easter Parade", category: "Easter", image: "/egg6.png", premium: true, featured: true, likes: 178 },
+      { id: 7, name: "Spring Awakening", category: "Easter", image: "/egg7.png", premium: false, featured: false, likes: 201 },
+      { id: 8, name: "Easter Morning", category: "Easter", image: "/egg9.png", premium: true, featured: false, likes: 145 },
+      { id: 9, name: "Bunny Hop", category: "Easter", image: "/egg1.png", premium: false, featured: true, likes: 234 },
+      { id: 10, name: "Easter Joy", category: "Easter", image: "/egg2.png", premium: true, featured: true, likes: 267 }
+    ]
+  },
+  'abstract-designs': {
+    title: 'Abstract Designs Collection',
+    description: 'Modern and artistic abstract designs for creative minds',
+    icon: '🎨',
+    designs: [
+      { id: 11, name: "Colorful Chaos", category: "Abstract", image: "/egg3.png", premium: true, featured: true, likes: 312 },
+      { id: 12, name: "Geometric Harmony", category: "Abstract", image: "/egg4.png", premium: false, featured: true, likes: 245 },
+      { id: 13, name: "Fluid Motion", category: "Abstract", image: "/egg5.png", premium: true, featured: false, likes: 189 },
+      { id: 14, name: "Minimalist Lines", category: "Abstract", image: "/egg6.png", premium: false, featured: false, likes: 167 },
+      { id: 15, name: "Organic Shapes", category: "Abstract", image: "/egg7.png", premium: true, featured: true, likes: 278 },
+      { id: 16, name: "Digital Dreams", category: "Abstract", image: "/egg9.png", premium: false, featured: false, likes: 201 },
+      { id: 17, name: "Abstract Geometric", category: "Abstract", image: "/egg1.png", premium: true, featured: false, likes: 156 },
+      { id: 18, name: "Modern Minimalist", category: "Abstract", image: "/egg2.png", premium: true, featured: false, likes: 145 }
+    ]
+  },
+  'nature-inspired': {
+    title: 'Nature Inspired Collection',
+    description: 'Beautiful designs inspired by the natural world',
+    icon: '🌿',
+    designs: [
+      { id: 19, name: "Forest Friends", category: "Nature", image: "/egg3.png", premium: false, featured: true, likes: 223 },
+      { id: 20, name: "Spring Flower Garden", category: "Nature", image: "/egg4.png", premium: false, featured: true, likes: 189 },
+      { id: 21, name: "Mountain Majesty", category: "Nature", image: "/egg5.png", premium: true, featured: false, likes: 167 },
+      { id: 22, name: "Ocean Waves", category: "Nature", image: "/egg6.png", premium: false, featured: false, likes: 145 },
+      { id: 23, name: "Desert Sunset", category: "Nature", image: "/egg7.png", premium: true, featured: true, likes: 234 },
+      { id: 24, name: "Tropical Paradise", category: "Nature", image: "/egg9.png", premium: false, featured: false, likes: 178 }
+    ]
+  },
+  'classic-collection': {
+    title: 'Classic Collection',
+    description: 'Timeless and elegant designs that never go out of style',
+    icon: '✨',
+    designs: [
+      { id: 25, name: "Classic Stripes", category: "Classics", image: "/egg1.png", premium: false, featured: false, likes: 134 },
+      { id: 26, name: "Vintage Elegance", category: "Classics", image: "/egg2.png", premium: true, featured: true, likes: 178 },
+      { id: 27, name: "Timeless Beauty", category: "Classics", image: "/egg3.png", premium: true, featured: false, likes: 156 },
+      { id: 28, name: "Heritage Design", category: "Classics", image: "/egg4.png", premium: false, featured: true, likes: 189 }
+    ]
+  },
   'top-10': {
     title: 'Top 10 Designs',
     description: 'Our most popular and beloved egg designs',
     icon: '🌟',
     designs: [
-      { id: 1, name: "Easter Bunny Delight", category: "Easter", image: "/egg1.png", premium: true, featured: true, likes: 245 },
-      { id: 2, name: "Spring Flower Garden", category: "Nature", image: "/egg2.png", premium: false, featured: true, likes: 189 },
-      { id: 3, name: "Abstract Geometric", category: "Abstract", image: "/egg3.png", premium: true, featured: false, likes: 156 },
-      { id: 4, name: "Classic Stripes", category: "Classics", image: "/egg4.png", premium: false, featured: false, likes: 134 },
-      { id: 5, name: "Pop Culture Icons", category: "Pop Culture", image: "/egg5.png", premium: true, featured: true, likes: 298 },
-      { id: 6, name: "Pastel Dream", category: "Easter", image: "/egg6.png", premium: false, featured: false, likes: 167 },
-      { id: 7, name: "Forest Friends", category: "Nature", image: "/egg7.png", premium: false, featured: true, likes: 223 },
-      { id: 8, name: "Modern Minimalist", category: "Abstract", image: "/egg9.png", premium: true, featured: false, likes: 145 },
-      { id: 9, name: "Vintage Elegance", category: "Classics", image: "/egg1.png", premium: true, featured: true, likes: 178 },
-      { id: 10, name: "Galaxy Dreams", category: "Abstract", image: "/egg2.png", premium: false, featured: false, likes: 201 }
+      { id: 29, name: "Easter Bunny Delight", category: "Easter", image: "/egg1.png", premium: true, featured: true, likes: 245 },
+      { id: 30, name: "Spring Flower Garden", category: "Nature", image: "/egg2.png", premium: false, featured: true, likes: 189 },
+      { id: 31, name: "Abstract Geometric", category: "Abstract", image: "/egg3.png", premium: true, featured: false, likes: 156 },
+      { id: 32, name: "Classic Stripes", category: "Classics", image: "/egg4.png", premium: false, featured: false, likes: 134 },
+      { id: 33, name: "Pop Culture Icons", category: "Pop Culture", image: "/egg5.png", premium: true, featured: true, likes: 298 },
+      { id: 34, name: "Pastel Dream", category: "Easter", image: "/egg6.png", premium: false, featured: false, likes: 167 },
+      { id: 35, name: "Forest Friends", category: "Nature", image: "/egg7.png", premium: false, featured: true, likes: 223 },
+      { id: 36, name: "Modern Minimalist", category: "Abstract", image: "/egg9.png", premium: true, featured: false, likes: 145 },
+      { id: 37, name: "Vintage Elegance", category: "Classics", image: "/egg1.png", premium: true, featured: true, likes: 178 },
+      { id: 38, name: "Galaxy Dreams", category: "Abstract", image: "/egg2.png", premium: false, featured: false, likes: 201 }
     ]
   },
   'cute-holiday-eggs': {

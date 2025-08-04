@@ -142,20 +142,22 @@ const CatalogSection = () => {
           {/* Categories Preview */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {[
-              { name: 'Easter', icon: '🥚', count: 10, color: 'from-pink-400 to-rose-400' },
-              { name: 'Abstract', icon: '🎨', count: 8, color: 'from-purple-400 to-indigo-400' },
-              { name: 'Nature', icon: '🌿', count: 6, color: 'from-green-400 to-emerald-400' },
-              { name: 'Classics', icon: '✨', count: 4, color: 'from-amber-400 to-orange-400' },
+              { name: 'Easter', icon: '🥚', count: 10, color: 'from-pink-400 to-rose-400', slug: 'easter-eggs' },
+              { name: 'Abstract', icon: '🎨', count: 8, color: 'from-purple-400 to-indigo-400', slug: 'abstract-designs' },
+              { name: 'Nature', icon: '🌿', count: 6, color: 'from-green-400 to-emerald-400', slug: 'nature-inspired' },
+              { name: 'Classics', icon: '✨', count: 4, color: 'from-amber-400 to-orange-400', slug: 'classic-collection' },
             ].map((category) => (
-              <div key={category.name} className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-                <div className="text-center">
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${category.color} rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3 text-xl sm:text-2xl`}>
-                    {category.icon}
+              <Link key={category.name} href={`/presets/${category.slug}`}>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group">
+                  <div className="text-center">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${category.color} rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3 text-xl sm:text-2xl group-hover:scale-110 transition-transform duration-300`}>
+                      {category.icon}
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base group-hover:text-gray-700 transition-colors">{category.name}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 group-hover:text-gray-500 transition-colors">{category.count} designs</p>
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">{category.name}</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">{category.count} designs</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
