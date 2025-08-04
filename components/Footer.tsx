@@ -127,23 +127,28 @@ const Footer = () => {
                 </div>
               </div>
               
-              {/* Newsletter Signup */}
-              <div className="mt-6 p-4 bg-white/50 backdrop-blur-sm rounded-lg border border-gray-200">
-                <h5 className="font-medium text-gray-900 mb-2">Easter Updates</h5>
-                <p className="text-sm text-gray-600 mb-3">
-                  Get seasonal templates and special offers!
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="flex-1 px-3 py-2 text-xs bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f6e79e]"
-                  />
-                  <Button size="sm" className="text-xs bg-[#f6e79e] hover:bg-[#f4e285] text-gray-900">
-                    Subscribe
-                  </Button>
-                </div>
-              </div>
+     {/* Newsletter Signup */}
+<div className="mt-6 p-4 bg-white/50 backdrop-blur-sm rounded-lg border border-gray-200">
+  <h5 className="font-medium text-gray-900 mb-2 text-base sm:text-lg">Easter Updates</h5>
+  <p className="text-sm text-gray-600 mb-3">
+    Get seasonal templates and special offers!
+  </p>
+
+  <form className="flex flex-col sm:flex-row gap-2 w-full">
+    <input
+      type="email"
+      placeholder="Your email"
+      className="w-full sm:flex-1 px-3 py-2 text-xs sm:text-sm bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f6e79e]"
+    />
+    <Button
+      size="sm"
+      className="w-full sm:w-auto text-xs sm:text-sm bg-[#f6e79e] hover:bg-[#f4e285] text-gray-900"
+    >
+      Subscribe
+    </Button>
+  </form>
+
+</div>
             </div>
           </div>
 
