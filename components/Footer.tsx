@@ -15,16 +15,16 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative border-t border-gray-200 overflow-hidden">
+    <footer className="relative shadow-2xl">
       {/* Background Image */}
-      <div
+      {/* <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
         style={{
           backgroundImage: `url('/mood image/IMG_1218.jpg')`,
         }}
-      />
+      /> */}
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t to-[#f6e79e]/90 from-custom-green/80" />
+      <div className="absolute inset-0 bg-gradient-to-b to-[#f6e79e]/40 " />
       {/* Content */}
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-12">
