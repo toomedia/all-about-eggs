@@ -1,173 +1,32 @@
-// import React from 'react';
-// import { ShoppingCart, Egg } from 'lucide-react';
-
-// interface HeaderProps {
-//   cartItems: number;
-//   cartTotal: number;
-// }
-
-// export default function Header({ cartItems, cartTotal }: HeaderProps) {
-//   return (
-//     <header className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
-//       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="flex items-center justify-between h-20">
-//           {/* Logo Section */}
-//           <div className="flex items-center space-x-4">
-//             <div className="bg-amber-100 p-2 rounded-xl shadow-inner">
-//               <Egg className="h-6 w-6 text-amber-600" />
-//             </div>
-//             <div className="leading-tight">
-//               <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">
-//                 EggFinity
-//               </h1>
-//               <p className="text-xs text-slate-500 font-medium">
-//                 Your Unique Memory Game
-//               </p>
-//             </div>
-//           </div>
-
-//           {/* Cart Section */}
-//           <div className="flex items-center space-x-5">
-//             <button className="relative p-3 rounded-xl hover:bg-gray-100 transition-colors group">
-//               <ShoppingCart className="h-6 w-6 text-slate-600 group-hover:text-slate-800 transition-colors" />
-//               {cartItems > 0 && (
-//                 <span className="absolute -top-1.5 -right-1.5 bg-amber-500 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse shadow">
-//                   {cartItems}
-//                 </span>
-//               )}
-//             </button>
-
-//             {cartTotal > 0 && (
-//               <div className="hidden sm:block text-base font-semibold text-slate-700">
-//                 €{cartTotal.toFixed(2)}
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// }
-
-// import React from 'react';
-// import { ShoppingCart, Egg } from 'lucide-react';
-
-// interface HeaderProps {
-//   cartItems: number;
-//   cartTotal: number;
-// }
-
-// export default function Header({ cartItems, cartTotal }: HeaderProps) {
-//   return (
-//     <header className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
-//       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="flex items-center justify-between h-20">
-//           {/* Logo Section */}
-//           <div className="flex items-center space-x-4">
-//             <div className="bg-amber-100 p-2 rounded-xl shadow-inner">
-//               <Egg className="h-6 w-6 text-amber-600" />
-//             </div>
-//             <div className="leading-tight">
-//               <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">
-//                 EggFinity
-//               </h1>
-//               <p className="text-xs text-slate-500 font-medium">
-//                 Your Unique Memory Game
-//               </p>
-//             </div>
-//           </div>
-
-//           {/* Cart Section */}
-//           <div className="flex items-center space-x-5">
-//             <button className="relative p-3 rounded-xl hover:bg-gray-100 transition-colors group">
-//               <ShoppingCart className="h-6 w-6 text-slate-600 group-hover:text-slate-800 transition-colors" />
-//               {cartItems > 0 && (
-//                 <span className="absolute -top-1.5 -right-1.5 bg-amber-500 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse shadow">
-//                   {cartItems}
-//                 </span>
-//               )}
-//             </button>
-
-//             {cartTotal > 0 && (
-//               <div className="hidden sm:block text-base font-semibold text-slate-700">
-//                 €{cartTotal.toFixed(2)}
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// }
-
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Egg, Menu, X, User } from 'lucide-react';
 import Link from 'next/link';
 
-interface HeaderProps {
-  cartItems: number;
-  cartTotal: number;
-}
-
-export default function Header({ cartItems, cartTotal }: HeaderProps) {
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [localCartItems, setLocalCartItems] = useState<number>(0);
-  const [localCartTotal, setLocalCartTotal] = useState<number>(0);
+  const [cartItems, setCartItems] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
-  // Detect scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Load from localStorage on mount
   useEffect(() => {
-    const storedItems = localStorage.getItem("eggfinity-cart-items");
-    const storedTotal = localStorage.getItem("eggfinity-cart-total");
-
-    if (storedItems && !isNaN(parseInt(storedItems))) {
-      setLocalCartItems(parseInt(storedItems));
-    }
-
-    if (storedTotal && !isNaN(parseFloat(storedTotal))) {
-      setLocalCartTotal(parseFloat(storedTotal));
-    }
-  }, []);
-
-  // Save props to localStorage
-  useEffect(() => {
-    if (!isNaN(cartItems)) {
-      localStorage.setItem("eggfinity-cart-items", cartItems.toString());
-      setLocalCartItems(cartItems);
-    }
-    if (!isNaN(cartTotal)) {
-      localStorage.setItem("eggfinity-cart-total", cartTotal.toString());
-      setLocalCartTotal(cartTotal);
-    }
-  }, [cartItems, cartTotal]);
-
-  // Listen for custom cart update event
-  useEffect(() => {
-    const handleCartUpdate = () => {
-      const storedItems = localStorage.getItem("eggfinity-cart-items");
-      const storedTotal = localStorage.getItem("eggfinity-cart-total");
-
-      if (storedItems && !isNaN(parseInt(storedItems))) {
-        setLocalCartItems(parseInt(storedItems));
-      }
-
-      if (storedTotal && !isNaN(parseFloat(storedTotal))) {
-        setLocalCartTotal(parseFloat(storedTotal));
-      }
+    const loadCart = () => {
+      const items = parseInt(localStorage.getItem("eggfinity-cart-items") || "0");
+      const total = parseFloat(localStorage.getItem("eggfinity-cart-total") || "0");
+      setCartItems(isNaN(items) ? 0 : items);
+      setCartTotal(isNaN(total) ? 0 : total);
     };
 
-    window.addEventListener("eggfinity-cart-updated", handleCartUpdate);
-    return () => window.removeEventListener("eggfinity-cart-updated", handleCartUpdate);
+    loadCart();
+    window.addEventListener("eggfinity-cart-updated", loadCart);
+    return () => window.removeEventListener("eggfinity-cart-updated", loadCart);
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -217,60 +76,60 @@ export default function Header({ cartItems, cartTotal }: HeaderProps) {
               <div className="hidden sm:flex flex-col items-start">
                 <span className="text-xs text-gray-600 font-medium">Cart</span>
                 <span className="text-base font-semibold text-gray-800">
-                  {localCartItems > 0 ? `${localCartItems} items` : 'Empty'}
+                  {cartItems > 0 ? `${cartItems} items` : 'Empty'}
                 </span>
               </div>
 
-              {/* Badge (Mobile) */}
-              {localCartItems > 0 && (
+              {/* Badge Mobile */}
+              {cartItems > 0 && (
                 <div className="sm:hidden absolute -top-1 -right-1 bg-[#f6e79e] text-gray-900 text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-md">
-                  {localCartItems}
+                  {cartItems}
                 </div>
               )}
 
-              {/* Badge (Desktop) */}
-              {localCartItems > 0 && (
+              {/* Badge Desktop */}
+              {cartItems > 0 && (
                 <span className="hidden sm:flex absolute -top-1.5 -right-1.5 bg-[#f6e79e] text-gray-900 text-[10px] font-bold rounded-full h-5 w-5 items-center justify-center animate-pulse shadow-lg">
-                  {localCartItems}
+                  {cartItems}
                 </span>
               )}
             </Link>
 
             {/* Total Price */}
-            {localCartTotal > 0 && (
+            {cartTotal > 0 && (
               <div className="hidden sm:block text-base font-semibold text-gray-800 bg-white/30 backdrop-blur-sm px-2 sm:px-3 py-2 rounded-lg border border-gray-200/50">
-                €{localCartTotal.toFixed(2)}
+                €{cartTotal.toFixed(2)}
               </div>
             )}
 
-            {/* Menu Toggle */}
+            {/* Mobile Menu Button */}
             <button onClick={toggleMenu} className="lg:hidden p-2 rounded-xl hover:bg-white/20 transition-all">
               {menuOpen ? <X size={20} className="sm:w-6 sm:h-6 text-gray-700" /> : <Menu size={20} className="sm:w-6 sm:h-6 text-gray-700" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Nav */}
         {menuOpen && (
           <div className="lg:hidden mt-2 space-y-1 pb-4 px-2 animate-slide-down bg-white/30 backdrop-blur-md rounded-lg border border-gray-200/50 shadow-lg">
             {navLinks.map(({ label, href }) => (
-              <Link key={label} href={href} className="block text-sm md:text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors" onClick={() => setMenuOpen(false)}>
+              <Link key={label} href={href} onClick={() => setMenuOpen(false)} className="block text-sm md:text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors">
                 {label}
               </Link>
             ))}
             <div className="border-t border-gray-200/50 mt-2 pt-2">
-              <Link href="/account" className="block text-sm md:text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors" onClick={() => setMenuOpen(false)}>
+              <Link href="/account" onClick={() => setMenuOpen(false)} className="block text-sm md:text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2.5 px-3 rounded-lg hover:bg-white/20 transition-colors">
                 My Account
               </Link>
               <div className="px-3 py-2.5">
                 <div className="flex items-center justify-between text-sm md:text-base">
                   <span className="text-gray-600">Cart Items:</span>
-                  <span className="font-semibold text-gray-800">{localCartItems}</span>
+                  <span className="font-semibold text-gray-800">{cartItems}</span>
                 </div>
-                {localCartTotal > 0 && (
+                {cartTotal > 0 && (
                   <div className="flex items-center justify-between text-sm md:text-base mt-1">
                     <span className="text-gray-600">Total:</span>
-                    <span className="font-semibold text-[#f6e79e]">€{localCartTotal.toFixed(2)}</span>
+                    <span className="font-semibold text-[#f6e79e]">€{cartTotal.toFixed(2)}</span>
                   </div>
                 )}
               </div>

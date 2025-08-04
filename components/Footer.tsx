@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { Button } from "@/components/ui/button";
 import {
   Egg,
   Heart,
@@ -8,8 +10,8 @@ import {
   Instagram,
   Twitter,
   Facebook,
-} from "lucide-react"
-import Link from "next/link"
+} from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -47,7 +49,7 @@ const Footer = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-[#f6e79e] rounded-full cursor-pointer"
+                  className="p-2 bg-[#f6e79e] rounded-full cursor-pointer hover:underline transition-all"
                 >
                   <Instagram className="h-4 w-4 text-gray-700" />
                 </a>
@@ -55,7 +57,7 @@ const Footer = () => {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-[#f6e79e] rounded-full cursor-pointer"
+                  className="p-2 bg-[#f6e79e] rounded-full cursor-pointer hover:underline transition-all"
                 >
                   <Twitter className="h-4 w-4 text-gray-700" />
                 </a>
@@ -63,7 +65,7 @@ const Footer = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-[#f6e79e] rounded-full cursor-pointer"
+                  className="p-2 bg-[#f6e79e] rounded-full cursor-pointer hover:underline transition-all"
                 >
                   <Facebook className="h-4 w-4 text-gray-700" />
                 </a>
@@ -74,24 +76,27 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="font-semibold text-gray-900">Quick Links</h4>
               <div className="space-y-2">
-                <Link href="/" className="block text-base text-gray-600">
+                <Link
+                  href="/"
+                  className="block text-base text-gray-600 hover:underline transition-all"
+                >
                   Home
                 </Link>
                 <Link
                   href="/catalog"
-                  className="block text-base text-gray-600"
+                  className="block text-base text-gray-600 hover:underline transition-all"
                 >
                   Create Your Egg
                 </Link>
                 <Link
                   href="/checkout"
-                  className="block text-base text-gray-600"
+                  className="block text-base text-gray-600 hover:underline transition-all"
                 >
                   Checkout
                 </Link>
                 <Link
                   href="/presets/top-10"
-                  className="block text-base text-gray-600"
+                  className="block text-base text-gray-600 hover:underline transition-all"
                 >
                   Preset Collections
                 </Link>
@@ -104,13 +109,13 @@ const Footer = () => {
               <div className="space-y-2">
                 <a
                   href="mailto:hello@eggfinity.com"
-                  className="block text-base text-gray-600"
+                  className="block text-base text-gray-600 hover:underline transition-all"
                 >
                   Contact Us
                 </a>
                 <a
                   href="tel:+1-800-EGG-GAME"
-                  className="block text-base text-gray-600"
+                  className="block text-base text-gray-600 hover:underline transition-all"
                 >
                   Call Support
                 </a>
@@ -129,14 +134,14 @@ const Footer = () => {
               <div className="space-y-3">
                 <a
                   href="mailto:hello@eggfinity.com"
-                  className="flex items-center gap-2 text-base text-gray-600"
+                  className="flex items-center gap-2 text-base text-gray-600 hover:underline transition-all"
                 >
                   <Mail className="h-4 w-4" />
                   <span>hello@eggfinity.com</span>
                 </a>
                 <a
                   href="tel:+1-800-EGG-GAME"
-                  className="flex items-center gap-2 text-base text-gray-600"
+                  className="flex items-center gap-2 text-base text-gray-600 hover:underline transition-all"
                 >
                   <Phone className="h-4 w-4" />
                   <span>1-800-EGG-GAME</span>
@@ -155,7 +160,6 @@ const Footer = () => {
                 <p className="text-sm text-gray-600 mb-3">
                   Get seasonal templates and special offers!
                 </p>
-
                 <form className="flex flex-col sm:flex-row gap-2 w-full">
                   <input
                     type="email"
@@ -195,10 +199,10 @@ const Footer = () => {
                 families everywhere.
               </div>
               <div className="flex gap-6 text-sm text-gray-600">
-                <a href="/privacy" >
+                <a href="/privacy" className="hover:underline transition-all">
                   Privacy Policy
                 </a>
-                <a href="/terms" >
+                <a href="/terms" className="hover:underline transition-all">
                   Terms of Service
                 </a>
               </div>
@@ -207,7 +211,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
