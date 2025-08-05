@@ -118,9 +118,9 @@ const orderDetails = {
   total: calculateOrderTotal().toFixed(2),
 };
 
-try {
+
   const res = await axios.post<StripeSessionResponse>(
-  'http://all-about-eggs.vercel.app/api/create-checkout-session',
+  'https://all-about-eggs.vercel.app/api/create-checkout-session',
   { orderDetails
   });
 
@@ -130,13 +130,7 @@ try {
 
   if (res.data.url) {
     window.location.href = res.data.url; 
-  } else {
-    alert("Stripe session URL not received.");
-  }
-} catch (err) {
-  console.error("Stripe error:", err);
-  alert("Something went wrong. Please try again.");
-}
+  } 
 
 
 }

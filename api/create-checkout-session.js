@@ -37,9 +37,9 @@ app.post("/api/create-checkout-session", async (req, res) => {
       line_items: lineItems,
       mode: "payment",
       
-      success_url: `http://all-about-eggs.vercel.app/success?total=${totalPrice}&cards=${orderDetails.designs.length}&size=${orderDetails.size}`,
+      success_url: `https://all-about-eggs.vercel.app/success?total=${totalPrice}&cards=${orderDetails.designs.length}&size=${orderDetails.size}`,
 
-      cancel_url: "http://all-about-eggs.vercel.app/cancel",
+      cancel_url: "https://all-about-eggs.vercel.app/cancel",
     });
 
     res.json({ url: session.url }); 
