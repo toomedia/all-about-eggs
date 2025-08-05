@@ -102,7 +102,8 @@ const missingFields = requiredFields.filter(field => !formData[field as keyof ty
 
 
 if (missingFields.length > 0) {
-// alert(Please fill in all required fields: ${missingFields.join(', ')});
+alert(`Please fill in all required fields: ${missingFields.join(', ')}`);
+
 return;
 }
 
@@ -513,7 +514,3 @@ Back to Catalog
 
 );
 }
-
-
-
-
