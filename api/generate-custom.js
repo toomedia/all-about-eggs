@@ -17,7 +17,9 @@ app.post('/api/generate-custom', async (req, res) => {
 
     if (!prompt || prompt.length < 3) {
       return res.status(400).json({ 
-        error: "Prompt must be at least 3 characters long" 
+        success: false,
+        error: "Prompt must be at least 3 characters long",
+        message: "Invalid prompt"
       });
     }
 
@@ -51,13 +53,17 @@ const response = await openai.images.generate({
     console.log("Generated image URL:", response.data[0].url);
 
     return res.json({ 
-      image: response.data[0].url 
+      success: true,
+      image: response.data[0].url,
+      message: "Image generated successfully"
     });
 
   } catch (error) {
     console.error("Generation error:", error);
     return res.status(500).json({ 
-      error: error.message || "Failed to generate design" 
+      success: false,
+      error: error.message || "Failed to generate design",
+      message: "Failed to generate image"
     });
   }
 });
