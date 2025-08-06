@@ -186,7 +186,28 @@ footer: {
     "empty": "Your wishlist is empty.",
     "add_to_cart": "Add to Cart",
     "remove": "Remove"
-  }
+  },
+  "customize-egg":{
+      "customize_egg_title": "Customize Existing Egg",
+  "customize_egg_description": "Modify and enhance existing egg designs"
+  },
+  
+
+  "customizeEgg": {
+    "title": "Create Custom Egg",
+    "description": "Customize your egg with AI assistance",
+    "alert": "Coming soon! This feature is under development."
+  
+},
+
+  "uploadImage": {
+    "title": "Make Egg with My Image",
+    "description": "Upload your image to create a custom egg design",
+    "alert": "Coming soon! This feature is under development.",
+    "comingSoon": "Coming soon! 🎨\n\nWe're working hard to bring you amazing AI-powered egg design features!"
+  
+}
+
 
 
 

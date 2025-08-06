@@ -185,7 +185,28 @@ const de = {
     "empty": "Deine Wunschliste ist leer.",
     "add_to_cart": "In den Warenkorb",
     "remove": "Entfernen"
-  }
+  },
+  "customize-egg":{
+  "customize_egg_title": "Vorhandenes Ei anpassen",
+  "customize_egg_description": "Vorhandene Eierdesigns bearbeiten und verbessern"
+},
+
+  
+ "customizeEgg": {
+    "title": "Individuelles Ei erstellen",
+    "description": "Gestalte dein Ei mit KI-Unterstützung",
+    "alert": "Demnächst verfügbar! Diese Funktion ist in Entwicklung."
+  
+},
+
+  "uploadImage": {
+    "title": "Ei mit eigenem Bild erstellen",
+    "description": "Lade dein Bild hoch, um ein individuelles Ei-Design zu erstellen",
+    "alert": "Demnächst verfügbar! Diese Funktion wird noch entwickelt.",
+    "comingSoon": "Demnächst verfügbar! 🎨\n\nWir arbeiten daran, dir beeindruckende KI-gestützte Ei-Designs zu bieten!"
+  
+}
+
 
 
 
