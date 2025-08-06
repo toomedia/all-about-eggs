@@ -96,45 +96,87 @@ return selectedCount * pricePerCard;
 };
 
 
+// const handleOrderNow = async () => {
+// const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'postalCode'];
+// const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
+
+
+// if (missingFields.length > 0) {
+// alert(`Please fill in all required fields: ${missingFields.join(', ')}`);
+
+// return;
+// }
+
+
+// type StripeSessionResponse = {
+//   url: string;
+// };
+
+// const orderDetails = {
+//   customer: formData,
+//   designs: selectedDesigns,
+//   size: selectedSize,
+//   total: calculateOrderTotal().toFixed(2),
+// };
+
+
+//   const res = await axios.post<StripeSessionResponse>(
+//   'https://all-about-eggs.vercel.app/api/create-checkout-session',
+//   { orderDetails
+//   });
+
+
+
+//   console.log("Stripe session response:", res.data);
+
+//   if (res.data.url) {
+//     window.location.href = res.data.url; 
+//   } 
+
+
+// }
+
 const handleOrderNow = async () => {
-const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'postalCode'];
-const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
+  const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'postalCode'];
+  const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
 
 
-if (missingFields.length > 0) {
-alert(`Please fill in all required fields: ${missingFields.join(', ')}`);
+  if (missingFields.length > 0) {
+    alert(`Please fill in all required fields: ${missingFields.join(', ')}`);
+    return;
+  }
 
-return;
+if (selectedDesigns.length < 2) {
+  alert("A minimum of 2 eggs are required to proceed");
+  return;
 }
 
+  const orderDetails = {
+    customer: formData,
+    designs: selectedDesigns,
+    size: selectedSize,
+    total: calculateOrderTotal().toFixed(2),
+  };
 
-type StripeSessionResponse = {
-  url: string;
+  try {
+    // ✅ Step 4: Make Stripe session request
+    const res = await axios.post<{ url: string }>(
+      'https://all-about-eggs.vercel.app/api/create-checkout-session',
+      { orderDetails }
+    );
+
+    console.log("Stripe session response:", res.data);
+
+    // ✅ Step 5: Redirect to Stripe checkout
+    if (res.data.url) {
+      window.location.href = res.data.url;
+    }
+
+  } catch (error) {
+    console.error("Error creating Stripe session:", error);
+    alert("There was a problem processing your order. Please try again.");
+  }
 };
-
-const orderDetails = {
-  customer: formData,
-  designs: selectedDesigns,
-  size: selectedSize,
-  total: calculateOrderTotal().toFixed(2),
-};
-
-
-  const res = await axios.post<StripeSessionResponse>(
-  'https://all-about-eggs.vercel.app/api/create-checkout-session',
-  { orderDetails
-  });
-
-
-
-  console.log("Stripe session response:", res.data);
-
-  if (res.data.url) {
-    window.location.href = res.data.url; 
-  } 
-
-
-}
 
 const clearLocalStorage = () => {
 localStorage.removeItem('selectedDesigns');

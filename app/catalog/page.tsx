@@ -1060,16 +1060,23 @@ export default function CatalogPage() {
                       >
                         <Download className="w-5 h-5 text-gray-900" />
                       </button>
-                      <button 
-                        onClick={() => {
-                          // Add to favorites functionality
-                          alert(`Added "${design.name}" to favorites!`);
-                        }}
-                        className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all transform hover:scale-110"
-                        title="Add to Favorites"
-                      >
-                        <Heart className="w-5 h-5 text-gray-700" />
-                  </button>
+             <button
+  onClick={() => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    wishlist.push(design); 
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    console.log("Wishlist saved:", wishlist);
+    alert(`Added "${design.name}" to favorites!`);
+
+
+    window.location.href = "/account";
+  }}
+  className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all transform hover:scale-110"
+  title="Add to Favorites"
+>
+  <Heart className="w-5 h-5 text-gray-700" />
+</button>
+
                 </div>
                   </div>
                 </div>
@@ -1148,8 +1155,6 @@ export default function CatalogPage() {
             </button>
           </div>
           )}
-
-          {/* Show Less Button */}
           {displayCount > 4 && (
             <div className="text-center mt-8">
               <button
@@ -1160,8 +1165,6 @@ export default function CatalogPage() {
               </button>
             </div>
           )}
-
-          {/* Preview Area - Template */}
           {selectedDesigns.length > 0 && (
             <div className="mt-16 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/50 p-8">
               <div className="text-center mb-8">
@@ -1177,7 +1180,7 @@ export default function CatalogPage() {
                   <div key={design.id} className="relative group">
                     {/* Template Frame */}
                     <div className="relative bg-gradient-to-br from-[#f7fcee] to-[#f6e79e]/30 rounded-2xl p-4 border-2 border-[#f6e79e]/50 shadow-lg">
-                      {/* Egg Design in Template */}
+                
                                       <div className="relative w-full h-32 bg-white rounded-xl overflow-hidden shadow-inner">
                   <Image
                     src={design.image}

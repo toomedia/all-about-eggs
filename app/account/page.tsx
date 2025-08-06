@@ -3,7 +3,7 @@
 import React from 'react';
 import { Egg, Sparkles, User, Settings, Heart, ShoppingBag, Clock } from 'lucide-react';
 import Link from 'next/link';
-
+import Wishlist from '@/components/wishlist';
 export default function AccountPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">      
@@ -23,7 +23,7 @@ export default function AccountPage() {
           </div>
         </div>
       </section>
-
+  <Wishlist/>
       {/* Coming Soon Section */}
       <section className="py-12 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -106,6 +106,7 @@ export default function AccountPage() {
             </div>
           </div>
         </div>
+      
       </section>
     </div>
   );
