@@ -1,10 +1,11 @@
 "use client";
-
+import useTranslation from '@/lib/useTranslation';
 import React from 'react';
 import { Egg, Sparkles, User, Settings, Heart, ShoppingBag, Clock } from 'lucide-react';
 import Link from 'next/link';
 import Wishlist from '@/components/wishlist';
 export default function AccountPage() {
+   const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">      
       {/* Hero Section */}
@@ -15,10 +16,10 @@ export default function AccountPage() {
               <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-gray-700" />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 font-manrope leading-tight">
-              My Account
+              {t.account.title}
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-              Manage your EggFinity account, view orders, and customize your experience
+              {t.account.subtitle}
             </p>
           </div>
         </div>
@@ -31,17 +32,16 @@ export default function AccountPage() {
             {/* Coming Soon Badge */}
             <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8">
               <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="font-bold text-sm sm:text-base">Coming Soon</span>
+              <span className="font-bold text-sm sm:text-base">{t.account.comingSoon}</span>
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
 
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 font-manrope">
-              Account Features Are Under Development
+             {t.account.featuresTitle}
             </h2>
             
             <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-              We're working hard to bring you amazing account features! Soon you'll be able to manage your orders, 
-              save your favorite designs, and track your Easter memory game collection.
+             {t.account.featuresDesc}
             </p>
 
             {/* Feature Preview */}
@@ -50,24 +50,32 @@ export default function AccountPage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#f6e79e] rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Order History</h3>
-                <p className="text-xs sm:text-sm text-gray-600">Track all your past orders and reorder your favorites</p>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">{t.account.ordersTitle}</h3>
+                <p className="text-xs sm:text-sm text-gray-600">{t.account.ordersDesc}</p>
               </div>
 
               <div className="bg-gradient-to-br from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-[#f6e79e]/30">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#f6e79e] rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Favorite Designs</h3>
-                <p className="text-xs sm:text-sm text-gray-600">Save and organize your favorite egg designs</p>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">
+                  {t.account.favoritesTitle}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600">
+                  {t.account.favoritesDesc}
+                </p>
               </div>
 
               <div className="bg-gradient-to-br from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-[#f6e79e]/30">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#f6e79e] rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Account Settings</h3>
-                <p className="text-xs sm:text-sm text-gray-600">Manage your profile and preferences</p>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">
+                  {t.account.settingsTitle}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600">
+                  {t.account.settingsDesc}
+                </p>
               </div>
             </div>
 
@@ -78,29 +86,33 @@ export default function AccountPage() {
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <Egg className="w-4 h-4 sm:w-5 sm:h-5" />
-                Browse Designs
+                {t.account.browseDesigns}
               </Link>
               <Link 
                 href="/"
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-700 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-                Back to Home
+                {t.account.backToHome}
               </Link>
             </div>
 
             {/* Newsletter Signup */}
             <div className="mt-8 sm:mt-10 md:mt-12 p-4 sm:p-6 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl sm:rounded-2xl border border-purple-200/30">
-              <h3 className="font-bold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">Get Notified When It's Ready!</h3>
-              <p className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">Be the first to know when account features launch</p>
+              <h3 className="font-bold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">
+                {t.account.newsletterTitle}
+              </h3>
+              <p className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">
+                {t.account.newsletterDesc}
+              </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-md mx-auto">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t.account.emailPlaceholder}
                   className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-white border border-gray-300 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#f6e79e] text-xs sm:text-sm"
                 />
                 <button className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition-all transform hover:scale-105">
-                  Notify Me
+                  {t.account.notifyMe}
                 </button>
               </div>
             </div>

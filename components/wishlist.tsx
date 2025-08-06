@@ -1,5 +1,6 @@
 'use client'
 
+import useTranslation from '@/lib/useTranslation';
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -25,6 +26,7 @@ interface WishlistItem {
 }
 
 export default function Wishlist() {
+  const { t } = useTranslation();
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([])
   const [selectedDesign, setSelectedDesign] = useState<Design | null>(null)
   const [showModal, setShowModal] = useState(false)
@@ -45,19 +47,19 @@ export default function Wishlist() {
   }
 
   const handleBuyNow = (item: WishlistItem) => {
-    setSelectedDesign(item as Design) // Cast because WishlistItem doesn't have `price` etc.
+    setSelectedDesign(item as Design)
     window.location.href = `/checkout?designs=${item.id}&size=L&count=1`
   }
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <h2 className="text-3xl font-bold text-gray-900 text-center mb-10 font-manrope">
-        Saved Designs
+        {t.wishlist.saved_designs}
       </h2>
 
       {wishlistItems.length === 0 ? (
         <p className="text-center text-gray-600 text-lg">
-          Your wishlist is empty.
+          {t.wishlist.empty}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -83,7 +85,7 @@ export default function Wishlist() {
                   size="sm"
                   className="w-full bg-[#f6e79e] text-black font-semibold"
                 >
-                  Add to Cart
+                  {t.wishlist.add_to_cart}
                 </Button>
                 <Button
                   size="sm"
@@ -91,7 +93,7 @@ export default function Wishlist() {
                   className="bg-white border-2 border-gray-200 text-gray-700 py-4 px-6 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
                   onClick={() => removeFromWishlist(item.id)}
                 >
-                  Remove
+                  {t.wishlist.remove}
                 </Button>
               </div>
             </Card>

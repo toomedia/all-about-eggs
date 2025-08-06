@@ -1,36 +1,35 @@
 "use client";
 
+import useTranslation from '@/lib/useTranslation';
 import { Card, CardContent } from "@/components/ui/card";
 import { Paintbrush, Gift, Leaf } from "lucide-react";
 
-const features = [
-  {
-    icon: <Paintbrush className="text-[#f6e79e] w-8 h-8" />,
-    title: "Personalized Design",
-    description:
-      "Choose from 100 unique egg motifs or let our random generator surprise you.",
-  },
-  {
-    icon: <Gift className="text-[#f6e79e] w-8 h-8" />,
-    title: "Perfect for Gifting",
-    description:
-      "Ideal for Easter, birthdays, or a special surprise for family and friends.",
-  },
-  {
-    icon: <Leaf className="text-[#f6e79e] w-8 h-8" />,
-    title: "On-Demand Production",
-    description:
-      "Sustainably made to order – less waste, more quality for you.",
-  },
-];
-
 export default function WhyEggfinityMemory() {
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      icon: <Paintbrush className="text-[#f6e79e] w-8 h-8" />,
+      title: t.why.title1,
+      description: t.why.description1,
+    },
+    {
+      icon: <Gift className="text-[#f6e79e] w-8 h-8" />,
+      title: t.why.title2,
+      description: t.why.description2,
+    },
+    {
+      icon: <Leaf className="text-[#f6e79e] w-8 h-8" />,
+      title: t.why.title3,
+      description: t.why.description3,
+    },
+  ];
+
   return (
     <section className="bg-custom-gray py-16 px-4 sm:px-8 text-center mt-20">
- <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center font-manrope">
-  Why Eggfinity Memory?
-</h2>
-
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center font-manrope">
+        {t.why.heading}
+      </h2>
 
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto">
         {features.map((feature, index) => (

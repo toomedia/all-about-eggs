@@ -1,6 +1,7 @@
 
 "use client";
 
+import useTranslation from '@/lib/useTranslation';
 import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 // import FeaturesSection from "@/components/FeaturesSection";
@@ -30,6 +31,8 @@ interface Design {
 
 // Catalog Section Component
 const CatalogSection = () => {
+  
+      const { t } = useTranslation();
   const [selectedDesign, setSelectedDesign] = useState<Design | null>(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -71,19 +74,18 @@ const CatalogSection = () => {
       <section className="py-20 bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-4 py-2 rounded-full mb-6">
-              <Egg className="w-5 h-5" />
-              <span className="font-semibold text-sm">Design Catalog</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-manrope">
-              Explore Our Design Collection
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover over 100 unique egg designs across multiple categories. From traditional Easter themes to modern abstract art, 
-              find the perfect designs for your memory game.
-            </p>
-          </div>
+    <div className="text-center mb-16">
+    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-4 py-2 rounded-full mb-6">
+      <Egg className="w-5 h-5" />
+      <span className="font-semibold text-sm">{t.catalogSection.badge}</span>
+    </div>
+    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-manrope">
+      {t.catalogSection.title}
+    </h2>
+    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      {t.catalogSection.description}
+    </p>
+  </div>
 
           {/* Featured Designs Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 mb-8 sm:mb-12">
@@ -102,21 +104,23 @@ const CatalogSection = () => {
                     sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
                   />
                   
-                  {/* Badges */}
-                  {design.premium && (
-                    <div className="absolute top-1 sm:top-2 right-1 sm:right-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1">
-                      <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                      <span className="hidden sm:inline">Premium</span>
-                      <span className="sm:hidden">P</span>
-                    </div>
-                  )}
-                  {design.featured && (
-                    <div className="absolute top-1 sm:top-2 left-1 sm:left-2 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1">
-                      <Heart className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                      <span className="hidden sm:inline">Featured</span>
-                      <span className="sm:hidden">F</span>
-                    </div>
-                  )}
+                  Badges
+            {design.premium && (
+  <div className="absolute top-1 sm:top-2 right-1 sm:right-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1">
+    <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+    <span className="hidden sm:inline">{t.catalogSection.premium}</span>
+    <span className="sm:hidden">P</span>
+  </div>
+)}
+
+{design.featured && (
+  <div className="absolute top-1 sm:top-2 left-1 sm:left-2 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1">
+    <Heart className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+    <span className="hidden sm:inline">{t.catalogSection.featured}</span>
+    <span className="sm:hidden">F</span>
+  </div>
+)}
+
 
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -165,24 +169,23 @@ const CatalogSection = () => {
           <div className="text-center">
             <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 border-[#f6e79e]/30">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 font-manrope">
-                Ready to Create Your Perfect Memory Game?
+                {t.catalogSection.ctaTitle}
               </h3>
               <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto">
-                Browse our complete collection, use our "Surprise Me" feature, or explore preset collections. 
-                Start creating your unique Easter memory game today!
+                {t.catalogSection.ctaDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <Link href="/catalog">
                   <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                     <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-                    Browse Full Catalog
+                   {t.catalogSection.browseCatalog}
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </Link>
                 <Link href="/presets/top-10">
                   <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-700 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2">
                     <Star className="w-4 h-4 sm:w-5 sm:h-5" />
-                    View Preset Collections
+                   {t.catalogSection.viewPresets}
                   </button>
                 </Link>
               </div>
@@ -251,7 +254,7 @@ const CatalogSection = () => {
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 >
                   <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Add to Wishlist
+                 {t.catalogSection.wishlist}
                 </button>
                 
                 <button
@@ -259,7 +262,7 @@ const CatalogSection = () => {
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 >
                   <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Buy Now
+                  {t.catalogSection.buyNow}
                 </button>
                 
                 <button
@@ -267,14 +270,14 @@ const CatalogSection = () => {
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-200 text-gray-700 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 hover:bg-gray-50 flex items-center justify-center gap-2"
                 >
                   <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Custom Enhancement
+                  {t.catalogSection.customEnhancement}
                 </button>
               </div>
 
               {/* Additional Info */}
               <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg sm:rounded-xl">
                 <p className="text-xs sm:text-sm text-gray-600 text-center">
-                  This design can be used in memory games, Easter decorations, or as a standalone piece.
+                  {t.catalogSection.extraInfo}
                 </p>
               </div>
             </div>

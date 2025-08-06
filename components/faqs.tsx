@@ -1,47 +1,29 @@
-
-
 "use client";
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-
-const faqs = [
-  {
-    question: "How many designs are included?",
-    answer:
-      "You can choose from over 100 different egg designs. Depending on the set size, you select 12, 24, or 36 different designs.",
-  },
-  {
-    question: "Can I change my designs later?",
-    answer:
-      "As long as your order hasn't gone into production yet, you can change your selection of designs at any time. Just contact our customer service.",
-  },
-  {
-    question: "How long does delivery take?",
-    answer:
-      "Since we produce on demand, the delivery time is 3–5 business days after the order is received.",
-  },
-  {
-    question: "Is this product suitable for children?",
-    answer:
-      "Yes! Our memory game is suitable for children aged 3 and above. The cards are made from high-quality, child-safe materials.",
-  },
-];
+import useTranslation from '@/lib/useTranslation';
 
 export default function FAQSection() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // ✅ Now accessing directly from `t.faq.questions`
+  const faqs = t.faq.questions as {
+    question: string;
+    answer: string;
+  }[];
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className=" py-16 px-4">
+    <section className="py-16 px-4">
       <div className="max-w-3xl mx-auto">
-   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center font-manrope">
-  Frequently Asked Questions
-</h2>
-
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center font-manrope">
+          {t.faq.title}
+        </h2>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => {
