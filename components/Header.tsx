@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { ShoppingCart, Egg, Menu, X, User } from 'lucide-react';
 import Link from 'next/link';
 import useTranslation from '@/lib/useTranslation';
 
-export default function Header() {
+function HeaderContent() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cartItems, setCartItems] = useState(0);
@@ -41,7 +41,6 @@ export default function Header() {
     <header className={`backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/20 shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity group">
             <div className="bg-[#f6e79e] p-2 rounded-xl shadow-inner group-hover:shadow-md">
@@ -65,7 +64,6 @@ export default function Header() {
 
           {/* Right Side */}
           <div className="flex items-center space-x-2">
-
             {/* Account */}
             <Link href="/account" className="hidden sm:flex items-center gap-2 hover:bg-white/20 px-3 py-2 rounded-xl group">
               <User className="h-5 w-5 text-gray-700 group-hover:text-[#f6e79e]" />
@@ -151,5 +149,13 @@ export default function Header() {
         )}
       </div>
     </header>
+  );
+}
+
+export default function Header() {
+  return (
+    <Suspense fallback={<div className="h-20 flex items-center justify-center text-sm text-gray-500">Loading header...</div>}>
+      <HeaderContent />
+    </Suspense>
   );
 }

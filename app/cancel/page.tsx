@@ -1,9 +1,10 @@
 'use client';
-import { XCircle } from 'lucide-react';
 
+import { Suspense } from 'react';
+import { XCircle } from 'lucide-react';
 import useTranslation from '@/lib/useTranslation';
 
-export default function CancelPage() {
+function CancelContent() {
   const { t } = useTranslation();
 
   return (
@@ -20,5 +21,13 @@ export default function CancelPage() {
         </a>
       </div>
     </div>
+  );
+}
+
+export default function CancelPage() {
+  return (
+    <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+      <CancelContent />
+    </Suspense>
   );
 }

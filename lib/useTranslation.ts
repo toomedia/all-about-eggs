@@ -11,13 +11,17 @@ export default function useTranslation() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const lang = (searchParams.get("lang") as "en" | "de") || "en";
-  const t = translations[lang];
+  const lang = (searchParams?.get("lang") as "en" | "de") || "en";
+  const t = translations[lang] || translations.en;
 
   const switchLanguage = () => {
     const newLang = lang === "en" ? "de" : "en";
-    const url = `${pathname}?lang=${newLang}`;
-    router.push(url);
+
+    // Create a new URLSearchParams object to retain existing params
+    const params = new URLSearchParams(searchParams?.toString());
+    params.set("lang", newLang);
+
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return { t, lang, switchLanguage };

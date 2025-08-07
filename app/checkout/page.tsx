@@ -8,6 +8,7 @@ import { CreditCard, Truck, Shield, ArrowLeft, X, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
+
 export default function CheckoutPage() {
 const [paymentMethod, setPaymentMethod] = useState('card');
 const [showOrderModal, setShowOrderModal] = useState(false);
@@ -203,6 +204,8 @@ setFormData(prev => ({
 };
 
 const { t } = useTranslation();
+
+ 
 return (
 <div className="min-h-screen">
   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

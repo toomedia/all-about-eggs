@@ -159,7 +159,6 @@
 
 
 "use client";
-
 import useTranslation from '@/lib/useTranslation';
 import { Egg, ArrowLeft, Sparkles, Heart } from 'lucide-react';
 import Link from 'next/link';
@@ -169,6 +168,7 @@ import UploadImageEggCard from '@/components/UploadImageEggCard';
 
 export default function DesignPage() {
   const { t } = useTranslation();
+  
 
   const designExamples = [
     {

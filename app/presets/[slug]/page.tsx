@@ -7,7 +7,6 @@ import { useParams } from 'next/navigation';
 import { ArrowLeft, Sparkles, Star, Heart, Download, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-
 // Preset collections data
 const presetCollections = {
   'easter-eggs': {

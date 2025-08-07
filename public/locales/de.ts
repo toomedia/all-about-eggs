@@ -26,9 +26,16 @@ const de = {
     returns: "Rückgabe: 30 Tage",
     getInTouch: "Kontakt aufnehmen",
     easterUpdates: "Oster-Updates",
+    checkout: "Zur Kasse",
+  presetCollections: "Voreingestellte Kollektionen",
+  getinTouch: "Kontakt aufnehmen",
+  email: "hello@eggfinity.com",
+  phone: "1-800-EGG-GAME", // You can keep numbers same
+  address: "Ostertal, Frühlingsgärten",
     newsletter: "Erhalte saisonale Vorlagen und Sonderangebote!",
     subscribe: "Abonnieren",
     madeWith: "Gemacht mit",
+     yourEmail: "Deine E-Mail",
     forFamilies: "für Familien überall.",
     privacy: "Datenschutz",
     terms: "Nutzungsbedingungen"

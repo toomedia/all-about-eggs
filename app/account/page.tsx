@@ -1,11 +1,14 @@
 "use client";
+
 import useTranslation from '@/lib/useTranslation';
 import React from 'react';
 import { Egg, Sparkles, User, Settings, Heart, ShoppingBag, Clock } from 'lucide-react';
 import Link from 'next/link';
 import Wishlist from '@/components/wishlist';
+
 export default function AccountPage() {
    const { t } = useTranslation();
+   
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">      
       {/* Hero Section */}

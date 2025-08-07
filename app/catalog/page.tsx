@@ -7,7 +7,6 @@ import Image from 'next/image';
 
 import useTranslation from '@/lib/useTranslation';
 export default function CatalogPage() {
-  
      const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSize, setSelectedSize] = useState('XL');

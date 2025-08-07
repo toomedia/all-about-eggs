@@ -67,7 +67,8 @@ export default function Hero() {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-manrope leading-tight">
               {t.hero.titleLine1}
-              <span className="text-[#f6e79e] block text-shadow-2xs shadow-black">{t.hero.titleLine2}</span>
+              <span className="text-[#f6e79e] text-shadow-2xs shadow-black whitespace-nowrap block">{t.hero.titleLine2}</span>
+
             </h1>
 
             <p className="text-lg text-gray-700 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
