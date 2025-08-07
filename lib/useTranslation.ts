@@ -1,9 +1,7 @@
 'use client';
-
 import en from "@/public/locales/en"
 import de from '@/public/locales/de';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-
 const translations = { en, de };
 
 export default function useTranslation() {
