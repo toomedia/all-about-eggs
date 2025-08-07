@@ -1,7 +1,9 @@
 'use client';
-import en from "@/public/locales/en"
-import de from '@/public/locales/de';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+
+import en from "@/public/locales/en";
+import de from "@/public/locales/de";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
 const translations = { en, de };
 
 export default function useTranslation() {
@@ -9,12 +11,11 @@ export default function useTranslation() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const lang = (searchParams.get('lang') as 'en' | 'de') || 'en';
-
+  const lang = (searchParams.get("lang") as "en" | "de") || "en";
   const t = translations[lang];
 
   const switchLanguage = () => {
-    const newLang = lang === 'en' ? 'de' : 'en';
+    const newLang = lang === "en" ? "de" : "en";
     const url = `${pathname}?lang=${newLang}`;
     router.push(url);
   };
