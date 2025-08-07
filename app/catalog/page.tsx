@@ -5,7 +5,10 @@ import { Heart, ShoppingCart, Sparkles, Star, Search, Filter, Download, Eye, X, 
 import Link from 'next/link';
 import Image from 'next/image';
 
+import useTranslation from '@/lib/useTranslation';
 export default function CatalogPage() {
+  
+     const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSize, setSelectedSize] = useState('XL');
   const [displayCount, setDisplayCount] = useState(8);
@@ -22,13 +25,13 @@ export default function CatalogPage() {
   const [selectedSurpriseType, setSelectedSurpriseType] = useState('');
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [surpriseResult, setSurpriseResult] = useState<typeof eggDesigns>([]);
-  const [loadingMessages] = useState([
-    "🥚 Cracking open your surprise...",
-    "🎨 Mixing paints and sparkles...",
-    "🔍 Finding the perfect egg for you...",
-    "✨ Adding a sprinkle of magic...",
-    "🎉 Almost ready for your surprise!"
-  ]);
+const [loadingMessages] = useState([
+  t.Catalog.message1,
+  t.Catalog.message2,
+  t.Catalog.message3,
+  t.Catalog.message4,
+  t.Catalog.message5
+]);
 
   // Load saved selections from localStorage on component mount
   useEffect(() => {
@@ -54,14 +57,14 @@ export default function CatalogPage() {
     localStorage.setItem('isSurpriseSelection', JSON.stringify(isSurpriseSelection));
   }, [selectedDesigns, selectedSize, isSurpriseSelection]);
 
-  const categories = [
-    { name: 'All', count: 30, icon: '🌟' },
-    { name: 'Easter', count: 10, icon: '🥚' },
-    { name: 'Abstract', count: 8, icon: '🎨' },
-    { name: 'Nature', count: 6, icon: '🌿' },
-    { name: 'Classics', count: 4, icon: '✨' },
-    { name: 'Pop Culture', count: 2, icon: '🎭' }
-  ];
+const categories = [
+  { name: t.Catalog.all, count: 30, icon: '🌟' },
+  { name: t.Catalog.easter, count: 10, icon: '🥚' },
+  { name: t.Catalog.abstract, count: 8, icon: '🎨' },
+  { name: t.Catalog.nature, count: 6, icon: '🌿' },
+  { name: t.Catalog.classics, count: 4, icon: '✨' },
+  { name: t.Catalog.popCulture, count: 2, icon: '🎭' }
+];
 
   const eggDesigns = [
     // Easter Category
@@ -648,7 +651,7 @@ export default function CatalogPage() {
 
   const handleAddToCart = () => {
     if (selectedDesigns.length === 0) {
-      alert('Please select at least one design before adding to cart.');
+      alert(t.Catalog.selectDesignAlert);
       return;
     }
     // Redirect to checkout with selected designs
@@ -748,10 +751,10 @@ export default function CatalogPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#f6e79e]/20 to-[#f7fcee]/40"></div>
         <div className="relative z-10 max-w-6xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 font-manrope leading-tight">
-            Beautiful Egg Templates
+           {t.Catalog.eggTemplatesTitle}
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-8 sm:mb-10 md:mb-12 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-4">
-            Choose from our curated collection of stunning Easter egg designs. Each template is crafted with love and ready to become your memory game.
+           {t.Catalog.eggTemplatesDescription }
           </p>
           
           {/* Search and Filter */}
@@ -760,7 +763,7 @@ export default function CatalogPage() {
               <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="text"
-                placeholder="Search templates..."
+                placeholder={t.Catalog.search_templates}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#f6e79e] focus:border-transparent outline-none transition-all text-sm sm:text-base"
@@ -768,7 +771,9 @@ export default function CatalogPage() {
             </div>
             <button className="w-full sm:w-auto px-4 sm:px-6 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl sm:rounded-2xl hover:bg-white transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
               <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Filter</span>
+              <span className="font-medium text-gray-700">
+                {t.Catalog.filter}
+              </span>
             </button>
           </div>
         </div>
@@ -781,14 +786,17 @@ export default function CatalogPage() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full mb-4">
                 <Gift className="w-6 h-6" />
-                <span className="font-bold text-lg">Your Surprise Selection!</span>
+                <span className="font-bold text-lg">
+                  {t.Catalog.surpriseSelectionTitle}
+                </span>
                 <Sparkles className="w-6 h-6" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
-                {selectedDesigns.length} Amazing Designs Selected for You
+                {selectedDesigns.length}
+                {t.Catalog.surpriseSelectionSubtitle}
               </h2>
               <p className="text-gray-600 text-lg">
-                These designs were specially chosen just for you! Ready to create your perfect egg memory set?
+                {t.Catalog.surpriseSelectionDescription}
               </p>
             </div>
 
@@ -830,7 +838,7 @@ export default function CatalogPage() {
                 className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
-                Add Surprise to Cart - €{calculateOrderTotal().toFixed(2)}
+                {t.Catalog.addToCart} - €{calculateOrderTotal().toFixed(2)}
               </button>
               <button
                 onClick={() => {
@@ -842,7 +850,7 @@ export default function CatalogPage() {
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-purple-700 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2"
               >
                 <X className="w-5 h-5" />
-                Clear Surprise
+                {t.Catalog.clearSurprise}
               </button>
             </div>
           </div>
@@ -856,14 +864,16 @@ export default function CatalogPage() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-6 py-3 rounded-full mb-4">
                 <ShoppingCart className="w-6 h-6" />
-                <span className="font-bold text-lg">Your Selected Designs</span>
+                <span className="font-bold text-lg">
+                  {t.Catalog.selectedDesignsTitle}
+                </span>
                 <Sparkles className="w-6 h-6" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
-                {selectedDesigns.length} Designs in Your Cart
+                {selectedDesigns.length} {t.Catalog.designsInCart}
               </h2>
               <p className="text-gray-600 text-lg">
-                Ready to create your custom egg memory game? Review your selections below.
+                {t.Catalog.reviewSelections}
               </p>
             </div>
 
@@ -905,7 +915,7 @@ export default function CatalogPage() {
                 className="px-8 py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
-                Add to Cart - €{calculateOrderTotal().toFixed(2)}
+               {t.Catalog.add_to_cart} - €{calculateOrderTotal().toFixed(2)}
               </button>
               <button
                 onClick={() => {
@@ -917,7 +927,7 @@ export default function CatalogPage() {
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-[#f6e79e] text-gray-700 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2"
               >
                 <X className="w-5 h-5" />
-                Clear Selection
+                {t.Catalog.clear_selection}
               </button>
             </div>
           </div>
@@ -927,7 +937,9 @@ export default function CatalogPage() {
       {/* Size Selection */}
       <section className="py-16 bg-white/50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12 font-manrope">Choose Set Size</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12 font-manrope">
+            {t.Catalog.choose_set_size}
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {sizes.map((size) => (
@@ -979,7 +991,7 @@ export default function CatalogPage() {
               className="px-6 py-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-full font-medium hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg"
             >
               <Sparkles className="w-4 h-4" />
-              Surprise Me
+             {t.Catalog.surprise_me}
             </button>
           </div>
         </div>
@@ -990,8 +1002,10 @@ export default function CatalogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">Choose Your Designs</h2>
-              <p className="text-gray-600 text-lg">Choose {sizes.find(s => s.name === selectedSize)?.cards} out of {filteredDesigns.length} designs</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
+                {t.Catalog.choose_your_designs}
+              </h2>
+              <p className="text-gray-600 text-lg"> {t.PresetPage.chooseCards}{sizes.find(s => s.name === selectedSize)?.cards}  {filteredDesigns.length} </p>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-500 mb-1">Showing {displayedDesigns.length} of {filteredDesigns.length}</p>
@@ -1010,7 +1024,7 @@ export default function CatalogPage() {
                 {design.premium && (
                   <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                     <Star className="w-3 h-3" />
-                    Premium
+                    {t.PresetPage.premium}
                   </div>
                 )}
                 
@@ -1018,7 +1032,7 @@ export default function CatalogPage() {
                 {design.featured && (
                   <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
-                    Featured
+                    {t.PresetPage.featured}
                   </div>
                 )}
 
@@ -1112,33 +1126,7 @@ export default function CatalogPage() {
                   </div>
 
                   {/* Action Button */}
-                  <button 
-                    onClick={() => handleDesignSelect(design)}
-                    className={`w-full py-3 px-4 rounded-xl font-semibold text-center transition-all transform hover:scale-105 ${
-                      selectedDesigns.some(d => d.id === design.id)
-                        ? 'bg-gradient-to-r from-green-400 to-green-500 text-white hover:from-green-500 hover:to-green-400'
-                        : design.premium 
-                          ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:from-orange-500 hover:to-amber-400'
-                          : 'bg-[#f6e79e] text-gray-900 hover:bg-[#f4e285]'
-                    } flex items-center justify-center gap-2`}
-                  >
-                    {selectedDesigns.some(d => d.id === design.id) ? (
-                      <>
-                        <Sparkles className="w-4 h-4" />
-                        Selected
-                      </>
-                    ) : design.premium ? (
-                      <>
-                        <Star className="w-4 h-4" />
-                        Get Premium
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-4 h-4" />
-                    Select Design
-                      </>
-                    )}
-                  </button>
+               
                 </div>
               </div>
             ))}
@@ -1151,7 +1139,7 @@ export default function CatalogPage() {
                 onClick={() => setDisplayCount(prev => Math.min(prev + 4, filteredDesigns.length))}
                 className="px-8 py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-2xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Load More
+                {t.Catalog.loadMore}
             </button>
           </div>
           )}
@@ -1161,18 +1149,22 @@ export default function CatalogPage() {
                 onClick={() => setDisplayCount(4)}
                 className="px-6 py-3 bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 rounded-xl font-semibold text-base hover:bg-white transition-all transform hover:scale-105"
               >
-                Show Less
+                {t.Catalog.showLess}
               </button>
             </div>
           )}
           {selectedDesigns.length > 0 && (
             <div className="mt-16 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/50 p-8">
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4 font-manrope">Your Selected Designs Preview</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4 font-manrope">
+                  {t.Catalog.selectedPreview}
+                </h3>
                 <p className="text-gray-600 text-lg">
                   {selectedDesigns.length} of {sizes.find(s => s.name === selectedSize)?.cards} designs selected
                 </p>
               </div>
+
+             
 
                         {/* Template Preview Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
@@ -1220,7 +1212,9 @@ export default function CatalogPage() {
                         <div className="text-gray-400 text-4xl">+</div>
                       </div>
                       <div className="mt-3 text-center">
-                        <p className="text-xs text-gray-400">Empty Slot</p>
+                        <p className="text-xs text-gray-400">
+                          {t.Catalog.emptySlot}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1231,15 +1225,23 @@ export default function CatalogPage() {
               <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-2xl p-6 border border-[#f6e79e]/30">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <h4 className="font-bold text-gray-900 mb-2">Set Size</h4>
+                    <h4 className="font-bold text-gray-900 mb-2">
+                      {t.Catalog.set_size}
+                    </h4>
                     <p className="text-lg text-[#f6e79e] font-semibold">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} cards)</p>
                   </div>
                   <div className="text-center">
-                    <h4 className="font-bold text-gray-900 mb-2">Selected</h4>
-                    <p className="text-lg text-green-600 font-semibold">{selectedDesigns.length} designs</p>
+                    <h4 className="font-bold text-gray-900 mb-2">
+                      {t.Catalog.selected}
+                    </h4>
+                    <p className="text-lg text-green-600 font-semibold">{selectedDesigns.length} 
+                      {t.Catalog.designs}
+                    </p>
                   </div>
                   <div className="text-center">
-                    <h4 className="font-bold text-gray-900 mb-2">Total Price</h4>
+                    <h4 className="font-bold text-gray-900 mb-2">
+                      {t.Catalog.total_price}
+                    </h4>
                     <p className="text-2xl font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</p>
                   </div>
                 </div>
@@ -1273,7 +1275,7 @@ export default function CatalogPage() {
                       : 'bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 hover:bg-white'
                   }`}
                 >
-                  Clear Selection
+                 {t.Catalog.clear_selection}
             </button>
           </div>
             </div>
@@ -1285,9 +1287,11 @@ export default function CatalogPage() {
       <section className="py-20 bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-6 font-manrope">Preset Collections</h2>
+            <h2 className="text-5xl font-bold text-gray-900 mb-6 font-manrope">
+                       {t.Catalog.preset_collections_title}
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Curated collections of our most popular designs, ready for instant purchase
+             {t.Catalog.preset_collections_subtitle}
             </p>
           </div>
           
@@ -1302,28 +1306,38 @@ export default function CatalogPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-[#f6e79e] to-[#f4e285] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
                       <Star className="w-8 h-8 text-gray-900" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">Top 10</h3>
-                    <p className="text-gray-600 mb-6">Most popular designs</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">
+                      {t.Catalog.top_10_title}
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      {t.Catalog.top_10_subtitle}
+                    </p>
                     
                     {/* Features */}
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-[#f6e79e] rounded-full"></span>
-                        <span>10 curated designs</span>
+                        <span>
+                          {t.Catalog.top_10_feature_1}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-[#f6e79e] rounded-full"></span>
-                        <span>Premium quality</span>
+                        <span>
+                             {t.Catalog.top_10_feature_2}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-[#f6e79e] rounded-full"></span>
-                        <span>Instant download</span>
+                        <span>
+                             {t.Catalog.top_10_feature_3}
+                        </span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="w-full bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-3 px-6 rounded-2xl font-semibold hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 text-center group-hover:shadow-lg">
-                View Collection
+                {t.Catalog.view_collection}
             </div>
                 </div>
               </div>
@@ -1339,28 +1353,40 @@ export default function CatalogPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
                       <Sparkles className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">Staff Picks</h3>
-                    <p className="text-gray-600 mb-6">Curated by our team</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">
+                      {t.Catalog.staff_picks_title}
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      {t.Catalog.staff_picks_subtitle}
+                    </p>
                     
                     {/* Features */}
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                        <span>6 award-winning designs</span>
+                        <span>
+                          {t.Catalog.staff_picks_feature_1}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                        <span>Expert curation</span>
+                        <span>
+                          
+                          {t.Catalog.staff_picks_feature_2}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                        <span>Premium quality</span>
+                        <span>
+                          
+                          {t.Catalog.staff_picks_feature_3}
+                        </span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-2xl font-semibold hover:from-pink-500 hover:to-purple-500 transition-all transform hover:scale-105 text-center group-hover:shadow-lg">
-                View Collection
+               {t.Catalog.view_collection}
             </div>
                 </div>
               </div>
@@ -1376,28 +1402,38 @@ export default function CatalogPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
                       <Heart className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">Cute Holiday</h3>
-                    <p className="text-gray-600 mb-6">Easter special designs</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">
+                      {t.Catalog.cute_holiday_title}
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      {t.Catalog.cute_holiday_subtitle}
+                    </p>
                     
                     {/* Features */}
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                        <span>6 festive designs</span>
+                        <span>
+                          {t.Catalog.abstract_feature_1}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                        <span>Holiday themed</span>
+                        <span>
+                          {t.Catalog.abstract_feature_2}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                        <span>Perfect for celebrations</span>
+                        <span>
+                           {t.Catalog.abstract_feature_3}
+                        </span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-3 px-6 rounded-2xl font-semibold hover:from-rose-500 hover:to-pink-500 transition-all transform hover:scale-105 text-center group-hover:shadow-lg">
-                View Collection
+               {t.Catalog.view_collection}
             </div>
                 </div>
               </div>
@@ -1413,28 +1449,38 @@ export default function CatalogPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
                       <Sparkles className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">Abstract Art</h3>
-                    <p className="text-gray-600 mb-6">Modern & creative</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 font-manrope">
+                      {t.Catalog.abstract_title}
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      {t.Catalog.abstract_subtitle}
+                    </p>
                     
                     {/* Features */}
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        <span>6 artistic designs</span>
+                        <span>
+                          {t.Catalog.abstract_feature_1}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        <span>Modern aesthetics</span>
+                        <span>
+                          {t.Catalog.abstract_feature_2}
+                        </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        <span>Creative expression</span>
+                        <span>
+                          {t.Catalog.abstract_feature_3}
+                        </span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-6 rounded-2xl font-semibold hover:from-indigo-500 hover:to-blue-500 transition-all transform hover:scale-105 text-center group-hover:shadow-lg">
-                    View Collection
+                   {t.Catalog.view_collection}
                   </div>
                 </div>
               </div>
@@ -1455,16 +1501,37 @@ export default function CatalogPage() {
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                     <Gift className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 font-manrope">Choose your surprise!</h2>
-                  <p className="text-sm sm:text-base text-gray-600">What kind of egg adventure are you looking for?</p>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 font-manrope">
+                    {t.Catalog.choose_your_surprise}
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600">
+                    {t.Catalog.egg_adventure_prompt}
+                  </p>
                 </div>
 
                 <div className="space-y-3 sm:space-y-4">
                   {[
-                    { type: 'One Egg Card', icon: '🥚', description: '1 perfect design', color: 'from-blue-500 to-cyan-500' },
-                    { type: 'Mini Preset', icon: '🎨', description: '5 curated designs', color: 'from-green-500 to-emerald-500' },
-                    { type: 'Full Preset', icon: '✨', description: '24 complete set', color: 'from-purple-500 to-pink-500' },
-                    { type: 'XL Preset', icon: '👑', description: '45 premium collection', color: 'from-orange-500 to-red-500' }
+                     {type: 'One Egg Card', icon: '🥚', description: t.Catalog.one, color: 'from-blue-500 to-cyan-500', },
+                       {
+    type: 'Mini Preset',
+    icon: '🎨',
+    description: t.Catalog.mini,
+    color: 'from-green-500 to-emerald-500',
+  },
+   {
+    type: 'Full Preset',
+    icon: '✨',
+    description: t.Catalog.full,
+    color: 'from-purple-500 to-pink-500',
+  },
+   {
+    type: 'XL Preset',
+    icon: '👑',
+    description: t.Catalog.xl,
+    color: 'from-orange-500 to-red-500',
+  },
+
+                  
                   ].map((option) => (
                     <button
                       key={option.type}
@@ -1487,7 +1554,7 @@ export default function CatalogPage() {
                   onClick={closeSurpriseModal}
                   className="w-full mt-4 sm:mt-6 py-2.5 sm:py-3 text-gray-600 hover:text-gray-800 transition-colors text-sm sm:text-base"
                 >
-                  Maybe later
+                  {t.designStudio.maybe}
                 </button>
               </div>
             )}
@@ -1500,7 +1567,9 @@ export default function CatalogPage() {
                     <Loader2 className="w-8 h-8 sm:w-10 sm:h-10 text-white animate-spin" />
                   </div>
                   
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 font-manrope">Creating your surprise...</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 font-manrope">
+                    {t.Catalog.creating_your_surprise}
+                  </h2>
                   
                   <div className="mb-4 sm:mb-6">
                     <div className="text-base sm:text-lg text-gray-600 mb-2">
@@ -1531,21 +1600,25 @@ export default function CatalogPage() {
 
             {/* Step 3: Result Reveal */}
             {surpriseStep === 3 && (
-              <div className="p-4 sm:p-6 md:p-8 overflow-y-auto flex-1">
-                <div className="text-center mb-6 sm:mb-8">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 animate-bounce">
-                    <span className="text-2xl sm:text-3xl">🎉</span>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 font-manrope">Ta-da! Your surprise is ready!</h2>
-                  <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
-                    We found {surpriseResult.length} perfect design{surpriseResult.length > 1 ? 's' : ''} for you!
-                  </p>
-                </div>
+           
+
+                <div className="p-4 sm:p-6 md:p-8 overflow-y-auto flex-1">
+  <div className="text-center mb-6 sm:mb-8">
+    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 animate-bounce">
+      <span className="text-2xl sm:text-3xl">🎉</span>
+    </div>
+    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 font-manrope">
+      {t.Catalog.surprise_ready}
+    </h2>
+    <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
+      {t.Catalog.perfect_designs_found.replace('{{count}}', surpriseResult.length.toString())}
+    </p>
+  </div>
 
                 {/* Preview of selected designs */}
                 <div className="mb-4 sm:mb-6">
                   <div className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 text-center">
-                    {surpriseResult.length} designs selected for you
+                    {surpriseResult.length} {t.Catalog.designs_selected_for_you}
                   </div>
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5 sm:gap-2 max-h-32 sm:max-h-48 overflow-y-auto rounded-lg sm:rounded-xl p-2 bg-gray-50">
                     {surpriseResult.map((design, index) => (
@@ -1572,13 +1645,13 @@ export default function CatalogPage() {
                     onClick={handleViewSurprise}
                     className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
-                    View My Surprise
+                    {t.Catalog.view_my_surprise}
                   </button>
                   <button
                     onClick={handleTryAnother}
                     className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all"
                   >
-                    Try Another
+                    {t.Catalog.try_another}
                   </button>
                 </div>
               </div>

@@ -2,6 +2,7 @@
 'use client';
 
 
+import useTranslation from '@/lib/useTranslation';
 import { useState, useEffect } from 'react';
 import { CreditCard, Truck, Shield, ArrowLeft, X, Check } from 'lucide-react';
 import Link from 'next/link';
@@ -201,28 +202,27 @@ setFormData(prev => ({
 }));
 };
 
-
+const { t } = useTranslation();
 return (
 <div className="min-h-screen">
-<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div className="mb-8">
-<Link href="/catalog" className="inline-flex items-center  transition-colors">
-<ArrowLeft className="w-4 h-4 mr-2" />
-Back to Catalog
-</Link>
-</div>
-
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="mb-8">
+      <Link href="/catalog" className="inline-flex items-center transition-colors">
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        {t.Checkout.backToCatalog}
+      </Link>
+    </div>
 
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
       {/* Checkout Form */}
       <div className="lg:col-span-2 space-y-8">
         {/* Order Options */}
         <div className="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">Order Options</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">{t.Checkout.orderOptions}</h2>
           
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Selection</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t.Checkout.yourSelection}</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                 {selectedDesigns.map((design) => (
                   <div key={design.id} className="bg-white rounded-lg p-3 shadow-sm">
@@ -241,7 +241,7 @@ Back to Catalog
                 ))}
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-600">Selected: {selectedDesigns.length} designs</span>
+                <span className="text-gray-600">{t.Checkout.selected}: {selectedDesigns.length} {t.Checkout.designs}</span>
                 <span className="text-lg font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
               </div>
             </div>
@@ -251,13 +251,13 @@ Back to Catalog
                 onClick={handleOrderNow}
                 className="bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-4 px-6 rounded-xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg"
               >
-                Order {selectedDesigns.length} Cards Now
+                {t.Checkout.orderCards} {selectedDesigns.length} {t.Checkout.now}
               </button>
               <button
                 onClick={handleCompletePreset}
                 className="bg-white border-2 border-gray-200 text-gray-700 py-4 px-6 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
               >
-                Complete Preset ({sizes.find(s => s.name === selectedSize)?.cards} cards)
+                {t.Checkout.completePreset} ({sizes.find(s => s.name === selectedSize)?.cards} {t.Checkout.cards})
               </button>
             </div>
           </div>
@@ -265,110 +265,94 @@ Back to Catalog
 
         {/* Customer Information Form */}
         <div className="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">Customer Information</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">{t.Checkout.customerInfo}</h2>
           
           <form className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  First Name *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.firstName} *</label>
                 <input 
                   type="text" 
                   value={formData.firstName}
                   onChange={(e) => handleInputChange('firstName', e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                  placeholder="John"
+                  placeholder={t.Checkout.firstName}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Last Name *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.lastName} *</label>
                 <input 
                   type="text" 
                   value={formData.lastName}
                   onChange={(e) => handleInputChange('lastName', e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                  placeholder="Doe"
+                  placeholder={t.Checkout.lastName}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.email} *</label>
               <input 
                 type="email" 
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                placeholder="john.doe@example.com"
+                placeholder={t.Checkout.email}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Phone Number
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.phone}</label>
               <input 
                 type="tel" 
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                placeholder="+1 (555) 123-4567"
+                placeholder={t.Checkout.phone}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Street Address *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.address} *</label>
               <input 
                 type="text" 
                 value={formData.address}
                 onChange={(e) => handleInputChange('address', e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                placeholder="123 Main Street"
+                placeholder={t.Checkout.address}
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  City *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.city} *</label>
                 <input 
                   type="text" 
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                  placeholder="New York"
+                  placeholder={t.Checkout.city}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Postal Code *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.postalCode} *</label>
                 <input 
                   type="text" 
                   value={formData.postalCode}
                   onChange={(e) => handleInputChange('postalCode', e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                  placeholder="10001"
+                  placeholder={t.Checkout.postalCode}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Country
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.country}</label>
                 <input 
                   type="text" 
                   value={formData.country}
                   onChange={(e) => handleInputChange('country', e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                  placeholder="United States"
+                  placeholder={t.Checkout.country}
                 />
               </div>
             </div>
@@ -379,24 +363,24 @@ Back to Catalog
       {/* Order Summary */}
       <div className="space-y-6">
         <div className="bg-white p-6 rounded-2xl shadow-lg">
-          <h3 className="text-xl font-bold text-gray-900 mb-4 font-manrope">Order Summary</h3>
+          <h3 className="text-xl font-bold text-gray-900 mb-4 font-manrope">{t.Checkout.orderSummary}</h3>
           
           <div className="space-y-4">
             <div className="flex justify-between">
-              <span className="text-gray-600">Set Size:</span>
-              <span className="font-medium">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} cards)</span>
-                </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Selected Cards:</span>
-              <span className="font-medium">{selectedDesigns.length} designs</span>
+              <span className="text-gray-600">{t.Checkout.setSize}:</span>
+              <span className="font-medium">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} {t.Checkout.cards})</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Price per Card:</span>
+              <span className="text-gray-600">{t.Checkout.selectedCards}:</span>
+              <span className="font-medium">{selectedDesigns.length} {t.Checkout.designs}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-600">{t.Checkout.pricePerCard}:</span>
               <span className="font-medium">€{((sizes.find(s => s.name === selectedSize)?.price || 0) / (sizes.find(s => s.name === selectedSize)?.cards || 24)).toFixed(2)}</span>
             </div>
             <div className="border-t border-gray-300 pt-4">
               <div className="flex justify-between">
-                <span className="text-lg font-semibold text-gray-900">Total:</span>
+                <span className="text-lg font-semibold text-gray-900">{t.Checkout.total}:</span>
                 <span className="text-2xl font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
               </div>
             </div>
@@ -408,15 +392,15 @@ Back to Catalog
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Shield className="w-5 h-5 text-[#f6e79e]" />
-              <span className="text-sm text-gray-600">SSL Secure Checkout</span>
+              <span className="text-sm text-gray-600">{t.Checkout.sslSecure}</span>
             </div>
             <div className="flex items-center gap-3">
               <Truck className="w-5 h-5 text-[#f6e79e]" />
-              <span className="text-sm text-gray-600">Free Shipping Over €50</span>
+              <span className="text-sm text-gray-600">{t.Checkout.freeShipping}</span>
             </div>
             <div className="flex items-center gap-3">
               <CreditCard className="w-5 h-5 text-[#f6e79e]" />
-              <span className="text-sm text-gray-600">30-Day Money Back Guarantee</span>
+              <span className="text-sm text-gray-600">{t.Checkout.moneyBackGuarantee}</span>
             </div>
           </div>
         </div>
@@ -430,7 +414,7 @@ Back to Catalog
       <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-900 font-manrope">Confirm Your Order</h2>
+          <h2 className="text-2xl font-bold text-gray-900 font-manrope">{t.Checkout.confirmOrder}</h2>
           <button
             onClick={() => setShowOrderModal(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -444,11 +428,11 @@ Back to Catalog
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Order Summary */}
             <div className="space-y-6">
-              <h3 className="text-xl font-bold text-gray-900 font-manrope">Order Summary</h3>
+              <h3 className="text-xl font-bold text-gray-900 font-manrope">{t.Checkout.orderSummary}</h3>
               
               {/* Selected Designs */}
               <div className="space-y-4">
-                <h4 className="font-semibold text-gray-800">Selected Designs ({selectedDesigns.length})</h4>
+                <h4 className="font-semibold text-gray-800">{t.Checkout.selectedDesigns} ({selectedDesigns.length})</h4>
                 <div className="grid grid-cols-2 gap-3 max-h-60 overflow-y-auto">
                   {selectedDesigns.map((design) => (
                     <div key={design.id} className="bg-gray-50 rounded-lg p-3">
@@ -472,20 +456,20 @@ Back to Catalog
               <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Set Size:</span>
-                    <span className="font-medium">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} cards)</span>
+                    <span className="text-gray-600">{t.Checkout.setSize}:</span>
+                    <span className="font-medium">{selectedSize} ({sizes.find(s => s.name === selectedSize)?.cards} {t.Checkout.cards})</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Selected Cards:</span>
-                    <span className="font-medium">{selectedDesigns.length} designs</span>
+                    <span className="text-gray-600">{t.Checkout.selectedCards}:</span>
+                    <span className="font-medium">{selectedDesigns.length} {t.Checkout.designs}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Price per Card:</span>
+                    <span className="text-gray-600">{t.Checkout.pricePerCard}:</span>
                     <span className="font-medium">€{((sizes.find(s => s.name === selectedSize)?.price || 0) / (sizes.find(s => s.name === selectedSize)?.cards || 24)).toFixed(2)}</span>
                   </div>
                   <div className="border-t border-gray-300 pt-3">
                     <div className="flex justify-between">
-                      <span className="text-lg font-semibold text-gray-900">Total:</span>
+                      <span className="text-lg font-semibold text-gray-900">{t.Checkout.total}:</span>
                       <span className="text-2xl font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
                     </div>
                   </div>
@@ -495,17 +479,17 @@ Back to Catalog
 
             {/* Payment Section */}
             <div className="space-y-6">
-              <h3 className="text-xl font-bold text-gray-900 font-manrope">Payment Information</h3>
+              <h3 className="text-xl font-bold text-gray-900 font-manrope">{t.Checkout.paymentInfo}</h3>
               
               {/* Payment Methods */}
               <div className="space-y-4">
-                <h4 className="font-semibold text-gray-800">Payment Method</h4>
+                <h4 className="font-semibold text-gray-800">{t.Checkout.paymentMethod}</h4>
                 <div className="space-y-3">
                   <div className="flex items-center p-4 border-2 border-[#f6e79e] rounded-xl bg-[#f6e79e]/10">
                     <CreditCard className="w-6 h-6 text-[#f6e79e] mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">Credit Card (Stripe)</p>
-                      <p className="text-sm text-gray-600">Secure payment processing</p>
+                      <p className="text-sm text-gray-600">{t.Checkout.securePayment}</p>
                     </div>
                   </div>
                 </div>
@@ -515,15 +499,15 @@ Back to Catalog
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Shield className="w-4 h-4 text-[#f6e79e]" />
-                  <span>SSL Secure Checkout</span>
+                  <span>{t.Checkout.sslSecure}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Truck className="w-4 h-4 text-[#f6e79e]" />
-                  <span>Free Shipping Over €50</span>
+                  <span>{t.Checkout.freeShipping}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <CreditCard className="w-4 h-4 text-[#f6e79e]" />
-                  <span>30-Day Money Back Guarantee</span>
+                  <span>{t.Checkout.moneyBackGuarantee}</span>
                 </div>
               </div>
 
@@ -532,18 +516,18 @@ Back to Catalog
                 <button 
                   onClick={() => {
                     clearLocalStorage();
-                    alert('Order completed! Thank you for your purchase.');
+                    alert(t.Checkout.orderComplete);
                     window.location.href = '/';
                   }}
                   className="w-full bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-4 px-6 rounded-xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg"
                 >
-                  Pay €{calculateOrderTotal().toFixed(2)} - Secure Checkout
+                  {t.Checkout.pay} €{calculateOrderTotal().toFixed(2)} - {t.Checkout.secureCheckout}
                 </button>
                 <button 
                   onClick={() => setShowOrderModal(false)}
                   className="w-full bg-white border-2 border-gray-200 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-50 transition-all"
                 >
-                  Continue Shopping
+                  {t.Checkout.continueShopping}
                 </button>
               </div>
             </div>

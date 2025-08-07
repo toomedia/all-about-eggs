@@ -1,5 +1,7 @@
 'use client';
 
+
+import useTranslation from '@/lib/useTranslation';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Sparkles, Star, Heart, Download, Eye } from 'lucide-react';
@@ -250,16 +252,16 @@ export default function PresetPage() {
     });
     window.location.href = `/checkout?${queryParams.toString()}`;
   };
-
+  const { t } = useTranslation();
   return (
-    <div className="min-h-screen ">
+   <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back Button */}
         <div className="mb-8">
-          <Link href="/catalog" className="inline-flex items-center text-gray-600 hover:text-[#f6e79e] transition-colors">
+          <a href="/catalog" className="inline-flex items-center text-gray-600 hover:text-[#f6e79e] transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Catalog
-          </Link>
+            {t.PresetPage.backToCatalog}
+          </a>
         </div>
 
         {/* Preset Header */}
@@ -271,10 +273,10 @@ export default function PresetPage() {
 
         {/* Size Selection */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center font-manrope">Choose Set Size</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center font-manrope">{t.PresetPage.chooseSize}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
             {sizes.map((size) => (
-              <div 
+              <div
                 key={size.name}
                 onClick={() => handleSizeSelect(size.name)}
                 className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
@@ -285,11 +287,11 @@ export default function PresetPage() {
               >
                 <div className="text-center">
                   <h3 className="text-lg font-bold text-gray-900">{size.name}</h3>
-                  <p className="text-sm text-gray-600">{size.cards} cards</p>
-                  <p className="text-xl font-bold text-[#f6e79e] mt-2">€{size.price}</p>
+                  <p className="text-sm text-gray-600">{size.cards} {t.PresetPage.cards}</p>
+                  <p className="text-xl font-bold text-[#f6e79e]">€{size.price}</p>
                   {selectedSize === size.name && (
                     <div className="mt-2 text-xs text-[#f6e79e] font-medium">
-                      {selectedDesigns.length >= size.cards ? '✓ Complete' : `${selectedDesigns.length}/${size.cards} selected`}
+                      {selectedDesigns.length >= size.cards ? t.PresetPage.complete : `${selectedDesigns.length}/${size.cards} ${t.PresetPage.selected}`}
                     </div>
                   )}
                 </div>
@@ -301,33 +303,34 @@ export default function PresetPage() {
         {/* Preset Purchase Section */}
         <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-8 mb-8 border-2 border-purple-200/50">
           <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">Buy Complete Preset</h2>
-            <p className="text-gray-600">Get all {sizes.find(s => s.name === selectedSize)?.cards} designs in this collection</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">{t.PresetPage.buyPreset}</h2>
+            <p className="text-gray-600">
+              {t.PresetPage.getCollection} {sizes.find(s => s.name === selectedSize)?.cards} {t.PresetPage.cards}
+            </p>
           </div>
           
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="text-center lg:text-left">
-                                  <h3 className="text-2xl font-bold text-gray-900 mb-2 font-manrope">{preset.title}</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 font-manrope">{preset.title}</h3>
               <p className="text-gray-600 mb-4">{preset.description}</p>
               <div className="flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-600">
-                <span>✨ {preset.designs.length} curated designs</span>
-                <span>🎨 Premium quality</span>
-                <span>🚀 Instant download</span>
+                <span>✨ {preset.designs.length} {t.PresetPage.designs}</span>
+                <span>🎨 {t.PresetPage.premium}</span>
+                <span>🚀 {t.PresetPage.instantDownload}</span>
               </div>
             </div>
-            
             <div className="text-center">
               <div className="text-4xl font-bold text-purple-600 mb-2">
                 €{sizes.find(s => s.name === selectedSize)?.price}
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                {sizes.find(s => s.name === selectedSize)?.cards} cards • Complete collection
+                {sizes.find(s => s.name === selectedSize)?.cards} {t.PresetPage.cards} • {t.PresetPage.completeCollection}
               </p>
-              <button 
+              <button
                 onClick={handleAddPresetToCart}
                 className="px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-pink-500 hover:to-purple-500 w-full lg:w-auto"
               >
-                Buy Complete Preset
+                {t.PresetPage.buyCompletePreset} - €{sizes.find(s => s.name === selectedSize)?.price}
               </button>
             </div>
           </div>
@@ -336,11 +339,11 @@ export default function PresetPage() {
         {/* Designs Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {preset.designs.map((design) => (
-            <div 
-              key={design.id} 
+            <div
+              key={design.id}
               className={`group relative bg-white/80 backdrop-blur-sm rounded-2xl border-2 overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105 cursor-pointer ${
-                selectedDesigns.includes(design.id) 
-                  ? 'border-[#f6e79e] shadow-lg' 
+                selectedDesigns.includes(design.id)
+                  ? 'border-[#f6e79e] shadow-lg'
                   : 'border-gray-200/50'
               }`}
               onClick={() => handleDesignSelect(design.id)}
@@ -350,13 +353,13 @@ export default function PresetPage() {
                 {design.premium && (
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-amber-400 to-orange-500 text-white">
                     <Star className="w-3 h-3" />
-                    Premium
+                    {t.PresetPage.premium}
                   </span>
                 )}
                 {design.featured && (
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900">
                     <Sparkles className="w-3 h-3" />
-                    Featured
+                   {t.PresetPage.featured}
                   </span>
                 )}
               </div>
@@ -372,10 +375,9 @@ export default function PresetPage() {
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   quality={50}
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxoAPwCdABmX/9k="
+                  blurDataURL="data:image/jpeg;base64,..."
                 />
-                
-                {/* Overlay Actions */}
+                {/* Overlay Buttons */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <div className="flex gap-3">
                     <button
@@ -384,7 +386,7 @@ export default function PresetPage() {
                         window.open(design.image, '_blank');
                       }}
                       className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all transform hover:scale-110"
-                      title="Preview Design"
+                      title={t.PresetPage.preview}
                     >
                       <Eye className="w-5 h-5 text-gray-700" />
                     </button>
@@ -399,17 +401,17 @@ export default function PresetPage() {
                         document.body.removeChild(link);
                       }}
                       className="p-3 bg-[#f6e79e]/90 backdrop-blur-sm rounded-full hover:bg-[#f6e79e] transition-all transform hover:scale-110"
-                      title="Download Design"
+                      title={t.PresetPage.download}
                     >
                       <Download className="w-5 h-5 text-gray-900" />
                     </button>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        alert(`Added "${design.name}" to favorites!`);
+                        alert(`${t.PresetPage.addToFavorites} "${design.name}"`);
                       }}
                       className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all transform hover:scale-110"
-                      title="Add to Favorites"
+                      title={t.PresetPage.addToFavorites}
                     >
                       <Heart className="w-5 h-5 text-gray-700" />
                     </button>
@@ -439,82 +441,75 @@ export default function PresetPage() {
           ))}
         </div>
 
-        {/* Preview Area */}
+        {/* Preview Area & Order Summary */}
         {selectedDesigns.length > 0 && (
           <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/50 p-8 mb-8">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Selected Designs ({selectedDesigns.length})</h3>
-              <p className="text-gray-600">Preview your selection before adding to cart</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">{t.PresetPage.yourSelection} ({selectedDesigns.length})</h3>
+              <p className="text-gray-600">{t.PresetPage.preview}</p>
             </div>
-            
+            {/* Selected designs preview */}
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
               {selectedDesignObjects.map((design) => (
-                <div key={design.id} className="relative group">
-                  <div className="relative bg-gradient-to-br from-[#f7fcee] to-[#f6e79e]/30 rounded-2xl p-4 border-2 border-[#f6e79e]/50 shadow-lg">
-                    <div className="relative w-full h-32 bg-white rounded-xl overflow-hidden shadow-inner">
-                      <Image
-                        src={design.image}
-                        alt={design.name}
-                        fill
-                        className="object-contain p-2"
-                        loading="lazy"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                        quality={50}
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxoAPwCdABmX/9k="
-                      />
-                    </div>
-                    <div className="mt-2 text-center">
-                      <p className="text-xs font-medium text-gray-900 truncate">{design.name}</p>
-                      <button
-                        onClick={() => handleDesignSelect(design.id)}
-                        className="mt-1 text-xs text-red-500 hover:text-red-700 transition-colors"
-                      >
-                        Remove
-                      </button>
-                    </div>
+                <div key={design.id} className="relative bg-gradient-to-br from-[#f7fcee] to-[#f6e79e]/30 rounded-2xl p-4 border-2 border-[#f6e79e]/50 shadow-lg">
+                  <div className="relative w-full h-32 bg-white rounded-xl overflow-hidden shadow-inner">
+                    <Image
+                      src={design.image}
+                      alt={design.name}
+                      fill
+                      className="object-contain p-2"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                      quality={50}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,..."
+                    />
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className="text-xs font-medium text-gray-900 truncate">{design.name}</p>
+                    <button
+                      onClick={() => handleDesignSelect(design.id)}
+                      className="mt-1 text-xs text-red-500 hover:text-red-700 transition-colors"
+                    >
+                      {t.PresetPage.clearSelection}
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
-
             {/* Order Summary */}
             <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-xl p-6 mb-6">
               <div className="flex justify-between items-center mb-4">
                 <div>
-                  <h4 className="font-semibold text-gray-900 font-manrope">Order Summary</h4>
-                  <p className="text-sm text-gray-600">{selectedDesigns.length} designs selected</p>
+                  <h4 className="font-semibold text-gray-900">{t.PresetPage.orderSummary}</h4>
+                  <p className="text-sm text-gray-600">{selectedDesigns.length} {t.PresetPage.designs} {t.PresetPage.selected}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-600">Selected Price</p>
+                  <p className="text-sm text-gray-600">{t.PresetPage.totalPrice}</p>
                   <p className="text-2xl font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</p>
                 </div>
               </div>
-              
-              {/* Preset Summary */}
-              <div className="border-t border-gray-300/50 pt-4">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h5 className="font-semibold text-gray-900 font-manrope">Complete Preset</h5>
-                    <p className="text-sm text-gray-600">{sizes.find(s => s.name === selectedSize)?.cards} cards total</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-gray-600">Preset Price</p>
-                    <p className="text-xl font-bold text-purple-600">€{sizes.find(s => s.name === selectedSize)?.price}</p>
-                  </div>
+              {/* Preset total */}
+              <div className="border-t border-gray-300/50 pt-4 flex justify-between items-center">
+                <div>
+                  <h5 className="font-semibold">{t.PresetPage.completePreset}</h5>
+                  <p className="text-sm text-gray-600">{sizes.find(s => s.name === selectedSize)?.cards} {t.PresetPage.cards} {t.PresetPage.completeCollection}</p>
+                </div>
+                <div>
+                  <p className="text-sm">{t.PresetPage.presetPrice}</p>
+                  <p className="text-xl font-bold text-purple-600">€{sizes.find(s => s.name === selectedSize)?.price}</p>
                 </div>
               </div>
             </div>
-
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
+              <button
                 onClick={handleAddPresetToCart}
                 className="px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-pink-500 hover:to-purple-500"
               >
-                Add Preset to Cart - €{sizes.find(s => s.name === selectedSize)?.price}
+                {t.PresetPage.buyCompletePreset} - €{sizes.find(s => s.name === selectedSize)?.price}
               </button>
-              <button 
+              <button
                 onClick={handleAddToCart}
                 disabled={selectedDesigns.length === 0}
                 className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl ${
@@ -523,12 +518,12 @@ export default function PresetPage() {
                     : 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 hover:from-[#f4e285] hover:to-[#f6e79e]'
                 }`}
               >
-                {selectedDesigns.length === 0 
-                  ? 'Select Designs First' 
-                  : `Add Selected - €${calculateOrderTotal().toFixed(2)}`
+                {selectedDesigns.length === 0
+                  ? t.PresetPage.selectDesignsFirst
+                  : `${t.PresetPage.addSelected} - €${calculateOrderTotal().toFixed(2)}`
                 }
               </button>
-              <button 
+              <button
                 onClick={() => {
                   setSelectedDesigns([]);
                   localStorage.removeItem('selectedDesigns');
@@ -540,7 +535,7 @@ export default function PresetPage() {
                     : 'bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 hover:bg-white'
                 }`}
               >
-                Clear Selection
+                {t.PresetPage.clearSelection}
               </button>
             </div>
           </div>

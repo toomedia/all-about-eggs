@@ -144,35 +144,7 @@ const UploadImageEggCard = () => {
     color: 'from-green-500 to-emerald-500'
   };
 
-      const autoSuggestedPrompts = [
-        "A magical Easter egg with galaxy patterns, featuring swirling nebulas in purple and gold, with tiny stars sparkling across the surface",
-        "A vintage floral egg with delicate roses and pastel colors, perfect for spring",
-        "A geometric modern egg with bold geometric shapes and vibrant colors",
-        "A nature-inspired egg with cherry blossoms and soft pink background",
-        "A cosmic egg with swirling galaxies and twinkling stars",
-        "A neon green egg with futuristic patterns and glowing circuits",
-        "A rainbow-colored egg with smooth gradients and shiny reflections",
-        "A steampunk-inspired egg with gears, cogs, and metallic textures",
-        "A minimalistic white egg with subtle marble texture and gold accents",
-        "An underwater egg with a coral reef design, featuring colorful fish swimming around",
-        "A winter-themed egg with snowflakes, ice crystals, and a frosty blue tint",
-        "A pumpkin spice egg with warm orange tones and autumn leaves scattered across",
-        "A fire-inspired egg with molten lava patterns and glowing embers",
-        "A psychedelic egg with swirling tie-dye patterns in vivid colors",
-        "A royal egg with intricate gold detailing, velvet red background, and a crown",
-        "A superhero egg with comic book-style graphics, bright bold colors, and dynamic lines",
-        "A mystical moonlit egg with silver and dark blue tones, featuring crescent moons and stars",
-        "A woodland egg with leafy vines, mushrooms, and soft earthy tones",
-        "A painter’s egg with splashes of paint in an abstract expressionist style",
-        "A celestial egg with constellations, shooting stars, and a glowing full moon",
-        "A tropical egg with palm trees, sunsets, and sandy beach motifs",
-        "A futuristic egg with holographic reflections, circuit board patterns, and glowing elements",
-        "A wild animal egg with jungle-themed designs, featuring tigers, zebras, and exotic birds",
-        "A fantasy dragon egg with scales, fiery breath, and a glowing red interior",
-        "A candy-inspired egg with colorful sweets, lollipops, and a shiny sugar coating",
-        "A celestial egg inspired by the northern lights, with soft greens and purples swirling across",
-        "A vintage circus egg with bold stripes, clowns, and old-school carnival designs"
-      ];
+     const autoSuggestedPrompts = t.uploadImage.autoSuggestedPrompt
       
   const handleOptionSelect = (optionId: string) => {
     try {
