@@ -304,8 +304,8 @@ export default function DesignPage() {
             <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               {t.designstudio.cta.description}
             </p>
-            <Link href="/catalog">
-              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+            <Link href="/catalog" className="flex items-center justify-center gap-2 w-full">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl items-center justify-center gap-2 font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
                 {t.designstudio.cta.button}
               </button>
