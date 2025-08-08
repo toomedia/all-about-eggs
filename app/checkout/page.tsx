@@ -98,10 +98,10 @@ function CheckoutContent() {
       return;
     }
 
-    if (selectedDesigns.length < 2) {
-      alert("A minimum of 2 eggs are required to proceed");
-      return;
-    }
+        if (selectedDesigns.length < 2) {
+          alert("A minimum of 2 eggs are required to proceed");
+          return;
+        }
 
     const orderDetails = {
       customer: formData,

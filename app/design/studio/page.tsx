@@ -1,5 +1,5 @@
 "use client";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import { ArrowLeft, Sparkles, Upload, Palette, Wand2, Image, Star, Heart, Download, Eye, Loader2, X, Egg } from 'lucide-react';
 import Link from 'next/link';
@@ -16,8 +16,7 @@ interface GenerateResponse {
 function DesignStudioContent() {
    const { t } = useTranslation();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const mode = searchParams.get('mode');
+  const [mode, setMode] = useState<string | null>(null);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -29,6 +28,13 @@ function DesignStudioContent() {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [showCreditsModal, setShowCreditsModal] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
+
+  // Get mode from URL parameters on client side
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const urlMode = searchParams.get('mode');
+    setMode(urlMode);
+  }, []);
 
   const autoSuggestedPrompts = t.designStudio.autoSuggestedPrompt as string[];
 
