@@ -21,6 +21,9 @@ export default function HowItWorks() {
           <p className="text-gray-600 text-sm max-w-xs">
             {t.howItWorks.step1.description}
           </p>
+          <span className="text-gray-600 text-sm max-w-xs">
+             {t.howItWorks.step1.descrip}
+          </span>
         </div>
 
         {/* Step 2 */}
@@ -34,6 +37,9 @@ export default function HowItWorks() {
           <p className="text-gray-600 text-sm max-w-xs">
             {t.howItWorks.step2.description}
           </p>
+              <span className="text-gray-600 text-sm max-w-xs">
+             {t.howItWorks.step2.descrip}
+          </span>
         </div>
 
         {/* Step 3 */}
@@ -47,6 +53,9 @@ export default function HowItWorks() {
           <p className="text-gray-600 text-sm max-w-xs">
             {t.howItWorks.step3.description}
           </p>
+              <span className="text-gray-600 text-sm max-w-xs">
+             {t.howItWorks.step3.descrip}
+          </span>
         </div>
       </div>
     </section>

@@ -71,15 +71,18 @@ const de = {
     "title": "Wie es funktioniert",
     "step1": {
       "title": "Wähle dein Design",
-      "description": "Wähle deine Lieblings-Ei-Designs aus unserer Sammlung oder benutze den Zufallsgenerator."
+      "description": "Lass deine Kreativität schlüpfen!",
+      "descrip":"Wähle deine Lieblingseier oder lass dich vom Zufall überraschen."
     },
     "step2": {
       "title": "Wir drucken auf Bestellung",
-      "description": "Dein personalisiertes Memory-Spiel wird in Top-Qualität nur für dich gedruckt."
+      "description": "Deine Eier, dein Stil – frisch gedruckt!",
+      "descrip":"Dein personalisiertes Memory-Spiel wird hochwertig für dich gefertigt."
     },
     "step3": {
       "title": "Lieferung in 3–5 Tagen",
-      "description": "Schnelle, sichere Lieferung direkt zu dir nach Hause – oder als Geschenk!"
+      "description": "Freude zum Aufknacken – direkt zu dir nach Hause!",
+      "descrip":"Schnelle, sichere Lieferung direkt zu dir nach Hause – oder als Geschenk!"
     }
 
   },

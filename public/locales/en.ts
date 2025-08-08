@@ -72,15 +72,18 @@ footer: {
     "title": "How It Works",
     "step1": {
       "title": "Choose Your Design",
-      "description": "Pick your favorite egg designs from our collection or use the randomizer."
+      "description": "Let your creativity hatch!",
+      "descrip": "Pick your favorite egg designs or let the randomizer surprise you."
     },
     "step2": {
       "title": "We Print On-Demand",
-      "description": "Your personalized memory game is printed in top quality just for you."
+      "description": "Your eggs, your style – freshly printed!",
+      "descrip":"We create your personalized memory game with top-quality printing."
     },
     "step3": {
       "title": "Ships in 3–5 Days",
-      "description": "Fast, safe delivery right to your door—or as a gift!"
+      "description": "Ready to crack joy at your doorstep!",
+      "descrip":"Fast and safe delivery, perfect as a gift too!"
     }
   },
 "ai-waitlist": {
