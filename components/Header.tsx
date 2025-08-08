@@ -47,7 +47,7 @@ function HeaderContent() {
               <Egg className="h-6 w-6 text-gray-700 group-hover:scale-110 transition-transform" />
             </div>
             <div className="leading-tight">
-              <h1 className="text-xl font-extrabold text-gray-800 group-hover:text-[#f6e79e] transition-colors">EggFinity</h1>
+              <h1 className="text-xl font-extrabold text-gray-800 group-hover:text-[#f6e79e] transition-colors">Eggception</h1>
               <p className="text-xs text-gray-500 hidden sm:block">{t.nav.gameSubtitle}</p>
             </div>
           </Link>

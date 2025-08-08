@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 import useTranslation from '@/lib/useTranslation';
 export default function CatalogPage() {
+  
      const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSize, setSelectedSize] = useState('XL');
@@ -837,7 +838,7 @@ const categories = [
                 className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
-                {t.Catalog.addToCart} - €{calculateOrderTotal().toFixed(2)}
+              {t.Catalog.addToCart} - €{calculateOrderTotal().toFixed(2)}
               </button>
               <button
                 onClick={() => {
@@ -849,7 +850,7 @@ const categories = [
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-purple-700 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2"
               >
                 <X className="w-5 h-5" />
-                {t.Catalog.clearSurprise}
+                {t.Catalog.clear_selection}
               </button>
             </div>
           </div>
@@ -864,12 +865,12 @@ const categories = [
               <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-6 py-3 rounded-full mb-4">
                 <ShoppingCart className="w-6 h-6" />
                 <span className="font-bold text-lg">
-                  {t.Catalog.selectedDesignsTitle}
+                  {t.Catalog.previewTitle}
                 </span>
                 <Sparkles className="w-6 h-6" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
-                {selectedDesigns.length} {t.Catalog.designsInCart}
+                {selectedDesigns.length} Designs in Your Cart
               </h2>
               <p className="text-gray-600 text-lg">
                 {t.Catalog.reviewSelections}
@@ -914,7 +915,7 @@ const categories = [
                 className="px-8 py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
-               {t.Catalog.add_to_cart} - €{calculateOrderTotal().toFixed(2)}
+                {t.Catalog.add_to_cart} - €{calculateOrderTotal().toFixed(2)}
               </button>
               <button
                 onClick={() => {
@@ -971,27 +972,34 @@ const categories = [
       <section className="py-12 bg-white backdrop-blur-sm border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category.name}
-                onClick={() => setSelectedCategory(category.name)}
-                className={`px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105 flex items-center gap-2 ${
-                  selectedCategory === category.name
-                    ? 'bg-[#f6e79e] text-gray-900 shadow-lg'
-                    : 'bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-[#f6e79e]/20 border border-gray-200/50'
-                }`}
-              >
-                <span className="text-lg">{category.icon}</span>
-                {category.name} ({category.count})
-              </button>
-            ))}
-            <button 
-              onClick={handleSurpriseMe}
-              className="px-6 py-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-full font-medium hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg"
-            >
-              <Sparkles className="w-4 h-4" />
-             {t.Catalog.surprise_me}
-            </button>
+        <div className="overflow-x-auto whitespace-nowrap py-4">
+  <div className="inline-flex gap-3">
+    {categories.map((category) => (
+      <button
+        key={category.name}
+        onClick={() => setSelectedCategory(category.name)}
+        className={`px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105 flex items-center gap-2 ${
+          selectedCategory === category.name
+            ? 'bg-[#f6e79e] text-gray-900 shadow-lg'
+            : 'bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-[#f6e79e]/20 border border-gray-200/50'
+        }`}
+      >
+        <span className="text-lg">{category.icon}</span>
+        {category.name} ({category.count})
+      </button>
+    ))}
+  </div>
+</div>
+
+          <button 
+  onClick={handleSurpriseMe}
+  title={t.Catalog.surprise_me_subtitle}
+  className="px-6 py-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-full font-medium hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg"
+>
+  <Sparkles className="w-4 h-4" />
+  {t.Catalog.surprise_me}
+</button>
+
           </div>
         </div>
       </section>
@@ -1004,10 +1012,16 @@ const categories = [
               <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
                 {t.Catalog.choose_your_designs}
               </h2>
-              <p className="text-gray-600 text-lg"> {t.PresetPage.chooseCards}{sizes.find(s => s.name === selectedSize)?.cards}  {filteredDesigns.length} </p>
+              <p className="text-gray-600 text-lg">Choose {sizes.find(s => s.name === selectedSize)?.cards} out of {filteredDesigns.length} designs</p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-gray-500 mb-1">Showing {displayedDesigns.length} of {filteredDesigns.length}</p>
+              <p className="text-sm text-gray-500 mb-1">
+                {t.Catalog.selection_status}
+                 {displayedDesigns.length} 
+                 {t.Catalog.of}
+                  {filteredDesigns.length}
+                  {t.Catalog.egg}
+                  </p>
               <div className="flex gap-2">
                 <div className="w-2 h-2 bg-[#f6e79e] rounded-full"></div>
                 <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
@@ -1020,20 +1034,29 @@ const categories = [
             {displayedDesigns.map((design) => (
               <div key={design.id} className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                 {/* Premium Badge */}
-                {design.premium && (
-                  <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                    <Star className="w-3 h-3" />
-                    {t.PresetPage.premium}
-                  </div>
-                )}
+                               {/* Premium Badge */}
+{design.premium && (
+  <div
+    className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"
+    title={t.Catalog.premiumTooltip} // Tooltip text
+  >
+    <Star className="w-3 h-3" />
+    {t.catalogSection.premium}
+  </div>
+)}
+
+{/* Featured Badge */}
+{design.featured && (
+  <div
+    className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"
+    title={t.Catalog.featuredTooltip} // Tooltip text
+  >
+    <Sparkles className="w-3 h-3" />
+    {t.catalogSection.featured}
+  </div>
+)}
+
                 
-                {/* Featured Badge */}
-                {design.featured && (
-                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
-                    {t.PresetPage.featured}
-                  </div>
-                )}
 
                 {/* Image Container */}
                                   <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100">
@@ -1125,7 +1148,33 @@ const categories = [
                   </div>
 
                   {/* Action Button */}
-               
+                  <button 
+                    onClick={() => handleDesignSelect(design)}
+                    className={`w-full py-3 px-4 rounded-xl font-semibold text-center transition-all transform hover:scale-105 ${
+                      selectedDesigns.some(d => d.id === design.id)
+                        ? 'bg-gradient-to-r from-green-400 to-green-500 text-white hover:from-green-500 hover:to-green-400'
+                        : design.premium 
+                          ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:from-orange-500 hover:to-amber-400'
+                          : 'bg-[#f6e79e] text-gray-900 hover:bg-[#f4e285]'
+                    } flex items-center justify-center gap-2`}
+                  >
+                    {selectedDesigns.some(d => d.id === design.id) ? (
+                      <>
+                        <Sparkles className="w-4 h-4" />
+                       {t.Catalog.selected}
+                      </>
+                    ) : design.premium ? (
+                      <>
+                        <Star className="w-4 h-4" />
+                      {t.Catalog.getPremium}
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4" />
+                    {t.Catalog.selectDesign}
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
             ))}
@@ -1138,7 +1187,7 @@ const categories = [
                 onClick={() => setDisplayCount(prev => Math.min(prev + 4, filteredDesigns.length))}
                 className="px-8 py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-2xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                {t.Catalog.loadMore}
+              {t.Catalog.loadMore}
             </button>
           </div>
           )}
@@ -1156,14 +1205,14 @@ const categories = [
             <div className="mt-16 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/50 p-8">
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4 font-manrope">
-                  {t.Catalog.selectedPreview}
+                  {t.Catalog. previewTitle}
                 </h3>
                 <p className="text-gray-600 text-lg">
-                  {selectedDesigns.length} of {sizes.find(s => s.name === selectedSize)?.cards} designs selected
+                  {selectedDesigns.length} 
+                  {t.Catalog.of}
+                  {sizes.find(s => s.name === selectedSize)?.cards} {t.Catalog.selectedCountText}
                 </p>
               </div>
-
-             
 
                         {/* Template Preview Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
@@ -1248,34 +1297,19 @@ const categories = [
 
                             {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <button 
-                  onClick={handleAddToCart}
-                  disabled={selectedDesigns.length === 0}
-                  className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl ${
-                    selectedDesigns.length === 0
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 hover:from-[#f4e285] hover:to-[#f6e79e]'
-                  }`}
-                >
-                  {selectedDesigns.length === 0 
-                    ? 'Select Designs First' 
-                    : `Add to Cart - €${calculateOrderTotal().toFixed(2)}`
-                  }
-                </button>
-                <button 
-                  onClick={() => {
-                    setSelectedDesigns([]);
-                    localStorage.removeItem('selectedDesigns');
-                  }}
-                  disabled={selectedDesigns.length === 0}
-                  className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 ${
-                    selectedDesigns.length === 0
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 hover:bg-white'
-                  }`}
-                >
-                 {t.Catalog.clear_selection}
-            </button>
+            <button 
+  onClick={handleAddToCart}
+  disabled={selectedDesigns.length === 0}
+  className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl ${
+    selectedDesigns.length === 0
+      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+      : 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 hover:from-[#f4e285] hover:to-[#f6e79e]'
+  }`}
+>
+  {`${t.Catalog.addToCart} - €${calculateOrderTotal().toFixed(2)}`}
+</button>
+
+             
           </div>
             </div>
           )}
@@ -1287,7 +1321,7 @@ const categories = [
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-6 font-manrope">
-                       {t.Catalog.preset_collections_title}
+              {t.Catalog.preset_collections_title}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
              {t.Catalog.preset_collections_subtitle}
@@ -1323,20 +1357,20 @@ const categories = [
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-[#f6e79e] rounded-full"></span>
                         <span>
-                             {t.Catalog.top_10_feature_2}
+                          {t.Catalog.top_10_feature_2}
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-[#f6e79e] rounded-full"></span>
                         <span>
-                             {t.Catalog.top_10_feature_3}
+                          {t.Catalog.top_10_feature_3}
                         </span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="w-full bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-3 px-6 rounded-2xl font-semibold hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 text-center group-hover:shadow-lg">
-                {t.Catalog.view_collection}
+               {t.Catalog.view_collection}
             </div>
                 </div>
               </div>
@@ -1364,21 +1398,21 @@ const categories = [
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                         <span>
-                          {t.Catalog.staff_picks_feature_1}
+                          {t.Catalog.abstract_feature_1}
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                         <span>
                           
-                          {t.Catalog.staff_picks_feature_2}
+                          {t.Catalog.abstract_feature_2}
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                         <span>
                           
-                          {t.Catalog.staff_picks_feature_3}
+                          {t.Catalog.abstract_feature_3}
                         </span>
                       </div>
                     </div>
@@ -1413,26 +1447,26 @@ const categories = [
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
                         <span>
-                          {t.Catalog.abstract_feature_1}
+                          {t.Catalog.cute_holiday_feature_1}
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
                         <span>
-                          {t.Catalog.abstract_feature_2}
+                          {t.Catalog.cute_holiday_feature_2}
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
                         <span>
-                           {t.Catalog.abstract_feature_3}
+                          {t.Catalog.cute_holiday_feature_3}
                         </span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-3 px-6 rounded-2xl font-semibold hover:from-rose-500 hover:to-pink-500 transition-all transform hover:scale-105 text-center group-hover:shadow-lg">
-               {t.Catalog.view_collection}
+                {t.Catalog.view_collection}
             </div>
                 </div>
               </div>
@@ -1465,15 +1499,11 @@ const categories = [
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        <span>
-                          {t.Catalog.abstract_feature_2}
-                        </span>
+                        <span> {t.Catalog.abstract_feature_2}</span>
                       </div>
                       <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                         <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                        <span>
-                          {t.Catalog.abstract_feature_3}
-                        </span>
+                        <span> {t.Catalog.abstract_feature_3}</span>
                       </div>
                     </div>
                   </div>
@@ -1510,7 +1540,7 @@ const categories = [
 
                 <div className="space-y-3 sm:space-y-4">
                   {[
-                     {type: 'One Egg Card', icon: '🥚', description: t.Catalog.one, color: 'from-blue-500 to-cyan-500', },
+                                     {type: 'One Egg Card', icon: '🥚', description: t.Catalog.one, color: 'from-blue-500 to-cyan-500', },
                        {
     type: 'Mini Preset',
     icon: '🎨',
@@ -1530,7 +1560,6 @@ const categories = [
     color: 'from-orange-500 to-red-500',
   },
 
-                  
                   ].map((option) => (
                     <button
                       key={option.type}
@@ -1610,7 +1639,7 @@ const categories = [
       {t.Catalog.surprise_ready}
     </h2>
     <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
-      {t.Catalog.perfect_designs_found.replace('{{count}}', surpriseResult.length.toString())}
+      {t.Catalog.perfect_designs_found.replace ('{{count}}', surpriseResult.length.toString())}
     </p>
   </div>
 
@@ -1625,7 +1654,7 @@ const categories = [
                         <Image
                           src={design.image}
                           alt={design.name}
-                          fill
+                          fill 
                           className="object-cover"
                           sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 80px"
                         />
@@ -1662,3 +1691,8 @@ const categories = [
     </div>
   );
 }
+
+
+
+
+

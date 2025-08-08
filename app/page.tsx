@@ -172,20 +172,20 @@ const CatalogSection = () => {
                 {t.catalogSection.ctaTitle}
               </h3>
               <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto">
-                {t.catalogSection.ctaDescription}
+                {t.catalogSection.exploreOrSurprise}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <Link href="/catalog">
                   <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] hover:from-[#f4e285] hover:to-[#f6e79e] text-gray-900 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                     <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-                   {t.catalogSection.browseCatalog}
+                   {t.catalogSection.eggsplorebtn}
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </Link>
                 <Link href="/presets/top-10">
                   <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-700 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 hover:bg-white flex items-center justify-center gap-2">
                     <Star className="w-4 h-4 sm:w-5 sm:h-5" />
-                   {t.catalogSection.viewPresets}
+                   {t.catalogSection.setbtn}
                   </button>
                 </Link>
               </div>

@@ -19,7 +19,7 @@ const en = {
  
 footer: {
   quickLinks: "Quick Links",
-  tagline: "Creating magical Easter memories through personalized memory games. Where tradition meets innovation, and families come together.",
+  tagline: "Creating magical memories through personalized egg-themed games – where tradition meets innovation and families come together",
   support: "Support",
   contactUs: "Contact Us",
   callSupport: "Call Support",
@@ -28,7 +28,7 @@ footer: {
   getInTouch: "Get in Touch",
   easterUpdates: "Easter Updates",
     checkout: "Checkout",
-  presetCollections: "Preset Collections",
+  presetCollections: "Egg-sclusive Collections",
   getinTouch: "Get in touch",
   email: "hello@eggfinity.com",
   phone: "1-800-EGG-GAME",
@@ -58,10 +58,10 @@ footer: {
   "featured": "Featured",
   "premium": "Premium",
   "price": "per design",
-  "ctaTitle": "Ready to Create Your Perfect Memory Game?",
-  "ctaDescription": "Browse our complete collection, use our \"Surprise Me\" feature, or explore preset collections. Start creating your unique Easter memory game today!",
-  "browseCatalog": "Browse Full Catalog",
-  "viewPresets": "View Preset Collections",
+  "ctaTitle": "Ready to hatch your perfect memory game?",
+  "exploreOrSurprise": "Explore our egg-citing collection or let us surprise you – create an un-egg-spected memory game!",
+   "eggsplorebtn": "Eggsplore All Designs",
+  "setbtn": "Explore Curated Sets",
   "wishlist": "Add to Wishlist",
   "buyNow": "Buy Now",
   "customEnhancement": "Custom Enhancement",
@@ -113,7 +113,7 @@ footer: {
   
 },
 "why": {
-  "heading": "Why Eggfinity Memory?",
+  "heading": "Why Eggception Memory?",
   "title1": "Personalized Design",
   "description1": "Choose from 100 unique egg motifs or let our random generator surprise you.",
   "title2": "Perfect for Gifting",
@@ -124,7 +124,7 @@ footer: {
 "designstudio": {
   "back": "Back to Home",
   "badge": "AI Design Studio",
-  "title": "Design Your Egg",
+  "title": "Design Your Own Egg",
   "description": "Create unique, personalized egg designs with our AI-powered tools. From custom prompts to image uploads, bring your creative vision to life.",
   "examples": {
     "title": "Design Examples",
@@ -195,21 +195,21 @@ footer: {
     "remove": "Remove"
   },
   "customize-egg":{
-      "customize_egg_title": "Customize Existing Egg",
-  "customize_egg_description": "Modify and enhance existing egg designs"
+       customize_egg_title: "Remixe ein Ei",
+  customize_egg_description: "Wähle ein Ei-Design aus unserer Galerie und gib ihm deine persönliche Note – ändere Farben, Muster und mehr!",
   },
   
 
   "customizeEgg": {
-    "title": "Create Custom Egg",
-    "description": "Customize your egg with AI assistance",
+    "title": "AI Magic: Create from Scratch  ",
+    "description": "Describe your dream egg and let our AI art studio hatch it for you – pure imagination, no limits",
     "alert": "Coming soon! This feature is under development."
   
 },
 
   "uploadImage": {
-    "title": "Make Egg with My Image",
-    "description": "Upload your image to create a custom egg design",
+    "title": "Make an Egg with My Image",
+    "description": "Upload your photo or artwork – we'll magically turn it into a one-of-a-kind egg design",
     "alert": "Coming soon! This feature is under development.",
     "comingSoon": "Coming soon! 🎨\n\nWe're working hard to bring you amazing AI-powered egg design features!",
      "autoSuggestedPrompt": [
@@ -296,7 +296,7 @@ footer: {
     "title2": "Enhance Existing Egg",
     "description2": "Select from our templates and modify them.",
 
-    "title3": "Upload Your Image",
+    "title3": "Upload & Transform",
     "description3": "Upload any image and we will turn it into an egg design.",
 
 
@@ -312,7 +312,7 @@ footer: {
   "generateDesign": "Generate Design",
 "generating": "Generating...",
 "selectTemplate": "Select Template",
-"uploadYourImage": "Upload Your Image",
+"uploadYourImage": "Upload Your Image -we’ll turn it into egg art magic!",
 "clickToUpload": "Click to upload or drag and drop",
 "uploadFormatsNote": "PNG, JPG, WEBP up to 10MB",
 "preview": "Preview",
@@ -361,8 +361,10 @@ footer: {
   "surpriseSelectionDescription": "These designs were specially chosen just for you! Ready to create your perfect egg memory set?",
   "search_templates": "Search templates...",
    "surprise_ready": "Ta-da! Your surprise is ready!",
+   "premiumTooltip": "Eggstra Special: Exclusive designs for our premium members",
+  "featuredTooltip": "Fan Favorite: Loved by many customers",
      "creating_your_surprise": "Creating your surprise...",
-  "perfect_designs_found": "We found {{count}} perfect design{{count > 1 ? 's' : ''}} for you!",
+  "perfect_designs_found": "We found  perfect design for you!",
   "designs_selected_for_you": "designs selected for you",
   "view_my_surprise": "View My Surprise",
 "try_another": "Try Another",
@@ -372,9 +374,14 @@ footer: {
     "xl": "45 premium collection",
     "choose_your_surprise": "Choose your surprise!",
   "egg_adventure_prompt": "What kind of egg adventure are you looking for?",
+  "selection_status": "Selected",
+  "of": "of",
+  "egg": "eggs",
+
 
     "abstract_title": "Abstract Art",
     "abstract_subtitle": "Modern & creative",
+    
     "abstract_feature_1": "6 artistic designs",
     "abstract_feature_2": "Modern aesthetics",
     "abstract_feature_3": "Creative expression",
@@ -384,6 +391,8 @@ footer: {
   "cute_holiday_feature_1": "6 festive designs",
   "cute_holiday_feature_2": "Holiday themed",
   "cute_holiday_feature_3": "Perfect for celebrations",
+  "getPremium": "Get Premium",
+  "selectDesign": "Select Design",
   "top_10_title": "Top 10",
   "top_10_subtitle": "Most popular designs",
   "top_10_feature_1": "10 curated designs",
@@ -394,12 +403,12 @@ footer: {
 "staff_picks_feature_1": "6 award-winning designs",
 "staff_picks_feature_2": "Expert curation",
 "staff_picks_feature_3": "Premium quality",
- "preset_collections_title": "Preset Collections",
-  "preset_collections_subtitle": "Curated collections of our most popular designs, ready for instant purchase",
+ "preset_collections_title": "Egg-sclusive Collections",
+  "preset_collections_subtitle": "Hand-picked sets of our most popular egg designs – ready to play (and no incubation needed!",
   "clear_selection": "Clear Selection",
   "choose_set_size": "Choose Set Size",
-   "choose_your_designs": "Choose Your Designs",
-  "choose_designs_instruction": "Choose {{selected}} out of {{total}} designs",
+   "choose_your_designs": "Choose Your Egg Designs",
+  "choose_designs_instruction": "Selected {{selected}} of {{total}} eggs",
   addToCart: "Add Surprise to Cart",
   clearSurprise: "Clear Surprise",
  selectedDesignsTitle: "Your Selected Designs",
@@ -407,11 +416,14 @@ footer: {
   reviewSelections: "Ready to create your custom egg memory game? Review your selections below.",
    "add_to_cart": "Add to Cart",
    "surprise_me": "Surprise Me",
+"surprise_me_subtitle": "(we’ll pick for you!)",
+ "select_first": "Select Designs First",
+  
     "loadMore": "Load More",
     "showLess": "Show Less",
-    previewTitle: "Your Selected Designs Preview",
-  selectedCountText: "{count} of {total} designs selected",
-  "selectedPreview": "Your Selected Designs Preview",
+    previewTitle: "Your Selected Egg Designs Preview",
+  selectedCountText: "designs selected",
+  "selectedPreview": "Your Selected Egg Designs Preview",
   "emptySlot": "Empty Slot",
    "set_size": "Set Size",
   "selected": "Selected",
@@ -426,6 +438,7 @@ footer: {
     selected: "Selected:",
     designs: "designs",
     orderCards: "Order",
+    "noEggs": "No eggs in your basket 🥚",
     now: "Cards Now",
     completePreset: "Complete Preset",
     cards: "cards",
