@@ -64,8 +64,14 @@ const de = {
   "wishlist": "Zur Wunschliste hinzufügen",
   "buyNow": "Jetzt kaufen",
   "customEnhancement": "Individuelle Anpassung",
-  "extraInfo": "Dieses Design kann für Memory-Spiele, Osterdekorationen oder als Einzelstück verwendet werden."
-  
+  "extraInfo": "Dieses Design kann für Memory-Spiele, Osterdekorationen oder als Einzelstück verwendet werden.",
+   easterBunnyDelight: "Osterhase Freude",
+    springBloomMagic: "Magischer Frühlingsblüte",
+    pastelRainbowDream: "Pastell-Regenbogen-Traum",
+    floralGardenParty: "Blumige Gartenparty",
+    modernGeometry: "Moderne Geometrie",
+    gardenSymphony: "Gartensymphonie",
+ 
 },
  "howItWorks": {
     "title": "Wie es funktioniert",
@@ -428,7 +434,18 @@ const de = {
   "selected": "Ausgewählt",
   "total_price": "Gesamtpreis",
   "cards": "Karten",
-  "designs": "Designs"
+  "designs": "Designs",
+   "categoryeaster": "Ostern",
+  "categoryabstract": "Abstrakt",
+  "categorynature": "Natur",
+  "categoryclassics": "Klassiker",
+  "pop_culture": "Popkultur",
+
+  "easy": "Einfach",
+  "medium": "Mittel",
+  "hard": "Schwer",
+   perDesign: "pro Design",
+  
     },
 
 

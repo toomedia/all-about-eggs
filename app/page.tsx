@@ -37,12 +37,12 @@ const CatalogSection = () => {
   const [showModal, setShowModal] = useState(false);
 
   const featuredDesigns = [
-    { id: 1, name: 'Easter Bunny Delight', category: 'Easter', image: '/eggs images/A01ED9DF-9438-4E70-B773-60A2C41A82F3.PNG', premium: true, price: 2.99 },
-    { id: 2, name: 'Spring Bloom Magic', category: 'Easter', image: '/eggs images/A1C8EC8B-F376-4179-9677-5EEB3BED10E1.PNG', featured: true, price: 1.99 },
-    { id: 3, name: 'Pastel Rainbow Dream', category: 'Easter', image: '/eggs images/78F51BD8-2667-4818-A8EB-F96F9A75C762.PNG', price: 1.49 },
-    { id: 4, name: 'Floral Garden Party', category: 'Easter', image: '/eggs images/985F746C-6F78-4E2A-BD7F-20F49045629D.PNG', premium: true, price: 3.99 },
-    { id: 5, name: 'Modern Geometry', category: 'Abstract', image: '/eggs images/2B56B7A1-95A1-4348-BB4E-8C039CF9A5E6 2.PNG', price: 2.49 },
-    { id: 6, name: 'Garden Symphony', category: 'Nature', image: '/eggs images/BA7F578A-E63C-4015-A821-32EE5943F69A 2.PNG', featured: true, price: 2.99 },
+    { id: 1, name: t.catalogSection.easterBunnyDelight,  category: t.Catalog.categoryeaster, image: '/eggs images/A01ED9DF-9438-4E70-B773-60A2C41A82F3.PNG', premium: true, price: 2.99 },
+    { id: 2, name: t.catalogSection.springBloomMagic, category: t.Catalog.categoryeaster, image: '/eggs images/A1C8EC8B-F376-4179-9677-5EEB3BED10E1.PNG', featured: true, price: 1.99 },
+    { id: 3, name: t.catalogSection.pastelRainbowDream, category: t.Catalog.categoryeaster, image: '/eggs images/78F51BD8-2667-4818-A8EB-F96F9A75C762.PNG', price: 1.49 },
+    { id: 4, name: t.catalogSection.floralGardenParty, category: t.Catalog.categoryeaster, image: '/eggs images/985F746C-6F78-4E2A-BD7F-20F49045629D.PNG', premium: true, price: 3.99 },
+    { id: 5, name: t.catalogSection.modernGeometry, category: t.Catalog.categoryabstract, image: '/eggs images/2B56B7A1-95A1-4348-BB4E-8C039CF9A5E6 2.PNG', price: 2.49 },
+    { id: 6, name: t.catalogSection.gardenSymphony, category: t.Catalog.categorynature, image: '/eggs images/BA7F578A-E63C-4015-A821-32EE5943F69A 2.PNG', featured: true, price: 2.99 },
   ];
 
   const handleDesignClick = (design: Design) => {
@@ -146,10 +146,10 @@ const CatalogSection = () => {
           {/* Categories Preview */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {[
-              { name: 'Easter', icon: '🥚', count: 10, color: 'from-pink-400 to-rose-400', slug: 'easter-eggs' },
-              { name: 'Abstract', icon: '🎨', count: 8, color: 'from-purple-400 to-indigo-400', slug: 'abstract-designs' },
-              { name: 'Nature', icon: '🌿', count: 6, color: 'from-green-400 to-emerald-400', slug: 'nature-inspired' },
-              { name: 'Classics', icon: '✨', count: 4, color: 'from-amber-400 to-orange-400', slug: 'classic-collection' },
+              { name: t.Catalog.categoryeaster, icon: '🥚', count: 10, color: 'from-pink-400 to-rose-400', slug: 'easter-eggs' },
+              { name: t.Catalog.categoryabstract, icon: '🎨', count: 8, color: 'from-purple-400 to-indigo-400', slug: 'abstract-designs' },
+              { name: t.Catalog.categorynature, icon: '🌿', count: 6, color: 'from-green-400 to-emerald-400', slug: 'nature-inspired' },
+              { name: t.Catalog.categoryclassics, icon: '✨', count: 4, color: 'from-amber-400 to-orange-400', slug: 'classic-collection' },
             ].map((category) => (
               <Link key={category.name} href={`/presets/${category.slug}`}>
                 <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group">
@@ -218,14 +218,18 @@ const CatalogSection = () => {
                 {selectedDesign.premium && (
                   <span className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium bg-gradient-to-r from-amber-400 to-orange-500 text-white">
                     <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                    <span className="hidden sm:inline">Premium</span>
+                    <span className="hidden sm:inline">
+                      {t.catalogSection.premium}
+                    </span>
                     <span className="sm:hidden">P</span>
                   </span>
                 )}
                 {selectedDesign.featured && (
                   <span className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900">
                     <Heart className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                    <span className="hidden sm:inline">Featured</span>
+                    <span className="hidden sm:inline">
+                      {t.catalogSection.featured}
+                    </span>
                     <span className="sm:hidden">F</span>
                   </span>
                 )}
@@ -248,7 +252,9 @@ const CatalogSection = () => {
               {/* Price */}
               <div className="text-center mb-4 sm:mb-6">
                 <p className="text-2xl sm:text-3xl font-bold text-[#f6e79e]">€{selectedDesign.price}</p>
-                <p className="text-xs sm:text-sm text-gray-600">per design</p>
+                <p className="text-xs sm:text-sm text-gray-600">
+                  {t.Catalog.perDesign}
+                </p>
               </div>
 
               {/* Action Buttons */}

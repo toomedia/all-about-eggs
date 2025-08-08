@@ -65,7 +65,13 @@ footer: {
   "wishlist": "Add to Wishlist",
   "buyNow": "Buy Now",
   "customEnhancement": "Custom Enhancement",
-  "extraInfo": "This design can be used in memory games, Easter decorations, or as a standalone piece."
+  "extraInfo": "This design can be used in memory games, Easter decorations, or as a standalone piece.",
+    easterBunnyDelight: "Easter Bunny Delight",
+    springBloomMagic: "Spring Bloom Magic",
+    pastelRainbowDream: "Pastel Rainbow Dream",
+    floralGardenParty: "Floral Garden Party",
+    modernGeometry: "Modern Geometry",
+    gardenSymphony: "Garden Symphony",
   
 },
   "howItWorks": {
@@ -432,7 +438,17 @@ footer: {
   "selected": "Selected",
   "total_price": "Total Price",
   "cards": "cards",
-  "designs": "designs"
+  "designs": "designs",
+  "categoryeaster": "Easter",
+  "categoryabstract": "Abstract",
+  "categorynature": "Nature",
+  "categoryclassics": "Classics",
+  "pop_culture": "Pop Culture",
+  perDesign: "per design",
+  
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard"
   },
   Checkout: {
     backToCatalog: "Back to Catalog",

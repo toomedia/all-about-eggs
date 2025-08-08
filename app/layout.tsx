@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-   default: "Eggception", // fallback
+   default: "Eggception", 
 template: "%s | Eggception",
 
   },

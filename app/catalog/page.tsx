@@ -71,10 +71,10 @@ const categories = [
     {
       id: 1,
       name: 'Easter Bunny Delight',
-      category: 'Easter',
+      category: t.Catalog.categoryeaster,
       image: '/eggs images/A01ED9DF-9438-4E70-B773-60A2C41A82F3.PNG',
       likes: 234,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['pastel', 'bunny', 'spring'],
       premium: false,
       featured: true
@@ -82,10 +82,10 @@ const categories = [
     {
       id: 2,
       name: 'Spring Bloom Magic',
-      category: 'Easter',
+      category: t.Catalog.categoryeaster,
       image: '/eggs images/A1C8EC8B-F376-4179-9677-5EEB3BED10E1.PNG',
       likes: 456,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['floral', 'bloom', 'magic'],
       premium: true,
       featured: false
@@ -93,10 +93,10 @@ const categories = [
     {
       id: 3,
       name: 'Pastel Rainbow Dream',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/78F51BD8-2667-4818-A8EB-F96F9A75C762.PNG',
       likes: 189,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['rainbow', 'pastel', 'dream'],
       premium: false,
       featured: false
@@ -104,10 +104,10 @@ const categories = [
     {
       id: 4,
       name: 'Floral Garden Party',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/985F746C-6F78-4E2A-BD7F-20F49045629D.PNG',
       likes: 567,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['garden', 'floral', 'party'],
       premium: true,
       featured: true
@@ -115,10 +115,10 @@ const categories = [
     {
       id: 5,
       name: 'Easter Egg Hunt',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/900607D2-4C7C-4EA3-BED1-CEC884AC396F.PNG',
       likes: 312,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['hunt', 'easter', 'fun'],
       premium: false,
       featured: false
@@ -126,10 +126,10 @@ const categories = [
     {
       id: 6,
       name: 'Spring Chick Adventure',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/B96EC52A-B308-4F59-BDF1-FF4634AF366F.PNG',
       likes: 278,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['chick', 'spring', 'adventure'],
       premium: false,
       featured: false
@@ -137,10 +137,10 @@ const categories = [
     {
       id: 7,
       name: 'Easter Basket Joy',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/5A1D36A7-05A2-4D73-862E-478A4C6B175A.PNG',
       likes: 423,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['basket', 'joy', 'easter'],
       premium: true,
       featured: false
@@ -148,10 +148,10 @@ const categories = [
     {
       id: 8,
       name: 'Pastel Paradise',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/20A37086-FD6B-4CA4-A663-92783F0D587A.PNG',
       likes: 345,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['pastel', 'paradise', 'soft'],
       premium: false,
       featured: false
@@ -159,10 +159,10 @@ const categories = [
     {
       id: 9,
       name: 'Easter Morning Glory',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/D05371AC-8A6A-420F-8EDB-CEA5A00AE606.PNG',
       likes: 198,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['morning', 'glory', 'easter'],
       premium: true,
       featured: false
@@ -170,10 +170,10 @@ const categories = [
     {
       id: 10,
       name: 'Spring Awakening',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/D0126C2C-603B-471C-820E-370773708853.PNG',
       likes: 267,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['spring', 'awakening', 'renewal'],
       premium: false,
       featured: false
@@ -181,10 +181,10 @@ const categories = [
     {
       id: 11,
       name: 'Easter Eggstravaganza',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/7F9DC646-284C-4E7F-8FBF-AA6A3F60096C.PNG',
       likes: 512,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['extravaganza', 'easter', 'celebration'],
       premium: true,
       featured: true
@@ -192,10 +192,10 @@ const categories = [
     {
       id: 12,
       name: 'Pastel Harmony',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/EF92674E-D04F-42F7-8308-DA4FF3C17BE1.PNG',
       likes: 334,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['pastel', 'harmony', 'peace'],
       premium: false,
       featured: false
@@ -203,10 +203,10 @@ const categories = [
     {
       id: 13,
       name: 'Easter Joy',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/BA0EA02E-9CD8-4405-92AB-A91969CB36D9.PNG',
       likes: 289,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['joy', 'easter', 'happiness'],
       premium: false,
       featured: false
@@ -214,10 +214,10 @@ const categories = [
     {
       id: 14,
       name: 'Spring Celebration',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/09FF42F9-2664-4698-8FD8-E544A47D616B.PNG',
       likes: 376,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['spring', 'celebration', 'festive'],
       premium: true,
       featured: false
@@ -225,10 +225,10 @@ const categories = [
     {
       id: 15,
       name: 'Easter Wonderland',
-      category: 'Easter',
+       category: t.Catalog.categoryeaster,
       image: '/eggs images/EE3B1C9F-EE9B-41F0-AADE-A1785767ECF8.PNG',
       likes: 445,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['wonderland', 'easter', 'magical'],
       premium: true,
       featured: true
@@ -238,10 +238,10 @@ const categories = [
     {
       id: 16,
       name: 'Cosmic Galaxy',
-      category: 'Abstract',
+     category: t.Catalog.categoryabstract,
       image: '/eggs images/FC7DEB0F-9010-41FF-A9DE-05AC0CE582DB.PNG',
       likes: 678,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['cosmic', 'galaxy', 'space'],
       premium: true,
       featured: true
@@ -249,10 +249,10 @@ const categories = [
     {
       id: 17,
       name: 'Neon Dreams',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/A1C1364A-0881-4FD4-8863-942528923EF4.PNG',
       likes: 523,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['neon', 'dreams', 'vibrant'],
       premium: true,
       featured: false
@@ -260,10 +260,10 @@ const categories = [
     {
       id: 18,
       name: 'Digital Matrix',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/409969A2-15D6-417E-BB80-7F5514D4C420.PNG',
       likes: 412,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['digital', 'matrix', 'tech'],
       premium: true,
       featured: false
@@ -271,10 +271,10 @@ const categories = [
     {
       id: 19,
       name: 'Geometric Harmony',
-      category: 'Abstract',
+      category: t.Catalog.categoryabstract,
       image: '/eggs images/F2B512AE-60BB-403D-A6F1-C7D8B963DDF4.PNG',
       likes: 356,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['geometric', 'harmony', 'shapes'],
       premium: false,
       featured: false
@@ -282,10 +282,10 @@ const categories = [
     {
       id: 20,
       name: 'Abstract Expression',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/C35ACEE8-3CC4-4372-BE84-6658357CED6A.PNG',
       likes: 298,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['abstract', 'expression', 'art'],
       premium: true,
       featured: false
@@ -293,10 +293,10 @@ const categories = [
     {
       id: 21,
       name: 'Modern Minimalist',
-      category: 'Abstract',
+      category: t.Catalog.categoryabstract,
       image: '/eggs images/C2084B60-843C-45F9-85CA-FC4D5099707B.PNG',
       likes: 445,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['modern', 'minimalist', 'clean'],
       premium: false,
       featured: false
@@ -304,10 +304,10 @@ const categories = [
     {
       id: 22,
       name: 'Artistic Flow',
-      category: 'Abstract',
+      category: t.Catalog.categoryabstract,
       image: '/eggs images/5D6FB616-991D-4FF4-8188-8DD066C89F60.PNG',
       likes: 367,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['artistic', 'flow', 'creative'],
       premium: true,
       featured: false
@@ -315,10 +315,10 @@ const categories = [
     {
       id: 23,
       name: 'Contemporary Chaos',
-      category: 'Abstract',
+    category: t.Catalog.categoryabstract,
       image: '/eggs images/D1ED21D6-2288-497B-AF9D-BDA37D4FEB9D.PNG',
       likes: 234,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['contemporary', 'chaos', 'dynamic'],
       premium: true,
       featured: false
@@ -326,10 +326,10 @@ const categories = [
     {
       id: 24,
       name: 'Abstract Symphony',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/12ABB356-852A-4C46-97EF-C93BAD83AD37.PNG',
       likes: 389,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['symphony', 'abstract', 'music'],
       premium: false,
       featured: false
@@ -337,10 +337,10 @@ const categories = [
     {
       id: 25,
       name: 'Digital Artistry',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/74AB1B49-6171-4D10-94D7-D9A2F0CD87A9.PNG',
       likes: 456,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['digital', 'artistry', 'modern'],
       premium: true,
       featured: true
@@ -348,10 +348,10 @@ const categories = [
     {
       id: 26,
       name: 'Modern Geometry',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/2B56B7A1-95A1-4348-BB4E-8C039CF9A5E6 2.PNG',
       likes: 312,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['modern', 'geometry', 'shapes'],
       premium: false,
       featured: false
@@ -359,10 +359,10 @@ const categories = [
     {
       id: 27,
       name: 'Abstract Fusion',
-      category: 'Abstract',
+       category: t.Catalog.categoryabstract,
       image: '/eggs images/E4513E64-1FAF-4F88-81C1-51D9E43AF23B.PNG',
       likes: 278,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['fusion', 'abstract', 'mixed'],
       premium: true,
       featured: false
@@ -372,10 +372,10 @@ const categories = [
     {
       id: 28,
       name: 'Forest Whisper',
-      category: 'Nature',
+       category: t.Catalog.categorynature,
       image: '/eggs images/E74484D8-5397-4B11-AC94-49D1F1AA05DA.PNG',
       likes: 423,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['forest', 'whisper', 'nature'],
       premium: false,
       featured: false
@@ -383,10 +383,10 @@ const categories = [
     {
       id: 29,
       name: 'Ocean Depths',
-      category: 'Nature',
+      category: t.Catalog.categorynature,
       image: '/eggs images/C45C3AAA-999C-4D28-866C-ED60247B38DA.PNG',
       likes: 567,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['ocean', 'depths', 'blue'],
       premium: true,
       featured: true
@@ -394,10 +394,10 @@ const categories = [
     {
       id: 30,
       name: 'Mountain Majesty',
-      category: 'Nature',
+     category: t.Catalog.categorynature,
       image: '/eggs images/FFB0A181-F174-4265-A600-BB6CBD8AD68F.PNG',
       likes: 389,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['mountain', 'majesty', 'grand'],
       premium: false,
       featured: false
@@ -405,10 +405,10 @@ const categories = [
     {
       id: 31,
       name: 'Desert Sunset',
-      category: 'Nature',
+      category: t.Catalog.categorynature,
       image: '/eggs images/1D183BF4-5321-4CD1-9A88-9E1B0EE2756A.PNG',
       likes: 445,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['desert', 'sunset', 'warm'],
       premium: true,
       featured: false
@@ -416,10 +416,10 @@ const categories = [
     {
       id: 32,
       name: 'Tropical Paradise',
-      category: 'Nature',
+  category: t.Catalog.categorynature,
       image: '/eggs images/2B56B7A1-95A1-4348-BB4E-8C039CF9A5E6.PNG',
       likes: 512,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['tropical', 'paradise', 'exotic'],
       premium: true,
       featured: true
@@ -427,10 +427,10 @@ const categories = [
     {
       id: 33,
       name: 'Arctic Aurora',
-      category: 'Nature',
+   category: t.Catalog.categorynature,
       image: '/eggs images/E37F5708-3D61-46B6-A872-804A5DCE3549.PNG',
       likes: 634,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['arctic', 'aurora', 'northern'],
       premium: true,
       featured: true
@@ -438,10 +438,10 @@ const categories = [
     {
       id: 34,
       name: 'Garden Symphony',
-      category: 'Nature',
+      category: t.Catalog.categorynature,
       image: '/eggs images/BA7F578A-E63C-4015-A821-32EE5943F69A 2.PNG',
       likes: 378,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['garden', 'symphony', 'floral'],
       premium: false,
       featured: false
@@ -449,10 +449,10 @@ const categories = [
     {
       id: 35,
       name: 'Wilderness Call',
-      category: 'Nature',
+     category: t.Catalog.categorynature,
       image: '/eggs images/1A13F1D5-56EE-4ABB-8EBF-6472C571F8C0 2.PNG',
       likes: 298,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['wilderness', 'call', 'adventure'],
       premium: false,
       featured: false
@@ -460,10 +460,10 @@ const categories = [
     {
       id: 36,
       name: 'Natural Harmony',
-      category: 'Nature',
+      category: t.Catalog.categorynature,
       image: '/eggs images/49EBD2EA-DB4E-498C-B362-5CC7BC8D8EFC 2.PNG',
       likes: 456,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['natural', 'harmony', 'balance'],
       premium: true,
       featured: false
@@ -471,10 +471,10 @@ const categories = [
     {
       id: 37,
       name: 'Earth Elements',
-      category: 'Nature',
+      category: t.Catalog.categorynature,
       image: '/eggs images/E6EC4F06-A22A-418F-A17A-4914AA3FD4B4 2.PNG',
       likes: 334,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['earth', 'elements', 'natural'],
       premium: false,
       featured: false
@@ -484,10 +484,10 @@ const categories = [
     {
       id: 38,
       name: 'Timeless Elegance',
-      category: 'Classics',
+      category: t.Catalog.categoryclassics,
       image: '/eggs images/8A597E8D-765D-4CF6-AE37-03B2BFBD3E05 2.PNG',
       likes: 523,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['timeless', 'elegance', 'classic'],
       premium: true,
       featured: true
@@ -495,10 +495,10 @@ const categories = [
     {
       id: 39,
       name: 'Vintage Charm',
-      category: 'Classics',
+       category: t.Catalog.categoryclassics,
       image: '/eggs images/68AD1A11-8B38-4AB9-A0A6-77313D984D91 2.PNG',
       likes: 445,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['vintage', 'charm', 'retro'],
       premium: false,
       featured: false
@@ -506,10 +506,10 @@ const categories = [
     {
       id: 40,
       name: 'Classic Beauty',
-      category: 'Classics',
+       category: t.Catalog.categoryclassics,
       image: '/eggs images/18A7AE83-8BCA-4A40-902C-491B827D40D7 2.PNG',
       likes: 389,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['classic', 'beauty', 'simple'],
       premium: false,
       featured: false
@@ -517,10 +517,10 @@ const categories = [
     {
       id: 41,
       name: 'Heritage Pattern',
-      category: 'Classics',
+     category: t.Catalog.categoryclassics,
       image: '/eggs images/4AEA8E2E-3BA1-4E9D-85F5-1FD24F251D82 2.PNG',
       likes: 567,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['heritage', 'pattern', 'traditional'],
       premium: true,
       featured: true
@@ -528,10 +528,10 @@ const categories = [
     {
       id: 42,
       name: 'Traditional Grace',
-      category: 'Classics',
+       category: t.Catalog.categoryclassics,
       image: '/eggs images/DD32BCE3-A8F9-44F4-A032-C6022DFF8F06 2.PNG',
       likes: 412,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['traditional', 'grace', 'elegant'],
       premium: false,
       featured: false
@@ -539,10 +539,10 @@ const categories = [
     {
       id: 43,
       name: 'Classic Sophistication',
-      category: 'Classics',
+       category: t.Catalog.categoryclassics,
       image: '/eggs images/F75CD647-69B9-4A7B-B20D-06C0433D6365 2.PNG',
       likes: 478,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['sophistication', 'classic', 'refined'],
       premium: true,
       featured: false
@@ -550,10 +550,10 @@ const categories = [
     {
       id: 44,
       name: 'Elegant Simplicity',
-      category: 'Classics',
+      category: t.Catalog.categoryclassics,
       image: '/eggs images/45B42402-455F-4068-86AC-99D79531ADD2 2.PNG',
       likes: 356,
-      difficulty: 'Easy',
+      difficulty: t.Catalog.easy,
       tags: ['elegant', 'simplicity', 'clean'],
       premium: false,
       featured: false
@@ -561,10 +561,10 @@ const categories = [
     {
       id: 45,
       name: 'Timeless Design',
-      category: 'Classics',
+      category: t.Catalog.categoryclassics,
       image: '/eggs images/3CC844D3-B143-4C2A-89A2-3717C91873ED 2.PNG',
       likes: 423,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['timeless', 'design', 'enduring'],
       premium: true,
       featured: false
@@ -574,10 +574,10 @@ const categories = [
     {
       id: 46,
       name: 'Retro Gaming',
-      category: 'Pop Culture',
+       category: t.Catalog.pop_culture,
       image: '/eggs images/B7FC98EB-F2EB-4638-8841-3E570F536F1D 2.PNG',
       likes: 678,
-      difficulty: 'Hard',
+      difficulty: t.Catalog.hard,
       tags: ['retro', 'gaming', 'pixel'],
       premium: true,
       featured: true
@@ -585,10 +585,10 @@ const categories = [
     {
       id: 47,
       name: 'Movie Magic',
-      category: 'Pop Culture',
+      category: t.Catalog.pop_culture,
       image: '/eggs images/A01ED9DF-9438-4E70-B773-60A2C41A82F3.PNG',
       likes: 534,
-      difficulty: 'Medium',
+      difficulty: t.Catalog.medium,
       tags: ['movie', 'magic', 'cinema'],
       premium: true,
       featured: false
