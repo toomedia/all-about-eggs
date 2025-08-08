@@ -172,7 +172,7 @@ const de = {
   "cta": {
     "title": "Bereit loszulegen?",
     "description": "Wähle deine bevorzugte Methode und beginne noch heute mit dem Gestalten deines perfekten Eis. Keine Designkenntnisse nötig – unsere KI übernimmt die Arbeit!",
-    "button": "Katalog durchstöbern"
+    "button": "Eiersploriere Designs"
   }
 },
 

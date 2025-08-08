@@ -172,7 +172,7 @@ footer: {
   "cta": {
     "title": "Ready to Start Creating?",
     "description": "Choose your preferred method and begin designing your perfect egg today. No design experience required - our AI does the heavy lifting!",
-    "button": "Browse Catalog"
+    "button": "Eggsplore Designs"
   }
 },
 

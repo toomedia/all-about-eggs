@@ -14,6 +14,7 @@ function CheckoutContent() {
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [orderType, setOrderType] = useState<'custom' | 'preset'>('custom');
   const [selectedDesigns, setSelectedDesigns] = useState<any[]>([]);
+   const [orderPlaced, setOrderPlaced] = useState(false);
   const [selectedSize, setSelectedSize] = useState('L');
   const [formData, setFormData] = useState({
     firstName: '',
@@ -109,7 +110,8 @@ function CheckoutContent() {
       size: selectedSize,
       total: calculateOrderTotal().toFixed(2),
     };
-
+ console.log("Order submitted:", orderDetails);
+    setOrderPlaced(true);
     try {
       // ✅ Step 4: Make Stripe session request
       const res = await axios.post<{ url: string }>(
@@ -191,125 +193,158 @@ function CheckoutContent() {
                     ))}
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-600">{t.Checkout.selected}: {selectedDesigns.length} {t.Checkout.designs}</span>
+                    <span className="text-gray-600">{t.Checkout.selected} {selectedDesigns.length} {t.Checkout.designs}</span>
                     <span className="text-lg font-bold text-[#f6e79e]">€{calculateOrderTotal().toFixed(2)}</span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <button
-                    onClick={handleOrderNow}
-                    className="bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-4 px-6 rounded-xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg"
-                  >
-                    {t.Checkout.orderCards} {selectedDesigns.length} {t.Checkout.now}
-                  </button>
-                  <button
-                    onClick={handleCompletePreset}
-                    className="bg-white border-2 border-gray-200 text-gray-700 py-4 px-6 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
-                  >
-                    {t.Checkout.completePreset} ({sizes.find(s => s.name === selectedSize)?.cards} {t.Checkout.cards})
-                  </button>
-                </div>
-              </div>
-            </div>
+             {/* Action Buttons */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+  <button
+    onClick={handleOrderNow}
+    className="bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 py-4 px-6 rounded-xl font-semibold text-lg hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-lg"
+  >
+    {t.Checkout.orderCards} {selectedDesigns.length} {t.Checkout.now}
+  </button>
+  <button
+    onClick={handleCompletePreset}
+    className="bg-white border-2 border-gray-200 text-gray-700 py-4 px-6 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
+  >
+    {t.Checkout.completePreset} ({sizes.find(s => s.name === selectedSize)?.cards} {t.Checkout.cards})
+  </button>
+</div>
 
-            {/* Customer Information Form */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">{t.Checkout.customerInfo}</h2>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.firstName} *</label>
-                    <input 
-                      type="text" 
-                      value={formData.firstName}
-                      onChange={(e) => handleInputChange('firstName', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                      placeholder={t.Checkout.firstName}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.lastName} *</label>
-                    <input 
-                      type="text" 
-                      value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                      placeholder={t.Checkout.lastName}
-                    />
-                  </div>
-                </div>
+{/* Customer Information Form */}
+<div className="bg-white p-8 rounded-2xl shadow-lg">
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.email} *</label>
-                  <input 
-                    type="email" 
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                    placeholder={t.Checkout.email}
-                  />
-                </div>
+  {/* Confirmation message if order is placed */}
+  {orderPlaced && (
+ <p className="text-xs sm:text-sm md:text-base text-center text-gray-600 font-light mb-2">
+  Thank you for your order – we hope it’s an egg-stra special one! 🐣
+</p>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.phone}</label>
-                  <input 
-                    type="tel" 
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                    placeholder={t.Checkout.phone}
-                  />
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.address} *</label>
-                  <input 
-                    type="text" 
-                    value={formData.address}
-                    onChange={(e) => handleInputChange('address', e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                    placeholder={t.Checkout.address}
-                  />
-                </div>
+  )}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.city} *</label>
-                    <input 
-                      type="text" 
-                      value={formData.city}
-                      onChange={(e) => handleInputChange('city', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                      placeholder={t.Checkout.city}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.postalCode} *</label>
-                    <input 
-                      type="text" 
-                      value={formData.postalCode}
-                      onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                      placeholder={t.Checkout.postalCode}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.Checkout.country}</label>
-                    <input 
-                      type="text" 
-                      value={formData.country}
-                      onChange={(e) => handleInputChange('country', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
-                      placeholder={t.Checkout.country}
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+  <h2 className="text-2xl font-bold text-gray-900 mb-6 font-manrope">
+    {t.Checkout.customerInfo}
+  </h2>
 
+  <form className="space-y-6">
+    {/* First Row */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t.Checkout.firstName} *
+        </label>
+        <input
+          type="text"
+          value={formData.firstName}
+          onChange={(e) => handleInputChange('firstName', e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+          placeholder={t.Checkout.firstName}
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t.Checkout.lastName} *
+        </label>
+        <input
+          type="text"
+          value={formData.lastName}
+          onChange={(e) => handleInputChange('lastName', e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+          placeholder={t.Checkout.lastName}
+        />
+      </div>
+    </div>
+
+    {/* Email */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {t.Checkout.email} *
+      </label>
+      <input
+        type="email"
+        value={formData.email}
+        onChange={(e) => handleInputChange('email', e.target.value)}
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+        placeholder={t.Checkout.email}
+      />
+    </div>
+
+    {/* Phone */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {t.Checkout.phone}
+      </label>
+      <input
+        type="tel"
+        value={formData.phone}
+        onChange={(e) => handleInputChange('phone', e.target.value)}
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+        placeholder={t.Checkout.phone}
+      />
+    </div>
+
+    {/* Address */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {t.Checkout.address} *
+      </label>
+      <input
+        type="text"
+        value={formData.address}
+        onChange={(e) => handleInputChange('address', e.target.value)}
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+        placeholder={t.Checkout.address}
+      />
+    </div>
+
+    {/* City / Postal / Country */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t.Checkout.city} *
+        </label>
+        <input
+          type="text"
+          value={formData.city}
+          onChange={(e) => handleInputChange('city', e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+          placeholder={t.Checkout.city}
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t.Checkout.postalCode} *
+        </label>
+        <input
+          type="text"
+          value={formData.postalCode}
+          onChange={(e) => handleInputChange('postalCode', e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+          placeholder={t.Checkout.postalCode}
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t.Checkout.country}
+        </label>
+        <input
+          type="text"
+          value={formData.country}
+          onChange={(e) => handleInputChange('country', e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-[#f6e79e]"
+          placeholder={t.Checkout.country}
+        />
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div>
           {/* Order Summary */}
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-lg">
