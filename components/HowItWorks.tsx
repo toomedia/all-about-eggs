@@ -61,14 +61,14 @@ export default function HowItWorks() {
               <div key={step.number} className="relative group">
                 <div className="relative bg-white rounded-lg p-8 border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-sm hover:shadow-md h-full mt-8">
                   {/* Step Number */}
-                  <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-white font-semibold text-sm">
+                  <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-[#f6e79e] flex items-center justify-center text-black font-semibold text-sm">
                     {step.number}
                   </div>
 
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 mb-6 group-hover:bg-gray-200 transition-colors duration-300">
-                    {step.icon}
-                  </div>
+            {/* Icon */}
+<div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#fffbea] shadow-sm text-[#f6e79e] mb-6 transition-colors duration-300">
+  {step.icon}
+</div>
 
                   {/* Content */}
                   <div className="space-y-3">
@@ -94,7 +94,7 @@ export default function HowItWorks() {
             <span className="text-gray-700 font-medium">
               Ready to start your journey?
             </span>
-            <Link href="/catalog" className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors">
+            <Link href="/catalog" className="inline-flex items-center gap-2 px-6 py-3 bg-[#f6e79e] text-black rounded-lg font-medium transition-colors">
               Get Started
               <ArrowRight className="w-4 h-4" />
             </Link>
