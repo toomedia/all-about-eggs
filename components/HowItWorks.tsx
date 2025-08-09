@@ -2,7 +2,7 @@
 import useTranslation from '@/lib/useTranslation';
 import { Egg, Palette, CreditCard, Truck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-
+import Button from './Button';
 export default function HowItWorks() {
   const { t } = useTranslation();
 
@@ -94,10 +94,13 @@ export default function HowItWorks() {
             <span className="text-gray-700 font-medium">
               Ready to start your journey?
             </span>
-            <Link href="/catalog" className="inline-flex items-center gap-2 px-6 py-3 bg-[#f6e79e] text-black rounded-lg font-medium transition-colors">
-              Get Started
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+         <Link href="/catalog">
+  <Button className="inline-flex items-center gap-2 px-6 py-3 bg-[#f6e79e] text-black rounded-lg font-medium transition-colors hover:bg-[#e5d46e]">
+    Get Started
+    <ArrowRight className="w-4 h-4" />
+  </Button>
+</Link>
+
           </div>
         </div>
       </div>
