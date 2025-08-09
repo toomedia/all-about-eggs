@@ -235,14 +235,63 @@ export default function ConfiguratorPage() {
 
   // Load saved state from localStorage
   useEffect(() => {
-    const savedState = localStorage.getItem('configuratorState');
-    if (savedState) {
-      const state = JSON.parse(savedState);
-      setSelectedSize(state.selectedSize || null);
-      setSelectedPreset(state.selectedPreset || '');
-      setSelectedDesigns(state.selectedDesigns || []);
-      setCurrentStep(state.currentStep || 1);
-    }
+    const loadSavedState = () => {
+      const savedState = localStorage.getItem('configuratorState');
+      if (savedState) {
+        const state = JSON.parse(savedState);
+        setSelectedSize(state.selectedSize || null);
+        setSelectedPreset(state.selectedPreset || '');
+        setSelectedDesigns(state.selectedDesigns || []);
+        setCurrentStep(state.currentStep || 1);
+      }
+    };
+
+    // Load state on mount
+    loadSavedState();
+
+    // Listen for localStorage changes (works across different tabs/windows)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'configuratorState') {
+        loadSavedState();
+      }
+    };
+
+    // Listen for page visibility changes (when user returns from wishlist)
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        // Small delay to ensure localStorage is updated
+        setTimeout(() => {
+          loadSavedState();
+        }, 100);
+      }
+    };
+
+    // Listen for custom events from wishlist
+    const handleWishlistUpdate = () => {
+      // Small delay to ensure localStorage is updated
+      setTimeout(() => {
+        loadSavedState();
+      }, 100);
+    };
+
+    // Listen for focus events (when user returns to tab)
+    const handleFocus = () => {
+      setTimeout(() => {
+        loadSavedState();
+      }, 100);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('eggfinity-wishlist-updated', handleWishlistUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('eggfinity-wishlist-updated', handleWishlistUpdate);
+    };
   }, []);
 
   // Save state to localStorage
@@ -530,7 +579,8 @@ export default function ConfiguratorPage() {
 
   // Handle add to cart
   const handleAddToCart = () => {
-    if (!isSetComplete) return;
+    // Allow checkout when on step 3, even if set isn't complete
+    if (!isSetComplete && currentStep < 3) return;
     
     // Save to cart
     const cartItem = {
@@ -1202,14 +1252,17 @@ export default function ConfiguratorPage() {
 
         {/* Step 3: Review & Checkout */}
         <div className={`transition-all duration-700 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-4'}`}>
-          {isSetComplete && (
+          {currentStep >= 3 && (
             <div className="space-y-12">
               <div className="text-center">
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6">
                   Review Your Memory Game
                 </h2>
                 <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
-                  Perfect! Your {selectedSize} set is ready. Take a final look before we create your memories.
+                  {isSetComplete 
+                    ? `Perfect! Your ${selectedSize} set is ready. Take a final look before we create your memories.`
+                    : `You're on step 3. ${selectedSize ? `Your ${selectedSize} set has ${selectedDesigns.length}/${currentSetSize} designs.` : 'Please select a size first.'}`
+                  }
                 </p>
               </div>
 
@@ -1264,15 +1317,25 @@ export default function ConfiguratorPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="text-center">
-                <button
-                  onClick={handleAddToCart}
-                  className="px-12 py-6 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-3xl font-bold text-2xl hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
-                >
-                  <ShoppingCart className="w-6 h-6 inline mr-3" />
-                  Crack it & Checkout - €{calculateTotalPrice()}
-                </button>
-              </div>
+              {selectedDesigns.length > 0 && (
+                <div className="text-center">
+                  <button
+                    onClick={handleAddToCart}
+                    className="px-12 py-6 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-3xl font-bold text-2xl hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+                  >
+                    <ShoppingCart className="w-6 h-6 inline mr-3" />
+                    {isSetComplete 
+                      ? `Crack it & Checkout - €${calculateTotalPrice()}`
+                      : `Add to Cart - €${calculateTotalPrice()}`
+                    }
+                  </button>
+                  {!isSetComplete && (
+                    <p className="text-gray-500 mt-3 text-sm">
+                      You can add more designs to complete your set, or checkout with current selection
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>

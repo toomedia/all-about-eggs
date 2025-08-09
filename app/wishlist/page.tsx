@@ -2,7 +2,7 @@
 
 import useTranslation from '@/lib/useTranslation';
 import { useEffect, useState } from 'react';
-import { Heart, ArrowLeft, ShoppingCart, Trash2, Eye } from 'lucide-react';
+import { Heart, ArrowLeft, Trash2, Eye, Plus } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -22,6 +22,7 @@ export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
+  const [loadingItemId, setLoadingItemId] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -48,14 +49,87 @@ export default function WishlistPage() {
     }
   };
 
-  const handleBuyNow = (item: WishlistItem) => {
-    // Redirect to checkout with the selected item
-    const queryParams = new URLSearchParams({
-      designs: item.id.toString(),
-      size: 'L',
-      count: '1'
-    });
-    window.location.href = `/checkout?${queryParams.toString()}`;
+  const handleAddToPreset = (item: WishlistItem) => {
+    if (typeof window !== 'undefined') {
+      // Set loading state for this item
+      setLoadingItemId(item.id);
+      
+      // Get current configurator state
+      const savedState = localStorage.getItem('configuratorState');
+      let configuratorState = savedState ? JSON.parse(savedState) : {};
+      
+      // Get current selected designs
+      let currentDesigns = configuratorState.selectedDesigns || [];
+      
+      // Check if item is already in the preset
+      const isAlreadyInPreset = currentDesigns.some((design: any) => design.id === item.id);
+      
+      if (isAlreadyInPreset) {
+        // Show notification that item is already in preset
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-4 right-4 bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300';
+        notification.textContent = `"${item.name}" is already in your preset!`;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+          notification.style.transform = 'translateX(100%)';
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+        
+        // Clear loading state
+        setLoadingItemId(null);
+        return;
+      }
+      
+      // Add item to selected designs
+      const newDesign = {
+        ...item,
+        // Ensure the item has all required properties
+        id: item.id,
+        name: item.name,
+        category: item.category,
+        image: item.image,
+        premium: item.premium,
+        featured: item.featured
+      };
+      
+      currentDesigns.push(newDesign);
+      
+      // Ensure we have a selected size (default to 'L' if none selected)
+      let selectedSize = configuratorState.selectedSize || 'L';
+      
+      // Update configurator state
+      const updatedState = {
+        ...configuratorState,
+        selectedSize: selectedSize,
+        selectedDesigns: currentDesigns,
+        currentStep: 3 // Move to step 3 (design review)
+      };
+      
+      // Save updated state
+      localStorage.setItem('configuratorState', JSON.stringify(updatedState));
+      
+      // Dispatch custom event to notify configurator
+      window.dispatchEvent(new CustomEvent('eggfinity-wishlist-updated'));
+      
+      // Show success notification
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300';
+      notification.textContent = `Added "${item.name}" to your preset!`;
+      document.body.appendChild(notification);
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+      
+      // Redirect to configurator after a short delay
+      setTimeout(() => {
+        window.location.href = '/configurator';
+      }, 1000);
+    }
   };
 
   const handleViewItem = (item: WishlistItem) => {
@@ -64,7 +138,7 @@ export default function WishlistPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">
+    <div className="min-h-screen ">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-8">
@@ -169,11 +243,23 @@ export default function WishlistPage() {
                   {/* Action Buttons */}
                   <div className="flex gap-2">
                     <button
-                      onClick={() => handleBuyNow(item)}
-                      className="flex-1 py-3 px-4 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-xl font-semibold hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+                      onClick={() => handleAddToPreset(item)}
+                      className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all transform flex items-center justify-center gap-2 ${
+                        loadingItemId === item.id
+                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          : 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 hover:from-[#f4e285] hover:to-[#f6e79e] hover:scale-105'
+                      }`}
+                      disabled={loadingItemId === item.id}
                     >
-                      <ShoppingCart className="w-4 h-4" />
-                      Buy Now
+                      {loadingItemId === item.id ? (
+                        <svg className="animate-spin h-4 w-4 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      ) : (
+                        <Plus className="w-4 h-4" />
+                      )}
+                      {loadingItemId === item.id ? 'Adding...' : 'Add to Preset'}
                     </button>
                   </div>
                 </div>
@@ -218,13 +304,25 @@ export default function WishlistPage() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => {
-                      handleBuyNow(selectedItem);
+                      handleAddToPreset(selectedItem);
                       setShowModal(false);
                     }}
-                    className="flex-1 py-3 px-6 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 rounded-xl font-semibold hover:from-[#f4e285] hover:to-[#f6e79e] transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+                    className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all transform flex items-center justify-center gap-2 ${
+                      loadingItemId === selectedItem.id
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285] text-gray-900 hover:from-[#f4e285] hover:to-[#f6e79e] hover:scale-105'
+                    }`}
+                    disabled={loadingItemId === selectedItem.id}
                   >
-                    <ShoppingCart className="w-4 h-4" />
-                    Buy Now
+                    {loadingItemId === selectedItem.id ? (
+                      <svg className="animate-spin h-4 w-4 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    ) : (
+                      <Plus className="w-4 h-4" />
+                    )}
+                    {loadingItemId === selectedItem.id ? 'Adding...' : 'Add to Preset'}
                   </button>
                   <button
                     onClick={() => {
