@@ -617,33 +617,44 @@ export default function ConfiguratorPage() {
 
           {/* Progress Steps */}
           <div className="flex items-center justify-center">
-            <div className="flex items-center gap-8">
-              {steps.map((step, index) => (
-                <div key={step.id} className="flex items-center">
-                  <div className={`flex flex-col items-center transition-all duration-500 ${
-                    step.completed ? 'text-[#f6e79e]' : 'text-gray-400'
-                  }`}>
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-500 shadow-lg ${
-                      step.completed 
-                        ? 'bg-gradient-to-br from-[#f6e79e] to-[#f4e285] text-gray-900 shadow-xl scale-110' 
-                        : 'bg-white/80 text-gray-500 shadow-md'
-                    }`}>
-                      <step.icon className="w-8 h-8" />
-                    </div>
-                    <span className={`text-sm font-semibold transition-all duration-300 ${
-                      step.completed ? 'text-gray-900' : 'text-gray-500'
-                    }`}>
-                      {step.name}
-                    </span>
-                  </div>
-                  {index < steps.length - 1 && (
-                    <div className={`w-20 h-1 mx-6 rounded-full transition-all duration-500 ${
-                      step.completed ? 'bg-gradient-to-r from-[#f6e79e] to-[#f4e285]' : 'bg-gray-200'
-                    }`} />
-                  )}
-                </div>
-              ))}
-            </div>
+        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
+  {steps.map((step, index) => (
+    <div key={step.id} className="flex items-center">
+      <div
+        className={`flex flex-col items-center transition-all duration-500 ${
+          step.completed ? "text-[#f6e79e]" : "text-gray-400"
+        }`}
+      >
+        <div
+          className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-2 sm:mb-3 transition-all duration-500 shadow-lg ${
+            step.completed
+              ? "bg-gradient-to-br from-[#f6e79e] to-[#f4e285] text-gray-900 shadow-xl sm:scale-110"
+              : "bg-white/80 text-gray-500 shadow-md"
+          }`}
+        >
+          <step.icon className="w-6 h-6 sm:w-8 sm:h-8" />
+        </div>
+        <span
+          className={`text-xs sm:text-sm font-semibold transition-all duration-300 ${
+            step.completed ? "text-gray-900" : "text-gray-500"
+          }`}
+        >
+          {step.name}
+        </span>
+      </div>
+      {index < steps.length - 1 && (
+        <div
+          className={`w-10 sm:w-20 h-1 mx-3 sm:mx-6 rounded-full transition-all duration-500 ${
+            step.completed
+              ? "bg-gradient-to-r from-[#f6e79e] to-[#f4e285]"
+              : "bg-gray-200"
+          }`}
+        />
+      )}
+    </div>
+  ))}
+</div>
+
           </div>
         </div>
       </div>
