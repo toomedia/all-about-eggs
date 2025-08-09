@@ -82,7 +82,7 @@ const categories = [
     // Easter Category
     {
       id: 1,
-      name: 'Easter Bunny Delight',
+     name: t.eggs.name1,
       category: t.Catalog.categoryeaster,
       image: '/eggs images/A01ED9DF-9438-4E70-B773-60A2C41A82F3.PNG',
       difficulty: t.Catalog.easy,
@@ -99,7 +99,7 @@ const categories = [
     },
     {
       id: 2,
-      name: 'Spring Bloom Magic',
+      name: t.eggs.name2,
       category: t.Catalog.categoryeaster,
       image: '/eggs images/A1C8EC8B-F376-4179-9677-5EEB3BED10E1.PNG',
       difficulty: t.Catalog.medium,
@@ -116,7 +116,7 @@ const categories = [
     },
     {
       id: 3,
-      name: 'Pastel Rainbow Dream',
+      name: t.eggs.name3,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/78F51BD8-2667-4818-A8EB-F96F9A75C762.PNG',
       difficulty: t.Catalog.easy,
@@ -126,7 +126,7 @@ const categories = [
     },
     {
       id: 4,
-      name: 'Floral Garden Party',
+      name: t.eggs.name4,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/985F746C-6F78-4E2A-BD7F-20F49045629D.PNG',
       difficulty: t.Catalog.hard,
@@ -136,7 +136,7 @@ const categories = [
     },
     {
       id: 5,
-      name: 'Easter Egg Hunt',
+      name: t.eggs.name5,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/900607D2-4C7C-4EA3-BED1-CEC884AC396F.PNG',
       difficulty: t.Catalog.easy,
@@ -146,7 +146,7 @@ const categories = [
     },
     {
       id: 6,
-      name: 'Spring Chick Adventure',
+      name: t.eggs.name6,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/B96EC52A-B308-4F59-BDF1-FF4634AF366F.PNG',
       difficulty: t.Catalog.medium,
@@ -156,7 +156,7 @@ const categories = [
     },
     {
       id: 7,
-      name: 'Easter Basket Joy',
+      name: t.eggs.name7,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/5A1D36A7-05A2-4D73-862E-478A4C6B175A.PNG',
       difficulty: t.Catalog.medium,
@@ -166,7 +166,7 @@ const categories = [
     },
     {
       id: 8,
-      name: 'Pastel Paradise',
+      name: t.eggs.name8,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/20A37086-FD6B-4CA4-A663-92783F0D587A.PNG',
       difficulty: t.Catalog.easy,
@@ -176,7 +176,7 @@ const categories = [
     },
     {
       id: 9,
-      name: 'Easter Morning Glory',
+      name: t.eggs.name9,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/D05371AC-8A6A-420F-8EDB-CEA5A00AE606.PNG',
       difficulty: t.Catalog.hard,
@@ -186,7 +186,7 @@ const categories = [
     },
     {
       id: 10,
-      name: 'Spring Awakening',
+      name: t.eggs.name10,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/D0126C2C-603B-471C-820E-370773708853.PNG',
       difficulty: t.Catalog.medium,
@@ -196,7 +196,7 @@ const categories = [
     },
     {
       id: 11,
-      name: 'Easter Eggstravaganza',
+      name: t.eggs.name11,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/7F9DC646-284C-4E7F-8FBF-AA6A3F60096C.PNG',
       difficulty: t.Catalog.hard,
@@ -206,7 +206,7 @@ const categories = [
     },
     {
       id: 12,
-      name: 'Pastel Harmony',
+      name: t.eggs.name12,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/EF92674E-D04F-42F7-8308-DA4FF3C17BE1.PNG',
       difficulty: t.Catalog.easy,
@@ -216,7 +216,7 @@ const categories = [
     },
     {
       id: 13,
-      name: 'Easter Joy',
+      name: t.eggs.name13,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/BA0EA02E-9CD8-4405-92AB-A91969CB36D9.PNG',
       difficulty: t.Catalog.medium,
@@ -226,7 +226,7 @@ const categories = [
     },
     {
       id: 14,
-      name: 'Spring Celebration',
+      name: t.eggs.name14,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/09FF42F9-2664-4698-8FD8-E544A47D616B.PNG',
       difficulty: t.Catalog.medium,
@@ -236,7 +236,7 @@ const categories = [
     },
     {
       id: 15,
-      name: 'Easter Wonderland',
+      name: t.eggs.name15,
        category: t.Catalog.categoryeaster,
       image: '/eggs images/EE3B1C9F-EE9B-41F0-AADE-A1785767ECF8.PNG',
       difficulty: t.Catalog.hard,
@@ -248,7 +248,7 @@ const categories = [
     // Abstract Category
     {
       id: 16,
-      name: 'Cosmic Galaxy',
+      name: t.eggs.name16,
      category: t.Catalog.categoryabstract,
       image: '/eggs images/FC7DEB0F-9010-41FF-A9DE-05AC0CE582DB.PNG',
       difficulty: t.Catalog.hard,
@@ -258,7 +258,7 @@ const categories = [
     },
     {
       id: 17,
-      name: 'Neon Dreams',
+      name: t.eggs.name17,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/A1C1364A-0881-4FD4-8863-942528923EF4.PNG',
       difficulty: t.Catalog.medium,
@@ -268,7 +268,7 @@ const categories = [
     },
     {
       id: 18,
-      name: 'Digital Matrix',
+      name: t.eggs.name18,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/409969A2-15D6-417E-BB80-7F5514D4C420.PNG',
       difficulty: t.Catalog.hard,
@@ -278,7 +278,7 @@ const categories = [
     },
     {
       id: 19,
-      name: 'Geometric Harmony',
+      name: t.eggs.name19,
       category: t.Catalog.categoryabstract,
       image: '/eggs images/F2B512AE-60BB-403D-A6F1-C7D8B963DDF4.PNG',
       difficulty: t.Catalog.medium,
@@ -288,7 +288,7 @@ const categories = [
     },
     {
       id: 20,
-      name: 'Abstract Expression',
+      name: t.eggs.name20,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/C35ACEE8-3CC4-4372-BE84-6658357CED6A.PNG',
       difficulty: t.Catalog.hard,
@@ -298,7 +298,7 @@ const categories = [
     },
     {
       id: 21,
-      name: 'Modern Minimalist',
+      name: t.eggs.name21,
       category: t.Catalog.categoryabstract,
       image: '/eggs images/C2084B60-843C-45F9-85CA-FC4D5099707B.PNG',
       difficulty: t.Catalog.easy,
@@ -308,7 +308,7 @@ const categories = [
     },
     {
       id: 22,
-      name: 'Artistic Flow',
+      name: t.eggs.name22,
       category: t.Catalog.categoryabstract,
       image: '/eggs images/5D6FB616-991D-4FF4-8188-8DD066C89F60.PNG',
       difficulty: t.Catalog.medium,
@@ -318,7 +318,7 @@ const categories = [
     },
     {
       id: 23,
-      name: 'Contemporary Chaos',
+      name: t.eggs.name23,
     category: t.Catalog.categoryabstract,
       image: '/eggs images/D1ED21D6-2288-497B-AF9D-BDA37D4FEB9D.PNG',
       difficulty: t.Catalog.hard,
@@ -328,7 +328,7 @@ const categories = [
     },
     {
       id: 24,
-      name: 'Abstract Symphony',
+      name: t.eggs.name24,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/12ABB356-852A-4C46-97EF-C93BAD83AD37.PNG',
       difficulty: t.Catalog.medium,
@@ -338,7 +338,7 @@ const categories = [
     },
     {
       id: 25,
-      name: 'Digital Artistry',
+      name: t.eggs.name25,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/74AB1B49-6171-4D10-94D7-D9A2F0CD87A9.PNG',
       difficulty: t.Catalog.hard,
@@ -348,7 +348,7 @@ const categories = [
     },
     {
       id: 26,
-      name: 'Modern Geometry',
+      name: t.eggs.name26,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/2B56B7A1-95A1-4348-BB4E-8C039CF9A5E6 2.PNG',
       difficulty: t.Catalog.medium,
@@ -358,7 +358,7 @@ const categories = [
     },
     {
       id: 27,
-      name: 'Abstract Fusion',
+      name: t.eggs.name27,
        category: t.Catalog.categoryabstract,
       image: '/eggs images/E4513E64-1FAF-4F88-81C1-51D9E43AF23B.PNG',
       difficulty: t.Catalog.hard,
@@ -370,7 +370,7 @@ const categories = [
     // Nature Category
     {
       id: 28,
-      name: 'Forest Whisper',
+      name: t.eggs.name28,
        category: t.Catalog.categorynature,
       image: '/eggs images/E74484D8-5397-4B11-AC94-49D1F1AA05DA.PNG',
       difficulty: t.Catalog.medium,
@@ -380,7 +380,7 @@ const categories = [
     },
     {
       id: 29,
-      name: 'Ocean Depths',
+      name: t.eggs.name29,
       category: t.Catalog.categorynature,
       image: '/eggs images/C45C3AAA-999C-4D28-866C-ED60247B38DA.PNG',
       difficulty: t.Catalog.hard,
@@ -390,7 +390,7 @@ const categories = [
     },
     {
       id: 30,
-      name: 'Mountain Majesty',
+      name: t.eggs.name30,
      category: t.Catalog.categorynature,
       image: '/eggs images/FFB0A181-F174-4265-A600-BB6CBD8AD68F.PNG',
       difficulty: t.Catalog.medium,
@@ -400,7 +400,7 @@ const categories = [
     },
     {
       id: 31,
-      name: 'Desert Sunset',
+      name: t.eggs.name31,
       category: t.Catalog.categorynature,
       image: '/eggs images/1D183BF4-5321-4CD1-9A88-9E1B0EE2756A.PNG',
       difficulty: t.Catalog.medium,
@@ -410,7 +410,7 @@ const categories = [
     },
     {
       id: 32,
-      name: 'Tropical Paradise',
+      name: t.eggs.name32,
   category: t.Catalog.categorynature,
       image: '/eggs images/2B56B7A1-95A1-4348-BB4E-8C039CF9A5E6.PNG',
       difficulty: t.Catalog.hard,
@@ -420,7 +420,7 @@ const categories = [
     },
     {
       id: 33,
-      name: 'Arctic Aurora',
+      name: t.eggs.name33,
    category: t.Catalog.categorynature,
       image: '/eggs images/E37F5708-3D61-46B6-A872-804A5DCE3549.PNG',
       difficulty: t.Catalog.hard,
@@ -430,7 +430,7 @@ const categories = [
     },
     {
       id: 34,
-      name: 'Garden Symphony',
+      name: t.eggs.name34,
       category: t.Catalog.categorynature,
       image: '/eggs images/BA7F578A-E63C-4015-A821-32EE5943F69A 2.PNG',
       difficulty: t.Catalog.medium,
@@ -440,7 +440,7 @@ const categories = [
     },
     {
       id: 35,
-      name: 'Wilderness Call',
+      name: t.eggs.name35,
      category: t.Catalog.categorynature,
       image: '/eggs images/1A13F1D5-56EE-4ABB-8EBF-6472C571F8C0 2.PNG',
       difficulty: t.Catalog.medium,
@@ -450,7 +450,7 @@ const categories = [
     },
     {
       id: 36,
-      name: 'Natural Harmony',
+      name: t.eggs.name36,
       category: t.Catalog.categorynature,
       image: '/eggs images/49EBD2EA-DB4E-498C-B362-5CC7BC8D8EFC 2.PNG',
       difficulty: t.Catalog.easy,
@@ -460,7 +460,7 @@ const categories = [
     },
     {
       id: 37,
-      name: 'Earth Elements',
+      name: t.eggs.name37,
       category: t.Catalog.categorynature,
       image: '/eggs images/E6EC4F06-A22A-418F-A17A-4914AA3FD4B4 2.PNG',
       difficulty: t.Catalog.medium,
@@ -472,7 +472,7 @@ const categories = [
     // Classics Category
     {
       id: 38,
-      name: 'Timeless Elegance',
+      name: t.eggs.name38,
       category: t.Catalog.categoryclassics,
       image: '/eggs images/8A597E8D-765D-4CF6-AE37-03B2BFBD3E05 2.PNG',
       difficulty: t.Catalog.medium,
@@ -482,7 +482,7 @@ const categories = [
     },
     {
       id: 39,
-      name: 'Vintage Charm',
+      name: t.eggs.name39,
        category: t.Catalog.categoryclassics,
       image: '/eggs images/68AD1A11-8B38-4AB9-A0A6-77313D984D91 2.PNG',
       difficulty: t.Catalog.medium,
@@ -492,7 +492,7 @@ const categories = [
     },
     {
       id: 40,
-      name: 'Classic Beauty',
+      name: t.eggs.name40,
        category: t.Catalog.categoryclassics,
       image: '/eggs images/18A7AE83-8BCA-4A40-902C-491B827D40D7 2.PNG',
       difficulty: t.Catalog.easy,
@@ -502,7 +502,7 @@ const categories = [
     },
     {
       id: 41,
-      name: 'Heritage Pattern',
+      name: t.eggs.name41,
      category: t.Catalog.categoryclassics,
       image: '/eggs images/4AEA8E2E-3BA1-4E9D-85F5-1FD24F251D82 2.PNG',
       difficulty: t.Catalog.hard,
@@ -512,7 +512,7 @@ const categories = [
     },
     {
       id: 42,
-      name: 'Traditional Grace',
+     name: t.eggs.name42,
        category: t.Catalog.categoryclassics,
       image: '/eggs images/DD32BCE3-A8F9-44F4-A032-C6022DFF8F06 2.PNG',
       difficulty: t.Catalog.medium,
@@ -522,7 +522,7 @@ const categories = [
     },
     {
       id: 43,
-      name: 'Classic Sophistication',
+      name: t.eggs.name43,
        category: t.Catalog.categoryclassics,
       image: '/eggs images/F75CD647-69B9-4A7B-B20D-06C0433D6365 2.PNG',
       difficulty: t.Catalog.hard,
@@ -532,7 +532,7 @@ const categories = [
     },
     {
       id: 44,
-      name: 'Elegant Simplicity',
+     name: t.eggs.name44,
       category: t.Catalog.categoryclassics,
       image: '/eggs images/45B42402-455F-4068-86AC-99D79531ADD2 2.PNG',
       difficulty: t.Catalog.easy,
@@ -542,7 +542,7 @@ const categories = [
     },
     {
       id: 45,
-      name: 'Timeless Design',
+      name: t.eggs.name45,
       category: t.Catalog.categoryclassics,
       image: '/eggs images/3CC844D3-B143-4C2A-89A2-3717C91873ED 2.PNG',
       difficulty: t.Catalog.medium,
@@ -554,7 +554,7 @@ const categories = [
     // Pop Culture Category
     {
       id: 46,
-      name: 'Retro Gaming',
+      name: t.eggs.name46,
        category: t.Catalog.pop_culture,
       image: '/eggs images/B7FC98EB-F2EB-4638-8841-3E570F536F1D 2.PNG',
       difficulty: t.Catalog.hard,
@@ -564,7 +564,7 @@ const categories = [
     },
     {
       id: 47,
-      name: 'Movie Magic',
+      name: t.eggs.name47,
       category: t.Catalog.pop_culture,
       image: '/eggs images/A01ED9DF-9438-4E70-B773-60A2C41A82F3.PNG',
       difficulty: t.Catalog.medium,
@@ -849,7 +849,7 @@ const categories = [
               >
               <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
               <span className="font-medium text-gray-700">
-                  {advancedSearch ? 'Hide Filters' : 'Advanced Filters'}
+                  {advancedSearch ? t.Catalog.hide : t.Catalog.filter}
               </span>
             </button>
             </div>
@@ -860,45 +860,67 @@ const categories = [
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Sort Options */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t.Catalog.sort}
+                    </label>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as any)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-transparent"
                     >
-                      <option value="newest">Newest First</option>
-                      <option value="popular">Most Popular</option>
-                      <option value="trending">Trending</option>
-                      <option value="alphabetical">A-Z</option>
+                      <option value="newest">
+                        {t.Catalog.newest}
+                      </option>
+                      <option value="popular">
+                        {t.Catalog.popular}
+                      </option>
+                      <option value="trending">
+                        {t.Catalog.trending}
+                      </option>
+                      <option value="alphabetical">
+                        {t.Catalog.alphabetical}
+                      </option>
                     </select>
                   </div>
 
                   {/* Difficulty Filter */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Difficulty</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t.Catalog.difficulty}
+                    </label>
                     <select
                       value={selectedDifficulty}
                       onChange={(e) => setSelectedDifficulty(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-transparent"
                     >
-                      <option value="all">All Difficulties</option>
-                      <option value="Easy">Easy</option>
-                      <option value="Medium">Medium</option>
-                      <option value="Hard">Hard</option>
+                      <option value="all">
+                        {t.Catalog.allDifficulties}
+                      </option>
+                      <option value="Easy">
+                        {t.Catalog.easy}
+                      </option>
+                      <option value="Medium">
+                        {t.Catalog.medium}
+                      </option>
+                      <option value="Hard">
+                        {t.Catalog.hard}
+                      </option>
                     </select>
                   </div>
 
                   {/* Price Range Filter */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t.Catalog.priceRange}
+                    </label>
                     <select
                       value={selectedPriceRange}
                       onChange={(e) => setSelectedPriceRange(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f6e79e] focus:border-transparent"
                     >
-                      <option value="all">All Designs</option>
-                      <option value="free">Free Designs</option>
-                      <option value="premium">Premium Designs</option>
+                      <option value="all">{t.Catalog.allDesigns}</option>
+                      <option value="free">{t.Catalog.freeDesigns}</option>
+                      <option value="premium">{t.Catalog.premiumDesigns}</option>
                     </select>
                   </div>
                 </div>
@@ -1068,15 +1090,11 @@ const categories = [
               <h2 className="text-3xl font-bold text-gray-900 mb-2 font-manrope">
                 {t.Catalog.choose_your_designs}
               </h2>
-              <p className="text-gray-600 text-lg">Choose {sizes.find(s => s.name === selectedSize)?.cards} out of {filteredDesigns.length} designs</p>
+              <p className="text-gray-600 text-lg">{t.Catalog.chooseDesigns} {sizes.find(s => s.name === selectedSize)?.cards} {t.Catalog.outof} {filteredDesigns.length} designs</p>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-500 mb-1">
-                {t.Catalog.selection_status}
-                 {displayedDesigns.length} 
-                 {t.Catalog.of}
-                  {filteredDesigns.length}
-                  {t.Catalog.egg}
+                {t.Catalog.selection_status} {displayedDesigns.length}  {t.Catalog.of} {filteredDesigns.length} {t.Catalog.egg}
                   </p>
               <div className="flex gap-2">
                 <div className="w-2 h-2 bg-[#f6e79e] rounded-full"></div>
@@ -1216,7 +1234,7 @@ const categories = [
                     ) : (
                       <>
                         <Sparkles className="w-4 h-4" />
-                        Crack it
+                       {t.Catalog.crack}
                       </>
                     )}
                   </button>
@@ -1435,7 +1453,6 @@ const categories = [
     </div>
   );
 }
-
 
 
 

@@ -147,7 +147,7 @@ export default function WishlistPage() {
             className="inline-flex items-center gap-2 text-gray-600 hover:text-[#f6e79e] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Catalog
+            {t.Checkout.backToCatalog}
           </Link>
         </div>
 
@@ -156,7 +156,7 @@ export default function WishlistPage() {
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#f6e79e] to-[#f4e285] p-4 rounded-2xl mb-6">
             <Heart className="w-8 h-8 text-gray-700" />
             <h1 className="text-3xl font-bold text-gray-900 font-manrope">
-              My Wishlist
+              {t.wishlist.mywishlist}
             </h1>
           </div>
           <p className="text-lg text-gray-600">

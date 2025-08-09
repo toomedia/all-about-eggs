@@ -99,7 +99,9 @@ footer: {
       "title": "Receive Your Product",
       "description": "Our print-on-demand partner prints & ships directly to your door.",
       "descrip": "3-5 business days delivery, perfect as a gift too!"
-    }
+    },
+    "ready": "Ready to start your journey?",
+    "getStarted":"Get Started"
   },
 "ai-waitlist": {
   "title": "Coming Soon: Design your own egg with AI!",
@@ -210,7 +212,8 @@ footer: {
     "saved_designs": "Saved Designs",
     "empty": "Your wishlist is empty.",
     "add_to_cart": "Add to Cart",
-    "remove": "Remove"
+    "remove": "Remove",
+    mywishlist: "My Wishlist"
   },
   "customize-egg":{
        customize_egg_title: "Remixe ein Ei",
@@ -373,7 +376,22 @@ footer: {
       "selectDesignAlert": "Please select at least one design before adding to cart.",
       "eggTemplatesTitle": "Beautiful Egg Templates",
   "eggTemplatesDescription": "Choose from our curated collection of stunning Easter egg designs. Each template is crafted with love and ready to become your memory game.",
-  "filter": "Filter",
+  "filter": "Advanced Filters",
+   "hide": "Hide Filters",
+   newest: "Newest First",
+    popular: "Most Popular",
+    trending: "Trending",
+    alphabetical: "A-Z",
+    outof: "out of",
+      difficulty: "Difficulty",
+  allDifficulties: "All Difficulties",
+  chooseDesigns: "Choose",
+   crack: "Crack it",
+  priceRange: "Price Range",
+  allDesigns: "All Designs",
+  freeDesigns: "Free Designs",
+  premiumDesigns: "Premium Designs",
+   "sort":"Sort By",
   "surpriseSelectionTitle": "Your Surprise Selection!",
   "surpriseSelectionSubtitle": "Amazing Designs Selected for You",
   "surpriseSelectionDescription": "These designs were specially chosen just for you! Ready to create your perfect egg memory set?",
@@ -426,7 +444,6 @@ footer: {
   "clear_selection": "Clear Selection",
   "choose_set_size": "Choose Set Size",
    "choose_your_designs": "Choose Your Egg Designs",
-  "choose_designs_instruction": "Selected {{selected}} of {{total}} eggs",
   addToCart: "Add Surprise to Cart",
   clearSurprise: "Clear Surprise",
  selectedDesignsTitle: "Your Selected Designs",
@@ -538,7 +555,8 @@ footer: {
     clearSelection: "Clear Selection",
      chooseCards: "Choose {sizeCards} out of {totalDesigns} designs",
        "pagination": {
-    "showing": "Showing {{count}} of {{total}}"
+    "showing": "Showing {{count}} of {{total}}",
+   
   }
   },
   "configurator": {
@@ -566,6 +584,56 @@ footer: {
     "itemInCart": "item in cart"
   },
    title: "EggFinity",
+
+    eggs:{
+     name1: "Easter Bunny Delight",
+  name2: "Spring Bloom Magic",
+  name3: "Pastel Rainbow Dream",
+  name4: "Floral Garden Party",
+  name5: "Easter Egg Hunt",
+  name6: "Spring Chick Adventure",
+  name7: "Easter Basket Joy",
+  name8: "Pastel Paradise",
+  name9: "Easter Morning Glory",
+  name10: "Spring Awakening",
+  name11: "Easter Eggstravaganza",
+  name12: "Pastel Harmony",
+  name13: "Easter Joy",
+  name14: "Spring Celebration",
+  name15: "Easter Wonderland",
+  name16: "Cosmic Galaxy",
+  name17: "Neon Dreams",
+  name18: "Digital Matrix",
+  name19: "Geometric Harmony",
+  name20: "Abstract Expression",
+  name21: "Modern Minimalist",
+  name22: "Artistic Flow",
+  name23: "Contemporary Chaos",
+  name24: "Abstract Symphony",
+  name25: "Digital Artistry",
+  name26: "Modern Geometry",
+  name27: "Abstract Fusion",
+  name28: "Forest Whisper",
+  name29: "Ocean Depths",
+  name30: "Mountain Majesty",
+  name31: "Desert Sunset",
+  name32: "Tropical Paradise",
+  name33: "Arctic Aurora",
+   name34: "Garden Symphony",
+  name35: "Wilderness Call",
+  name36: "Natural Harmony",
+  name37: "Earth Elements",
+  name38: "Timeless Elegance",
+  name39: "Vintage Charm",
+  name40: "Classic Beauty",
+  name41: "Heritage Pattern",
+  name42: "Traditional Grace",
+  name43: "Classic Sophistication",
+  name44: "Elegant Simplicity",
+  name45: "Timeless Design",
+   name46: "Retro Gaming",
+  name47: "Movie Magic",
+  }
 };
 
 export default en;

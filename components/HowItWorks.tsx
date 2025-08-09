@@ -92,11 +92,11 @@ export default function HowItWorks() {
         <div className="text-center">
           <div className="inline-flex items-center gap-4 bg-gray-50 rounded-xl px-8 py-6 border border-gray-200">
             <span className="text-gray-700 font-medium">
-              Ready to start your journey?
+              {t.howItWorks.ready}
             </span>
                  <Link href="/catalog">
   <Button className="inline-flex items-center gap-2 px-6 py-3 bg-[#f6e79e] text-black rounded-lg font-medium transition-colors hover:bg-[#e5d46e]">
-    Get Started
+   {t.howItWorks.getStarted}
     <ArrowRight className="w-4 h-4" />
   </Button>
 </Link>
