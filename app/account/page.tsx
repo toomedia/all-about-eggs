@@ -10,7 +10,7 @@ export default function AccountPage() {
    const { t } = useTranslation();
    
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7fcee] via-white to-[#f6e79e]/20">      
+    <div className="min-h-screen">      
       {/* Hero Section */}
       <section className="pt-16 sm:pt-18 md:pt-20 pb-12 sm:pb-14 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
