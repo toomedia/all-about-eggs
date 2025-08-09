@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 import { ArrowLeft, Sparkles, Star, Heart, Download, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-// Preset collections data
+
 const presetCollections = {
   'easter-eggs': {
     title: 'Easter Eggs Collection',
@@ -87,12 +87,12 @@ const presetCollections = {
     description: 'Adorable holiday-themed designs perfect for celebrations',
     icon: '🥚',
     designs: [
-      { id: 11, name: "Christmas Magic", category: "Holiday", image: "/egg3.png", premium: false, featured: true, likes: 267 },
-      { id: 12, name: "Valentine Hearts", category: "Holiday", image: "/egg4.png", premium: true, featured: false, likes: 189 },
-      { id: 13, name: "Halloween Spooky", category: "Holiday", image: "/egg5.png", premium: false, featured: true, likes: 234 },
-      { id: 14, name: "New Year Sparkle", category: "Holiday", image: "/egg6.png", premium: true, featured: true, likes: 156 },
-      { id: 15, name: "Birthday Bash", category: "Holiday", image: "/egg7.png", premium: false, featured: false, likes: 198 },
-      { id: 16, name: "Thanksgiving Harvest", category: "Holiday", image: "/egg9.png", premium: true, featured: false, likes: 145 }
+      { id: 39, name: "Christmas Magic", category: "Holiday", image: "/egg3.png", premium: false, featured: true, likes: 267 },
+      { id: 40, name: "Valentine Hearts", category: "Holiday", image: "/egg4.png", premium: true, featured: false, likes: 189 },
+      { id: 41, name: "Halloween Spooky", category: "Holiday", image: "/egg5.png", premium: false, featured: true, likes: 234 },
+      { id: 42, name: "New Year Sparkle", category: "Holiday", image: "/egg6.png", premium: true, featured: true, likes: 156 },
+      { id: 43, name: "Birthday Bash", category: "Holiday", image: "/egg7.png", premium: false, featured: false, likes: 198 },
+      { id: 44, name: "Thanksgiving Harvest", category: "Holiday", image: "/egg9.png", premium: true, featured: false, likes: 145 }
     ]
   },
   'abstract-art': {
@@ -100,12 +100,12 @@ const presetCollections = {
     description: 'Modern and artistic designs for creative minds',
     icon: '🎨',
     designs: [
-      { id: 17, name: "Colorful Chaos", category: "Abstract", image: "/egg1.png", premium: true, featured: true, likes: 312 },
-      { id: 18, name: "Geometric Harmony", category: "Abstract", image: "/egg2.png", premium: false, featured: true, likes: 245 },
-      { id: 19, name: "Fluid Motion", category: "Abstract", image: "/egg3.png", premium: true, featured: false, likes: 189 },
-      { id: 20, name: "Minimalist Lines", category: "Abstract", image: "/egg4.png", premium: false, featured: false, likes: 167 },
-      { id: 21, name: "Organic Shapes", category: "Abstract", image: "/egg5.png", premium: true, featured: true, likes: 278 },
-      { id: 22, name: "Digital Dreams", category: "Abstract", image: "/egg6.png", premium: false, featured: false, likes: 201 }
+      { id: 45, name: "Colorful Chaos", category: "Abstract", image: "/egg1.png", premium: true, featured: true, likes: 312 },
+      { id: 46, name: "Geometric Harmony", category: "Abstract", image: "/egg2.png", premium: false, featured: true, likes: 245 },
+      { id: 47, name: "Fluid Motion", category: "Abstract", image: "/egg3.png", premium: true, featured: false, likes: 189 },
+      { id: 48, name: "Minimalist Lines", category: "Abstract", image: "/egg4.png", premium: false, featured: false, likes: 167 },
+      { id: 49, name: "Organic Shapes", category: "Abstract", image: "/egg5.png", premium: true, featured: true, likes: 278 },
+      { id: 50, name: "Digital Dreams", category: "Abstract", image: "/egg6.png", premium: false, featured: false, likes: 201 }
     ]
   },
   'staff-picks': {
@@ -113,12 +113,12 @@ const presetCollections = {
     description: 'Curated favorites from our design team',
     icon: '✨',
     designs: [
-      { id: 23, name: "Designer's Choice", category: "Curated", image: "/egg7.png", premium: true, featured: true, likes: 345 },
-      { id: 24, name: "Editor's Favorite", category: "Curated", image: "/egg9.png", premium: true, featured: true, likes: 298 },
-      { id: 25, name: "Artist's Vision", category: "Curated", image: "/egg1.png", premium: false, featured: true, likes: 267 },
-      { id: 26, name: "Creative Director's Pick", category: "Curated", image: "/egg2.png", premium: true, featured: false, likes: 234 },
-      { id: 27, name: "Team Favorite", category: "Curated", image: "/egg3.png", premium: false, featured: true, likes: 289 },
-      { id: 28, name: "Award Winner", category: "Curated", image: "/egg4.png", premium: true, featured: true, likes: 356 }
+      { id: 51, name: "Designer's Choice", category: "Curated", image: "/egg7.png", premium: true, featured: true, likes: 345 },
+      { id: 52, name: "Editor's Favorite", category: "Curated", image: "/egg9.png", premium: true, featured: true, likes: 298 },
+      { id: 53, name: "Artist's Vision", category: "Curated", image: "/egg1.png", premium: false, featured: true, likes: 267 },
+      { id: 54, name: "Creative Director's Pick", category: "Curated", image: "/egg2.png", premium: true, featured: false, likes: 234 },
+      { id: 55, name: "Team Favorite", category: "Curated", image: "/egg3.png", premium: false, featured: true, likes: 289 },
+      { id: 56, name: "Award Winner", category: "Curated", image: "/egg4.png", premium: true, featured: true, likes: 356 }
     ]
   }
 };
@@ -139,21 +139,25 @@ export default function PresetPage() {
 
   // Load saved selections from localStorage
   useEffect(() => {
-    const savedDesigns = localStorage.getItem('selectedDesigns');
-    const savedSize = localStorage.getItem('selectedSize');
-    
-    if (savedDesigns) {
-      setSelectedDesigns(JSON.parse(savedDesigns));
-    }
-    if (savedSize) {
-      setSelectedSize(savedSize);
+    if (typeof window !== 'undefined') {
+      const savedDesigns = localStorage.getItem('selectedDesigns');
+      const savedSize = localStorage.getItem('selectedSize');
+      
+      if (savedDesigns) {
+        setSelectedDesigns(JSON.parse(savedDesigns));
+      }
+      if (savedSize) {
+        setSelectedSize(savedSize);
+      }
     }
   }, []);
 
   // Save selections to localStorage
   useEffect(() => {
-    localStorage.setItem('selectedDesigns', JSON.stringify(selectedDesigns));
-    localStorage.setItem('selectedSize', selectedSize);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedDesigns', JSON.stringify(selectedDesigns));
+      localStorage.setItem('selectedSize', selectedSize);
+    }
   }, [selectedDesigns, selectedSize]);
 
   const preset = presetCollections[slug as keyof typeof presetCollections];
@@ -168,9 +172,9 @@ export default function PresetPage() {
             Back to Catalog
           </Link>
         </div>
-    </div>
-  );
-}
+      </div>
+    );
+  }
 
   const selectedDesignObjects = preset.designs.filter(design => selectedDesigns.includes(design.id));
 
@@ -525,7 +529,9 @@ export default function PresetPage() {
               <button
                 onClick={() => {
                   setSelectedDesigns([]);
-                  localStorage.removeItem('selectedDesigns');
+                  if (typeof window !== 'undefined') {
+                    localStorage.removeItem('selectedDesigns');
+                  }
                 }}
                 disabled={selectedDesigns.length === 0}
                 className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all transform hover:scale-105 ${

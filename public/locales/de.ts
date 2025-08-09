@@ -4,11 +4,14 @@ const de = {
     design: "Ei gestalten",
     catalog: "Katalog",
     cart: "Warenkorb",
+    configurator: "Konfigurator",
     account: "Konto",
     myAccount: "Mein Konto",
     cartItems: "Artikel im Warenkorb:",
     total: "Gesamt:",
     emptyCart: "Leer",
+    wishlist: "Wunschliste",
+    emptyWishlist: "Leer",
     gameSubtitle: "Dein einzigartiges Memory-Spiel",
     items: "Artikel",
     languages: {
@@ -75,22 +78,27 @@ const de = {
 },
  "howItWorks": {
     "title": "Wie es funktioniert",
+    "subtitle": "Ihr Weg zur perfekten Ei-Memory-Spiel in 4 einfachen Schritten",
     "step1": {
-      "title": "Wähle dein Design",
-      "description": "Lass deine Kreativität schlüpfen!",
-      "descrip":"Wähle deine Lieblingseier oder lass dich vom Zufall überraschen."
+      "title": "Wähle dein Produkt",
+      "description": "Wähle deine Größe und eines unserer 100+ Ei-Motive, oder entscheide dich für \"Überrasch mich.\"",
+      "descrip": "Wähle aus L (24 Karten), XL (48 Karten) oder XXL (96 Karten) Sets"
     },
     "step2": {
-      "title": "Wir drucken auf Bestellung",
-      "description": "Deine Eier, dein Stil – frisch gedruckt!",
-      "descrip":"Dein personalisiertes Memory-Spiel wird hochwertig für dich gefertigt."
+      "title": "Anpassen (Optional)",
+      "description": "Möchtest du etwas Einzigartiges? Nutze unseren KI-Ei-Generator für dein eigenes Design.",
+      "descrip": "Lade Bilder hoch, nutze KI-Prompts oder verbessere bestehende Designs"
     },
     "step3": {
-      "title": "Lieferung in 3–5 Tagen",
-      "description": "Freude zum Aufknacken – direkt zu dir nach Hause!",
-      "descrip":"Schnelle, sichere Lieferung direkt zu dir nach Hause – oder als Geschenk!"
+      "title": "Bestellung aufgeben",
+      "description": "Sicherer Checkout über PayPal oder Stripe.",
+      "descrip": "Schnelle, sichere Zahlungsabwicklung mit Bestellbestätigung"
+    },
+    "step4": {
+      "title": "Produkt erhalten",
+      "description": "Unser Print-on-Demand-Partner druckt und versendet direkt zu dir nach Hause.",
+      "descrip": "3-5 Werktage Lieferung, perfekt auch als Geschenk!"
     }
-
   },
   "ai-waitlist": {
   "title": "Demnächst: Gestalte dein eigenes Ei mit KI!",
@@ -537,6 +545,30 @@ const de = {
 
 
 
+  "configurator": {
+    "successModal": {
+      "title": "Erfolgreich zum Warenkorb hinzugefügt!",
+      "goToCheckout": "Zur Kasse",
+      "continueShopping": "Weiter einkaufen",
+      "message": "{count} Designs zum Warenkorb hinzugefügt! Gesamt: €{total}"
+    },
+    "steps": {
+      "chooseSize": "Größe wählen",
+      "selectDesigns": "Designs auswählen",
+      "reviewCheckout": "Überprüfen & Kasse"
+    },
+    "title": "Memory-Spiel Konfigurator",
+    "subtitle": "Erstelle dein perfektes Memory-Spiel",
+    "totalPrice": "Gesamtpreis",
+    "chooseSetSize": "Wähle deine Set-Größe",
+    "chooseSetSizeDesc": "Wähle die perfekte Größe für dein Memory-Spiel. Jedes Set kommt mit einzigartigen Designs, die bleibende Erinnerungen für deine Familie schaffen.",
+    "chooseDesigns": "Wähle deine Designs",
+    "chooseDesignsDesc": "Wähle aus unseren kuratierten Kollektionen, lass dich überraschen oder erstelle deine eigenen Designs mit KI.",
+    "mostPopular": "Am beliebtesten",
+    "cards": "Karten",
+    "itemsInCart": "Artikel im Warenkorb",
+    "itemInCart": "Artikel im Warenkorb"
+  },
   title: "EierUnendlichkeit", 
 
 

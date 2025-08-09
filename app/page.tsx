@@ -143,28 +143,6 @@ const CatalogSection = () => {
             ))}
           </div>
 
-          {/* Categories Preview */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            {[
-              { name: t.Catalog.categoryeaster, icon: '🥚', count: 10, color: 'from-pink-400 to-rose-400', slug: 'easter-eggs' },
-              { name: t.Catalog.categoryabstract, icon: '🎨', count: 8, color: 'from-purple-400 to-indigo-400', slug: 'abstract-designs' },
-              { name: t.Catalog.categorynature, icon: '🌿', count: 6, color: 'from-green-400 to-emerald-400', slug: 'nature-inspired' },
-              { name: t.Catalog.categoryclassics, icon: '✨', count: 4, color: 'from-amber-400 to-orange-400', slug: 'classic-collection' },
-            ].map((category) => (
-              <Link key={category.name} href={`/presets/${category.slug}`}>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/50 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group">
-                  <div className="text-center">
-                    <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${category.color} rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3 text-xl sm:text-2xl group-hover:scale-110 transition-transform duration-300`}>
-                      {category.icon}
-                    </div>
-                    <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base group-hover:text-gray-700 transition-colors">{category.name}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600 group-hover:text-gray-500 transition-colors">{category.count} designs</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
           {/* Call to Action */}
           <div className="text-center">
             <div className="bg-gradient-to-r from-[#f6e79e]/20 to-[#f7fcee]/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 border-[#f6e79e]/30">
@@ -266,15 +244,7 @@ const CatalogSection = () => {
                   <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
                  {t.catalogSection.wishlist}
                 </button>
-                
-                <button
-                  onClick={handleBuyNow}
-                  className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
-                  {t.catalogSection.buyNow}
-                </button>
-                
+
                 <button
                   onClick={handleCustomEnhancement}
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-200 text-gray-700 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all transform hover:scale-105 hover:bg-gray-50 flex items-center justify-center gap-2"

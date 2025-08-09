@@ -75,16 +75,11 @@ export default function Hero() {
               {t.hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center lg:justify-start">
+            <div className="">
               <Link href="/catalog">
-                <Button className="flex">
+                <Button className="flex md:w-3/5">
                   <Sparkles className="w-5 h-5 mr-2" />
                   {t.hero.createSet}
-                </Button>
-              </Link>
-              <Link href="#how-it-works">
-                <Button className="!bg-transparent border-2 border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900">
-                  {t.hero.learnMore}
                 </Button>
               </Link>
             </div>

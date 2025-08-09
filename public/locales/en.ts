@@ -3,12 +3,15 @@ const en = {
     home: "Home",
     design: "Design Egg",
     catalog: "Catalog",
+    configurator: "Configurator",
     cart: "Cart",
     account: "Account",
     myAccount: "My Account",
     cartItems: "Cart Items:",
     total: "Total:",
     emptyCart: "Empty",
+    wishlist: "Wishlist",
+    emptyWishlist: "Empty",
     gameSubtitle: "Your Unique Memory Game",
     items: "Items",
     languages: {
@@ -76,20 +79,26 @@ footer: {
 },
   "howItWorks": {
     "title": "How It Works",
+    "subtitle": "Your journey to creating the perfect egg memory game in 4 simple steps",
     "step1": {
-      "title": "Choose Your Design",
-      "description": "Let your creativity hatch!",
-      "descrip": "Pick your favorite egg designs or let the randomizer surprise you."
+      "title": "Pick Your Product",
+      "description": "Choose your size and one of our 100+ egg motifs, or go for \"Surprise Me.\"",
+      "descrip": "Select from L (24 cards), XL (48 cards), or XXL (96 cards) sets"
     },
     "step2": {
-      "title": "We Print On-Demand",
-      "description": "Your eggs, your style – freshly printed!",
-      "descrip":"We create your personalized memory game with top-quality printing."
+      "title": "Customize (Optional)",
+      "description": "Want something unique? Use our AI Egg Generator to create your own design.",
+      "descrip": "Upload images, use AI prompts, or enhance existing designs"
     },
     "step3": {
-      "title": "Ships in 3–5 Days",
-      "description": "Ready to crack joy at your doorstep!",
-      "descrip":"Fast and safe delivery, perfect as a gift too!"
+      "title": "Place Your Order",
+      "description": "Secure checkout via PayPal or Stripe.",
+      "descrip": "Fast, secure payment processing with order confirmation"
+    },
+    "step4": {
+      "title": "Receive Your Product",
+      "description": "Our print-on-demand partner prints & ships directly to your door.",
+      "descrip": "3-5 business days delivery, perfect as a gift too!"
     }
   },
 "ai-waitlist": {
@@ -531,6 +540,30 @@ footer: {
        "pagination": {
     "showing": "Showing {{count}} of {{total}}"
   }
+  },
+  "configurator": {
+    "successModal": {
+      "title": "Successfully Added to Cart!",
+      "goToCheckout": "Go to Checkout",
+      "continueShopping": "Continue Shopping",
+      "message": "Added {count} designs to cart! Total: €{total}"
+    },
+    "steps": {
+      "chooseSize": "Choose Size",
+      "selectDesigns": "Select Designs",
+      "reviewCheckout": "Review & Checkout"
+    },
+    "title": "Memory Game Configurator",
+    "subtitle": "Create your perfect memory game set",
+    "totalPrice": "Total Price",
+    "chooseSetSize": "Choose Your Set Size",
+    "chooseSetSizeDesc": "Select the perfect size for your memory game. Each set comes with unique designs that will create lasting memories for your family.",
+    "chooseDesigns": "Choose Your Designs",
+    "chooseDesignsDesc": "Select from our curated collections, let us surprise you, or create your own designs with AI.",
+    "mostPopular": "Most Popular",
+    "cards": "Cards",
+    "itemsInCart": "items in cart",
+    "itemInCart": "item in cart"
   },
    title: "EggFinity",
 };

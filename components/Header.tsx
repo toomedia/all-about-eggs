@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from 'react';
-import { ShoppingCart, Egg, Menu, X, User } from 'lucide-react';
+import { ShoppingCart, Egg, Menu, X, User, Heart } from 'lucide-react';
 import Link from 'next/link';
 import useTranslation from '@/lib/useTranslation';
 
@@ -10,12 +10,14 @@ function HeaderContent() {
   const [scrolled, setScrolled] = useState(false);
   const [cartItems, setCartItems] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+  const [wishlistItems, setWishlistItems] = useState(0);
   const { t, lang, switchLanguage } = useTranslation();
 
   const navLinks = [
     { label: t.nav.home, href: '/' },
-    { label: t.nav.design, href: '/design' },
+    // { label: t.nav.design, href: '/design' },
     { label: t.nav.catalog, href: '/catalog' },
+    { label: t.nav.configurator, href: '/configurator' },
   ];
 
   useEffect(() => {
@@ -26,15 +28,96 @@ function HeaderContent() {
 
   useEffect(() => {
     const loadCart = () => {
-      const items = parseInt(localStorage.getItem("eggfinity-cart-items") || "0");
-      const total = parseFloat(localStorage.getItem("eggfinity-cart-total") || "0");
-      setCartItems(isNaN(items) ? 0 : items);
-      setCartTotal(isNaN(total) ? 0 : total);
+      // Read cart data from localStorage
+      if (typeof window !== 'undefined') {
+        const savedCart = localStorage.getItem('cart');
+        let items = 0;
+        let total = 0;
+        
+        if (savedCart) {
+          try {
+            const cartItems = JSON.parse(savedCart);
+            
+            if (Array.isArray(cartItems) && cartItems.length > 0) {
+              // Count total items across all cart entries
+              items = cartItems.reduce((sum, item) => {
+                let designCount = 0;
+                
+                // Handle different possible structures
+                if (item.designs && Array.isArray(item.designs)) {
+                  designCount = item.designs.length;
+                } else if (item.designs && typeof item.designs === 'number') {
+                  designCount = item.designs;
+                } else if (item.designCount) {
+                  designCount = item.designCount;
+                } else if (item.count) {
+                  designCount = item.count;
+                }
+                
+                return sum + designCount;
+              }, 0);
+              
+              // Calculate total price
+              total = cartItems.reduce((sum, item) => {
+                const price = item.price ? parseFloat(item.price) : 0;
+                return sum + (isNaN(price) ? 0 : price);
+              }, 0);
+              
+              // If the count is unreasonably high (more than 200), clear the cart
+              if (items > 200) {
+                console.log('Cart count too high, clearing cart data');
+                localStorage.removeItem('cart');
+                items = 0;
+                total = 0;
+              }
+            }
+          } catch (error) {
+            console.error('Error parsing cart data:', error);
+            // Clear invalid cart data
+            localStorage.removeItem('cart');
+          }
+        }
+        
+        setCartItems(items);
+        setCartTotal(total);
+      }
+    };
+
+    const loadWishlist = () => {
+      // Read wishlist data from localStorage
+      if (typeof window !== 'undefined') {
+        const savedWishlist = localStorage.getItem('wishlist');
+        let items = 0;
+        
+        if (savedWishlist) {
+          try {
+            const wishlistItems = JSON.parse(savedWishlist);
+            
+            if (Array.isArray(wishlistItems)) {
+              items = wishlistItems.length;
+            }
+          } catch (error) {
+            console.error('Error parsing wishlist data:', error);
+            // Clear invalid wishlist data
+            localStorage.removeItem('wishlist');
+          }
+        }
+        
+        setWishlistItems(items);
+      }
     };
 
     loadCart();
-    window.addEventListener("eggfinity-cart-updated", loadCart);
-    return () => window.removeEventListener("eggfinity-cart-updated", loadCart);
+    loadWishlist();
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener("eggfinity-cart-updated", loadCart);
+      window.addEventListener("eggfinity-wishlist-updated", loadWishlist);
+      return () => {
+        window.removeEventListener("eggfinity-cart-updated", loadCart);
+        window.removeEventListener("eggfinity-wishlist-updated", loadWishlist);
+      };
+    }
   }, []);
 
   return (
@@ -81,8 +164,25 @@ function HeaderContent() {
               </div>
 
               {cartItems > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-[#f6e79e] text-gray-900 text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse shadow-md">
+                <span className="absolute -top-1.5 -right-1.5 bg-[#f6e79e] text-gray-900 text-[10px] font-bold rounded-full h-7 w-7 flex items-center justify-center animate-pulse shadow-md">
                   {cartItems}
+                </span>
+              )}
+            </Link>
+
+            {/* Wishlist */}
+            <Link href="/wishlist" className="relative flex items-center gap-2 hover:bg-white/20 px-3 py-2 rounded-xl group">
+              <Heart className="h-5 w-5 text-gray-700 group-hover:text-[#f6e79e]" />
+              <div className="hidden sm:flex flex-col items-start">
+                <span className="text-xs text-gray-600">{t.nav.wishlist}</span>
+                <span className="text-base font-semibold text-gray-800">
+                  {wishlistItems > 0 ? `${wishlistItems} ${t.nav.items}` : t.nav.emptyWishlist}
+                </span>
+              </div>
+
+              {wishlistItems > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-[#f6e79e] text-gray-900 text-[10px] font-bold rounded-full h-7 w-7 flex items-center justify-center animate-pulse shadow-md">
+                  {wishlistItems}
                 </span>
               )}
             </Link>
@@ -131,11 +231,22 @@ function HeaderContent() {
               >
                 {t.nav.myAccount}
               </Link>
+              <Link
+                href="/wishlist"
+                onClick={() => setMenuOpen(false)}
+                className="block text-base font-medium text-gray-700 hover:text-[#f6e79e] py-2 px-3 rounded-lg hover:bg-white/20"
+              >
+                {t.nav.wishlist}
+              </Link>
 
               <div className="px-3 py-2">
                 <div className="flex justify-between text-base">
                   <span className="text-gray-600">{t.nav.cartItems}</span>
                   <span className="font-semibold text-gray-800">{cartItems}</span>
+                </div>
+                <div className="flex justify-between text-base mt-1">
+                  <span className="text-gray-600">{t.nav.wishlist}</span>
+                  <span className="font-semibold text-gray-800">{wishlistItems}</span>
                 </div>
                 {cartTotal > 0 && (
                   <div className="flex justify-between text-base mt-1">
