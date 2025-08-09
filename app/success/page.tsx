@@ -220,22 +220,23 @@ function SuccessContent() {
         )}
 
         {/* Buttons Section */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          {visibleCount < eggs.length && (
-            <button
-              onClick={() => setVisibleCount(prev => prev + 8)}
-              className="bg-[#f6e79e] text-gray-900 px-6 py-2 rounded-lg font-semibold shadow"
-            >
-              Show More ({Math.min(eggs.length - visibleCount, 8)} more)
-            </button>
-          )}
-          <a
-            href="/"
-            className="bg-[#f6e79e] text-gray-900 px-6 py-2 rounded-lg font-semibold shadow transition"
-          >
-            {t.Success.backHome}
-          </a>
-        </div>
+     <div className="flex flex-col sm:flex-row gap-3 justify-center">
+  {visibleCount < eggs.length && (
+    <button
+      onClick={() => setVisibleCount(prev => prev + 8)}
+      className="bg-[#f6e79e] text-gray-900 px-6 py-2 rounded-lg font-semibold shadow"
+    >
+      Load More ({Math.min(eggs.length - visibleCount, 8)} more)
+    </button>
+  )}
+  <a
+    href="/"
+    className="bg-[#f6e79e] text-gray-900 px-6 py-2 rounded-lg font-semibold shadow transition text-center"
+  >
+    {t.Success.backHome}
+  </a>
+</div>
+
       </div>
     </div>
   );
